@@ -8,4 +8,4 @@ uppercase no
 background no
 
 TEXT
-[ $nodename : $kernel : $uptime : Upd: ${execi 120 /home/haruko/.scripts/updatecount.sh} ] [ CPU: ${cpu cpu1}% ${cpu cpu2}% ] [ NET: ${downspeed eth0} down | ${upspeed eth0} up ] [ Vol: ${exec /home/haruko/.scripts/getVolume.sh}%  ] [ $time ]
+[ $nodename : $kernel : $uptime : ${execi 120 /home/haruko/.scripts/updatecount.sh} Upd ] [ CPU: ${cpu cpu1}% ${cpu cpu2}% ] [ RAM: ${memperc}% ] [ / $fs_used_perc}% | home ${fs_used_perc /home}% | Destruction ${fs_used_perc /mnt/Destruction}% | Entropy ${fs_used_perc /mnt/Entropy}% | Gluttony ${fs_used_perc /mnt/Gluttony}% ] [ NET: ${downspeed eth0} down | ${upspeed eth0} up ] [ Vol: ${exec /home/haruko/.scripts/getVolume.sh}%  ] [ $time ]

@@ -18,8 +18,8 @@ screen    -t '' 3
 screen    -t '' 4
 screen    -t '' 5
 screen    -t '' 6
-screen    -t '' 7 htop
-screen    -t '' 8 #sudo inotail -f -n 30 /var/log/everything.log
+screen    -t 'htop' 7 htop
+screen    -t 'syslog' 8 sudo less +F /var/log/everything.log
 screen    -t '' 9
 #select 9
 
