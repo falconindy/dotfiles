@@ -3,7 +3,7 @@ alias !='sudo'
 alias ..='cd ..'
 alias pp='powerpill'
 alias spp='sudo powerpill'
-alias ya='yaourt'
+alias sl='slurpy -c'
 alias grep='grep --color'
 alias ls='ls --color=auto'
 alias ll='ls -la'
@@ -16,10 +16,6 @@ alias hman='man -Hchromium-browser'
 
 calc() {
 	echo "scale=3; $*" | bc
-}
-
-sl() {
-	[[ -f $1 ]] && ln -s $1 `basename $1` || echo "Error: target not found"
 }
 
 unwork() {
