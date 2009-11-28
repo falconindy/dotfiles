@@ -91,8 +91,8 @@ hardstatus alwayslastline
 #hardstatus string "%{.kw}%-w%{.w}%n %t%{-}%+w %=%c %d/%m/%Y" #black+white+normal
 #hardstatus string "%{.kw}%-w%{.Kw}%n %t%{-}%+w %=%c %d/%m/%Y" #black+grey+normal
 #hardstatus string "%{.kc}%-w%{.kc}%n*%t%{-}%+w %=%c %d/%m/%Y" #black+cyan+normal
-hardstatus string "%{.kc}%-w%{.kw}%n*%t%{-}%+w %= %9` %c %m/%d/%Y" #black+cyan+normal+white selected
-#hardstatus string "%{.kc}%-w%{.kw}%n*%t%{-}%+w %= | %1` | %2`C | %3`/%4` | %6`/%7` | %5` | %c %d/%m/%Y" #with dwm status bar
+#hardstatus string "%{.kc}%-w%{.kw}%n*%t%{-}%+w %= %9` %c %m/%d/%Y" #black+cyan+normal+white selected
+hardstatus string "%{.kc}%-w%{.kw}%n*%t%{-}%+w %= | %1` | %2`C | %3`/%4` | %6`/%7` | %5` | %c %d/%m/%Y" #with dwm status bar
 #hardstatus string '%{= kB}%-Lw%{+r}%50> %n%f* %t%{= kB}%+Lw%< %{= kB}%-= %{-}'
 #hardstatus alwayslastline '%{bk}[ %{W}%H %{b}][ %{w}%l%{b} ]   %{b}[%{w} %D %d.%m %c:%s%{b} ]'
 sorendition kw

@@ -14,7 +14,7 @@ urxvt*depth: 32
 urxvt*background: [75]#000000
 urxvt*foreground:#eeeeee
 urxvt*scrollBar:false
-urxvt*borderLess: false
+! urxvt*borderLess: false
 urxvt*saveLines:32767
 urxvt*cursorColor:#83C048
 urxvt*highlightColor:#3465a4
@@ -44,5 +44,5 @@ urxvt*colorBD:#FFFFFF
 ! make web links clicky
 urxvt.perl-ext-common: default,matcher
 urxvt.urllauncher: chromium-browser
-urxvt.matcher.button: 2
+urxvt.matcher.button: 1
 urxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]

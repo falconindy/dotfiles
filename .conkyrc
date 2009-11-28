@@ -5,6 +5,7 @@ default_color white
 use_spacer right
 no_buffers yes
 uppercase no
+background no
 
 TEXT
-[ $nodename : $kernel : $uptime : Upd: ${execi 120 /home/haruko/.scripts/updatecount.sh} ] [ CPU: ${cpu cpu1}% ${cpu cpu2}% ] [ NET: ${downspeed eth0} v ${upspeed eth0} ^ ] [ Vol: ${exec /home/haruko/.scripts/getVolume.sh}%  ] [ $time ]
+[ $nodename : $kernel : $uptime : Upd: ${execi 120 /home/haruko/.scripts/updatecount.sh} ] [ CPU: ${cpu cpu1}% ${cpu cpu2}% ] [ NET: ${downspeed eth0} down | ${upspeed eth0} up ] [ Vol: ${exec /home/haruko/.scripts/getVolume.sh}%  ] [ $time ]
