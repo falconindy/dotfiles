@@ -1,0 +1,101 @@
+startup_message off
+#termcapinfo xterm*|Eterm|mlterm|rxvt 'hs:ts=\E]0;:fs=\007:ds=\E]0;screen\007'
+termcapinfo rxvt-256color ti@:te@     #enable SHIFT-PGUP / SHIFT-PGDOWN scroll
+#termcapinfo wy* CS=\E[?1h:CE=\E[?1l:vi=\E[?25l:ve=\E[?25h:VR=\E[?5h:VN=\E[?5l:cb=\E[1K:CD=\E[1J
+terminfo rxvt-256color ti@:te@:
+term screen-256color
+setenv LC_CTYPE en_US.UTF-8
+defutf8 on
+setenv DISPLAY ':0'
+nonblock on
+vbell off
+msgwait 10
+shelltitle ''
+
+screen    -t '' 1
+screen    -t '' 2
+screen    -t '' 3
+screen    -t '' 4
+screen    -t '' 5
+screen    -t '' 6
+screen    -t '' 7 htop
+screen    -t '' 8 #sudo inotail -f -n 30 /var/log/everything.log
+screen    -t '' 9
+#select 9
+
+bind = resize =
+bind + resize +1
+bind - resize -1
+bind _ resize max
+bind c screen 1 # Window numbering starts at 1, not 0.
+bind 0 select 10
+# make life easier, f1-f10 selects screens 0-9
+#bindkey -k k1 select 1
+#bindkey -k k2 select 2
+#bindkey -k k3 select 3
+#bindkey -k k4 select 4
+#bindkey -k k5 select 5
+#bindkey -k k6 select 6
+#bindkey -k k7 select 7
+#bindkey -k k8 select 8
+#bindkey -k k9 select 9
+#bindkey -k k0 select 0
+# windows select with Shift-Fn. May not work in all terminals.
+# (screen only seems to understand up to FA)
+#bindkey -k F3 select 1
+#bindkey -k F4 select 2
+#bindkey -k F5 select 3
+#bindkey -k F6 select 4
+#bindkey -k F7 select 5
+#bindkey -k F8 select 6
+#bindkey -k F9 select 7
+#bindkey -k FA select 8
+#bindkey -k k7 detach # bind F7  to detach screen session from this terminal
+#bindkey -k k8 kill   # bind F8  to kill current screen window.
+#bindkey -k k9 next   # bind F9 to move to previous window
+#bindkey -k F1 prev   # bind F11 to move to next window
+#bindkey -k F2 hardstatus alwaysignore # F12 to turn the status bar on
+#bindkey -k k9 screen # bind F9  to create a new screen
+#bindkey -k k; title  # bind F10 to rename current screen window
+#bindkey -k F1 prev   # bind F11 to move to previous window
+#bindkey -k F2 next   # bind F12 to move to next window
+bindkey "^[Od" prev  # change window with ctrl-left
+bindkey "^[Oc" next  # change window with ctrl-right
+
+#let pgup/pgdn scroll under urxvt (see .Xdefaults)
+bindkey "^[[5;2~" eval "copy" "stuff ^u"
+bindkey -m "^[[5;2~" stuff ^u
+bindkey -m "^[[6;2~" stuff ^d
+
+# add CPU idle/sustem/user/interrupt stats
+#backtick 100 5 5 tail -1 /var/tmp/vermaden-stats-top
+#caption always '%{= wk} %= %100` %='
+#backtick 1 60 60 $HOME/bin/get_uptime
+#backtick 2 60 60 $HOME/bin/get_cputemp Core0
+#backtick 3 60 60 $HOME/bin/get_freemem
+#backtick 4 60 60 $HOME/bin/get_freeswap
+#backtick 5 60 60 $HOME/bin/get_volume Master
+#backtick 6 60 60 $HOME/bin/get_gmail
+#backtick 7 60 60 $HOME/bin/get_updates
+#backtick 8 60 60 $HOME/bin/get_citytemp | grep Temperature | awk '{print $3}'
+#backtick 9 60 60 $HOME/bin/get_batterycharge
+
+# An alternative hardstatus to display a bar at the bottom listing the
+# windownames and highlighting the current windowname in blue. (This is only
+# enabled if there is no hardstatus setting for your terminal)
+hardstatus on
+hardstatus alwayslastline
+#hardstatus string "%w"
+#hardstatus string "%{.kW}%-w%{.W}%n %t%{-}%+w"
+#hardstatus string "%{.kW}%-w%{.W}%n %t%{-}%+w %=%c %d/%m/%Y" #black+white+bold
+#hardstatus string "%{.kw}%-w%{.w}%n %t%{-}%+w %=%c %d/%m/%Y" #black+white+normal
+#hardstatus string "%{.kw}%-w%{.Kw}%n %t%{-}%+w %=%c %d/%m/%Y" #black+grey+normal
+#hardstatus string "%{.kc}%-w%{.kc}%n*%t%{-}%+w %=%c %d/%m/%Y" #black+cyan+normal
+hardstatus string "%{.kc}%-w%{.kw}%n*%t%{-}%+w %= %9` %c %d/%m/%Y" #black+cyan+normal+white selected
+#hardstatus string "%{.kc}%-w%{.kw}%n*%t%{-}%+w %= | %1` | %2`C | %3`/%4` | %6`/%7` | %5` | %c %d/%m/%Y" #with dwm status bar
+#hardstatus string '%{= kB}%-Lw%{+r}%50> %n%f* %t%{= kB}%+Lw%< %{= kB}%-= %{-}'
+#hardstatus alwayslastline '%{bk}[ %{W}%H %{b}][ %{w}%l%{b} ]   %{b}[%{w} %D %d.%m %c:%s%{b} ]'
+sorendition kw
+
+# hardcopydir:  The directory which contains all hardcopies.
+hardcopydir /home/haruko/.hardcopy

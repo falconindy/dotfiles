@@ -1,0 +1,38 @@
+! Generic
+xft.dpi: 96
+xft.antialias: true
+Xft.rgba: rgb
+Xft.hinting: true
+Xft.hintstyle: hintslight
+
+Xcursor*theme: DMZ-White
+Xcursor.size:  24
+
+! Application Specific
+urxvt*background:#000000
+urxvt*foreground:#eeeeee
+urxvt*scrollBar:false
+urxvt*saveLines:32767
+urxvt*color0:#555753
+urxvt*color1:#CC0000
+urxvt*color2:#6AAD2B
+urxvt*color3:#C4A000
+urxvt*color4:#3465A4
+urxvt*color5:#948696
+urxvt*color6:#06989A
+urxvt*color7:#EEEEEE
+urxvt*color8:#666666
+urxvt*color9:#EF2929
+urxvt*color10:#ABFD5B
+urxvt*color11:#FCE94F
+urxvt*color12:#ADCAE9
+urxvt*color13:#BCACBB
+urxvt*color14:#34E2E2
+urxvt*color15:#FFFFFF
+urxvt*colorBD:#FFFFFF
+urxvt*cursorColor:#83C048
+!urxvt*highlightColor:#83C048
+urxvt*highlightColor:#244DA5
+urxvt*font:xft:Terminus:dpi=96
+urxvt*boldFont:xft:Terminus:bold:dpi=96
+urxvt*geometry:100x30

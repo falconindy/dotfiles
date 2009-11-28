@@ -1,0 +1,10 @@
+cpu_avg_samples 2
+net_avg_samples 2
+update_interval .5
+default_color white
+use_spacer right
+no_buffers yes
+uppercase no
+
+TEXT
+[ $nodename : $kernel : $uptime ] [ CPU: ${cpu cpu1}% ${cpu cpu2}% ] [ NET: ${downspeed eth0} v ${upspeed eth0} ^ ] [ Vol: ${exec /home/haruko/.scripts/getVolume.sh}%  ] [ $time ]

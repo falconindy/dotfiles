@@ -1,0 +1,3 @@
+deluged &
+deluge -u web &
+
