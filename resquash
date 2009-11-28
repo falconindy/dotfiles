@@ -1,0 +1,37 @@
+#!/bin/bash
+
+. /etc/rc.d/functions
+SQUASH_ROOT=/squashed
+
+[[ -z $1 ]] && echo "Error: No target specified." && exit 1
+if [[ ! -d ${SQUASH_ROOT}/$1 ]]; then
+	echo -n "Invalid target. Valid targets are: "
+	squashes=($(ls $SQUASH_ROOT))
+	echo ${squashes[*]}
+	exit 1
+fi
+
+if [[ $UID -ne 0 ]]; then
+	sudo $0 $*
+	exit
+fi
+
+stat_busy "Squashing /${1}"
+mksquashfs /$1 ${SQUASH_ROOT}/${1}/${1}_tmp.sfs -b 65536 || exit 1
+stat_done
+
+stat_busy "Unmounting old UnionFS"
+umount -l /${1}
+umount -l ${SQUASH_ROOT}/${1}/ro
+stat_done
+
+stat_busy "Replacing with new SquashFS"
+rm ${SQUASH_ROOT}/${1}/${1}.sfs
+mv ${SQUASH_ROOT}/${1}/${1}{_tmp,}.sfs
+rm -rf ${SQUASH_ROOT}/${1}/rw/*
+stat_done
+
+stat_busy "Mounting new /${1}"
+mount ${SQUASH_ROOT}/${1}/ro
+mount /${1}
+stat_done

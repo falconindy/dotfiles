@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#!/bin/bash
+# list directory permissions along the path
+
+if [ -n "$1" ];then
+	dirpath=$1
+	else
+	dirpath=$(pwd)
+fi
+
+IFS='/'
+
+for part in $dirpath;do
+   unset IFS
+   grow="$grow""$part""/"
+   echo $(ls -asld --color --time-style=long-iso $grow | cut -d ' ' -f 2,4,5,9)
+done
+
+exit 0

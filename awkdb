@@ -1,0 +1,2 @@
+#runs toupper() on the last field of each line
+awk '{ i = 1 while (i < NF) { printf $i " ", i++ } print toupper($NF) }' database

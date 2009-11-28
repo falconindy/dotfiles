@@ -1,0 +1,43 @@
+#! /bin/bash
+
+VBOX_HOST=WinXP
+REMOTE_HOST=localhost
+REMOTE_PORT=3390
+
+if [ "$1" == "start" ]; then
+	if [ -z `pgrep VBoxHeadless` ]; then
+		VBoxHeadless -startvm "$VBOX_HOST" &
+	else
+		echo "ERROR: VBox '$VBOX_HOST' is running."
+		exit 1
+	fi
+	disown
+elif [ "$1" == "stop" ]; then
+	if [ -z `pgrep VBoxHeadless` ]; then
+		echo "ERROR: VBox '$VBOX_HOST' is not running."
+		exit 1
+	else
+		VBoxManage controlvm "$VBOX_HOST" poweroff
+	fi
+elif [ "$1" == "connect" ]; then
+	echo -n "[vbox] password for `id -nu`: "
+	STTY_ORIG=`stty -g`
+	stty -echo
+	read PASSWORD
+	echo
+	stty $STTY_ORIG
+
+	if [ -z `pgrep VBoxHeadless` ]; then
+		VBoxHeadless -startvm "$VBOX_HOST" &
+		sleep 5
+	fi
+	rdesktop -p"$PASSWORD" $REMOTE_HOST:$REMOTE_PORT
+	disown
+	exit 0
+else
+	echo "USAGE: vbox start|stop|connect"
+	echo
+	echo "Host: $VBOX_HOST @ $REMOTE_HOST:$REMOTE_PORT"
+	echo "Status: `VBoxManage showvminfo $VBOX_HOST | grep State | cut -d" " -f12-`"
+fi		
+

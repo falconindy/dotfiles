@@ -1,0 +1,8 @@
+#!/bin/bash
+
+[[ -z "$1" ]] && echo "Error: Please provide a program" && exit 1
+
+DISPLAY=:1
+X :1 -ac -terminate &
+sleep 2
+$*
