@@ -42,7 +42,7 @@ urxvt*color15:#FFFFFF
 urxvt*colorBD:#FFFFFF
 
 ! make web links clicky
-urxvt.perl-ext-common: default,matcher
-urxvt.urllauncher: chromium-browser
-urxvt.matcher.button: 1
-urxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+URxvt.perl-ext-common: default,matcher
+URxvt.urlLauncher: chromium-browser
+URxvt.matcher.button: 1
+URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
