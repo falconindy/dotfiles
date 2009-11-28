@@ -9,7 +9,7 @@ conky | dzen2 -e 'onstart=lower' -h 16 -fg '#EEEEEE' -bg '#051122' -ta r -fn '-*
 xcompmgr -c -t-5 -l-5 -r4.2 -o.55 -f &
 feh --bg-scale pictures/Wallpaper/archlinux1.jpg
 setxkbmap -option terminate:ctrl_alt_bksp
-xscreensaver --timeout 5 -no-splash &
+xscreensaver -no-splash &
 pidgin&
 chromium-browser&
 urxvtd -q -o -f&
