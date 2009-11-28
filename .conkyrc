@@ -7,4 +7,4 @@ no_buffers yes
 uppercase no
 
 TEXT
-[ $nodename : $kernel : $uptime ] [ CPU: ${cpu cpu1}% ${cpu cpu2}% ] [ NET: ${downspeed eth0} v ${upspeed eth0} ^ ] [ Vol: ${exec /home/haruko/.scripts/getVolume.sh}%  ] [ $time ]
+[ $nodename : $kernel : $uptime : Upd: ${execi 120 /home/haruko/.scripts/updatecount.sh} ] [ CPU: ${cpu cpu1}% ${cpu cpu2}% ] [ NET: ${downspeed eth0} v ${upspeed eth0} ^ ] [ Vol: ${exec /home/haruko/.scripts/getVolume.sh}%  ] [ $time ]
