@@ -1,5 +1,0 @@
-#if SUFFIX = falc2... then
-SUFFIX=falc2
-echo $SUFFIX
-echo $((${SUFFIX:$((${SUFFIX} - 1)):1} + 1))
-#will echo '3'

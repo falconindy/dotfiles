@@ -1,4 +1,6 @@
 #!/bin/bash
+#Ubuntu util to add repo keys
+
 if [[ -z $1 ]]; then
 	echo "Please specify a repository key"
 	exit 1
