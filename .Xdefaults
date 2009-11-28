@@ -11,10 +11,12 @@ Xcursor.size:  24
 ! Application Specific
 urxvt*background:#000000
 urxvt*foreground:#eeeeee
+urxvt*transparency: true
+urxvt*shading: 20
+urxvt*inheritPixmap: true
 urxvt*scrollBar:false
 urxvt*saveLines:32767
 urxvt*color0:#eeeeee
-#urxvt*color0:#a8a8a8
 urxvt*color1:#CC0000
 urxvt*color2:#6AAD2B
 urxvt*color3:#C4A000
@@ -32,8 +34,6 @@ urxvt*color14:#34E2E2
 urxvt*color15:#FFFFFF
 urxvt*colorBD:#FFFFFF
 urxvt*cursorColor:#83C048
-!urxvt*highlightColor:#83C048
-!urxvt*highlightColor:#244DA5
 urxvt*highlightColor:#3465a4
 urxvt*font:xft:Terminus:dpi=96
 urxvt*boldFont:xft:Terminus:bold:dpi=96

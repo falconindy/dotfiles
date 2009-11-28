@@ -11,7 +11,6 @@
 
 #exec ck-launch-session dwm
 
-xscreensaver -no-splash&
 feh --bg-scale pictures/Wallpaper/archlinux1.jpg
 setxkbmap -option terminate:ctrl_alt_bksp
 xscreensaver --timeout 5 -no-splash &
