@@ -1,13 +1,13 @@
 ! screen font
-xft.dpi: 96
-xft.antialias: true
-xft.rgba: rgb
-xft.hinting: true
-xft.hintstyle: hintslight
+Xft.dpi: 96
+Xft.antialias: true
+Xft.rgba: rgb
+Xft.hinting: true
+Xft.hintstyle: hintslight
 
 ! x11 mouse theme
-xcursor*theme: DMZ-White
-xcursor.size:  24
+Xcursor*theme: DMZ-White
+Xcursor.size:  24
 
 ! general
 urxvt*depth: 32
