@@ -4,13 +4,7 @@
 #
 # Executed by startx (run your window manager from here)
 
-# exec gnome-session
-# exec startkde
-# exec startxfce4
-# ...or the Window Manager of your choice
-
-#exec ck-launch-session dwm
-
+xcompmgr -c -t-5 -l-5 -r4.2 -o.55 -f &
 feh --bg-scale pictures/Wallpaper/archlinux1.jpg
 setxkbmap -option terminate:ctrl_alt_bksp
 xscreensaver --timeout 5 -no-splash &
