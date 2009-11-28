@@ -16,5 +16,6 @@ setxkbmap -option terminate:ctrl_alt_bksp
 xscreensaver --timeout 5 -no-splash &
 pidgin&
 chromium-browser&
+urxvtd -q -o -f&
 exec ~/bin/startdwm
 

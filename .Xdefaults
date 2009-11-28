@@ -1,20 +1,28 @@
-! Generic
+! screen font
 xft.dpi: 96
 xft.antialias: true
-Xft.rgba: rgb
-Xft.hinting: true
-Xft.hintstyle: hintslight
+xft.rgba: rgb
+xft.hinting: true
+xft.hintstyle: hintslight
 
-Xcursor*theme: DMZ-White
-Xcursor.size:  24
+! x11 mouse theme
+xcursor*theme: DMZ-White
+xcursor.size:  24
 
-! Application Specific
+! general
 urxvt*depth: 32
 urxvt*background: [75]#000000
 urxvt*foreground:#eeeeee
-
 urxvt*scrollBar:false
+urxvt*borderLess: false
 urxvt*saveLines:32767
+urxvt*cursorColor:#83C048
+urxvt*highlightColor:#3465a4
+urxvt*font:xft:Terminus:dpi=96
+urxvt*boldFont:xft:Terminus:bold:dpi=96
+urxvt*geometry:100x30
+
+! colors
 urxvt*color0:#eeeeee
 urxvt*color1:#CC0000
 urxvt*color2:#6AAD2B
@@ -32,11 +40,6 @@ urxvt*color13:#BCACBB
 urxvt*color14:#34E2E2
 urxvt*color15:#FFFFFF
 urxvt*colorBD:#FFFFFF
-urxvt*cursorColor:#83C048
-urxvt*highlightColor:#3465a4
-urxvt*font:xft:Terminus:dpi=96
-urxvt*boldFont:xft:Terminus:bold:dpi=96
-urxvt*geometry:100x30
 
 ! make web links clicky
 urxvt.perl-ext-common: default,matcher
