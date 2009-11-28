@@ -9,11 +9,10 @@ Xcursor*theme: DMZ-White
 Xcursor.size:  24
 
 ! Application Specific
-urxvt*background:#000000
+urxvt*depth: 32
+urxvt*background: [75]#000000
 urxvt*foreground:#eeeeee
-urxvt*transparency: true
-urxvt*shading: 20
-urxvt*inheritPixmap: true
+
 urxvt*scrollBar:false
 urxvt*saveLines:32767
 urxvt*color0:#eeeeee
@@ -38,3 +37,9 @@ urxvt*highlightColor:#3465a4
 urxvt*font:xft:Terminus:dpi=96
 urxvt*boldFont:xft:Terminus:bold:dpi=96
 urxvt*geometry:100x30
+
+! make web links clicky
+urxvt.perl-ext-common: default,matcher
+urxvt.urllauncher: chromium-browser
+urxvt.matcher.button: 2
+urxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
