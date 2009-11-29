@@ -9,7 +9,7 @@ syntax on				" Syntax highlighting on
 colorscheme dante
 set tabstop=4
 set shiftwidth=4
-set autoindent			" Use current level line's indent
+"set autoindent			" Use current level line's indent
 set showmatch			" Show matching braces
 set virtualedit=all		" Allow cursor to stray outside text
 set showcmd
