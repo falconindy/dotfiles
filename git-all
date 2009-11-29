@@ -1,5 +1,7 @@
 #! /bin/bash
 
+REPOPATH=$HOME
+
 function usage {
 	echo "USAGE: git-all status|push|pull [origin <remote>]"
 	echo ""
@@ -7,49 +9,43 @@ function usage {
 	exit
 }
 
-if [ "$1" == "push" ] || [ "$1" == "pull" ]; then
+[[ $# -eq 0 ]] && usage
+
+if [[ "$1" == "push" ]] || [[ "$1" == "pull" ]]; then
 	FOUND=0
 	SUCCESS=0
 	FAIL=0
 
 	BASEDIR=`pwd`
 
-	for d in `find . -maxdepth 1 -type d`; do
-		d=`basename $d`
-		if [ -d ${BASEDIR}/${d}/.git ]; then
-			FOUND=$(($FOUND + 1))
-			cd ${BASEDIR}/${d}
-			git $1 $2 $3
+	find $REPOPATH -type d -name .git | sed -e 's/.git$//g' | while read repo; do
+		FOUND=$(($FOUND + 1))
+		cd $repo
+		git $*
 
-			if [ $? -eq 0 ]; then
-				SUCCESS=$(($SUCCESS + 1))
-			else
-				FAIL=$(($FAIL + 1))
-				echo "git-all: Error while ${1}ing repo `pwd`"
-			fi
-			echo ""
+		if [[ $? -eq 0 ]]; then
+			SUCCESS=$(($SUCCESS + 1))
+		else
+			FAIL=$(($FAIL + 1))
+			echo "git-all: Error while ${1}ing repo $(basename $repo)"
 		fi
+		echo ""
 	done
 
 	echo "git-all-${1}: $FOUND repositories found. $SUCCESS repositories affected."
-	if [ $FAIL -gt 0 ]; then
+	if [[ $FAIL -gt 0 ]]; then
 		echo "git-all-${1}: $FAIL errors occurred. Check console log for details."
 	fi
 	
 	exit 0
 fi
 
-if [ "$1" == "status" ]; then
+if [[ "$1" == "status" ]]; then
 
-	BASEDIR=`pwd`
-
-	for d in `find . -maxdepth 1 -type d`; do
-		d=`echo $d | sed -e 's/\.\///g'`
-		if [ -d ${BASEDIR}/${d}/.git ]; then
-			cd ${BASEDIR}/${d}
-			if [ `git status | wc -l` -gt 2 ]; then
-				echo "Repository '$d' has outstanding changes."
-			fi
+	find $REPOPATH -type d -name .git | sed -e 's/.git$//g' | while read repo; do
+		cd $repo
+		if [ `git status | wc -l` -gt 2 ]; then
+			echo "Repository at '$repo' has outstanding changes."
 		fi
 	done
 	
