@@ -30,15 +30,15 @@ bind _ resize max
 bind c screen 1 # Window numbering starts at 1, not 0.
 bind 0 select 10
 # make life easier, f1-f10 selects screens 0-9
-#bindkey -k k1 select 1
-#bindkey -k k2 select 2
-#bindkey -k k3 select 3
-#bindkey -k k4 select 4
-#bindkey -k k5 select 5
-#bindkey -k k6 select 6
-#bindkey -k k7 select 7
-#bindkey -k k8 select 8
-#bindkey -k k9 select 9
+bindkey -k k1 select 1
+bindkey -k k2 select 2
+bindkey -k k3 select 3
+bindkey -k k4 select 4
+bindkey -k k5 select 5
+bindkey -k k6 select 6
+bindkey -k k7 select 7
+bindkey -k k8 select 8
+bindkey -k k9 select 9
 #bindkey -k k0 select 0
 # windows select with Shift-Fn. May not work in all terminals.
 # (screen only seems to understand up to FA)
