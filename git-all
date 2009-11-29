@@ -44,7 +44,7 @@ if [[ "$1" == "status" ]]; then
 
 	find $REPOPATH -type d -name .git | sed -e 's/.git$//g' | while read repo; do
 		cd $repo
-		if [ `git status | wc -l` -gt 2 ]; then
+		if [[ $(git status | grep -e 'new file: ' -e 'deleted: ' -e 'renamed: ' -e 'modified: ' | wc -l) -gt 0 ]]; then
 			echo "Repository at '$repo' has outstanding changes."
 		fi
 	done
