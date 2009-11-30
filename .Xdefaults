@@ -21,7 +21,8 @@ URxvt.boldFont: -*-terminus-bold-*-*-*-14-*-*-*-*-*-iso10646-1
 URxvt*geometry:100x30
 
 ! colors --------------------------------------
-*background:[75]#000000
+!*background:[75]#000000
+*background: rgba:0000/0000/0000/dddd
 *foreground:#eeeeee
 
 ! Black
