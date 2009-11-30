@@ -11,34 +11,50 @@ Xcursor.size:  24
 
 ! general
 URxvt*depth: 32
-URxvt*background: [75]#000000
-URxvt*foreground:#eeeeee
 URxvt*scrollBar:false
 URxvt*saveLines:32767
 URxvt*cursorColor:#83C048
-URxvt*highlightColor:#3465a4
+URxvt*highlightColor:#222222
+!URxvt*highlightColor:#3465a4
 URxvt.font: -*-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-1
 URxvt.boldFont: -*-terminus-bold-*-*-*-14-*-*-*-*-*-iso10646-1
 URxvt*geometry:100x30
 
-! colors
-URxvt*color0:#eeeeee
-URxvt*color1:#CC0000
-URxvt*color2:#6AAD2B
-URxvt*color3:#C4A000
-URxvt*color4:#3465A4
-URxvt*color5:#948696
-URxvt*color6:#06989A
-URxvt*color7:#EEEEEE
-URxvt*color8:#666666
-URxvt*color9:#EF2929
-URxvt*color10:#8AE234
-URxvt*color11:#FCE94F
-URxvt*color12:#729FCF
-URxvt*color13:#BCACBB
-URxvt*color14:#34E2E2
-URxvt*color15:#FFFFFF
-URxvt*colorBD:#FFFFFF
+! colors --------------------------------------
+*background:[75]#000000
+*foreground:#eeeeee
+
+! Black
+*color0:#444444
+*color8:#666666
+
+! Red
+*color1:#CC0000
+*color9:#EF2929
+
+! Green
+*color2:#6AAD2B
+*color10:#8AE234
+
+! Yellow
+*color3:#C4A000
+*color11:#FCE94F
+
+! Blue
+*color4:#3465A4
+*color12:#729FCF
+
+! Magenta
+*color5:#948696
+*color13:#BCACBB
+
+! Cyan
+*color6:#89B6E2
+*color14:#34E2E2
+
+! White
+*color7:#EEEEEE
+*color15:#FFFFFF
 
 ! make web links clicky
 URxvt.perl-ext-common: default,matcher
