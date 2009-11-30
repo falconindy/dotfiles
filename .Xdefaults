@@ -21,41 +21,40 @@ URxvt.boldFont: -*-terminus-bold-*-*-*-14-*-*-*-*-*-iso10646-1
 URxvt*geometry:100x30
 
 ! colors --------------------------------------
-!*background:[75]#000000
-*background: rgba:0000/0000/0000/dddd
-*foreground:#eeeeee
+URxvt*background: rgba:0000/0000/0000/dddd
+URxvt*foreground:#eeeeee
 
 ! Black
-*color0:#444444
-*color8:#666666
+*color0:#000000
+*color8:#555753
 
 ! Red
-*color1:#CC0000
-*color9:#EF2929
+*color1:#cc0000
+*color9:#ef2929
 
 ! Green
-*color2:#6AAD2B
-*color10:#8AE234
+*color2:#4e9a06
+*color10:#8ae234
 
 ! Yellow
-*color3:#C4A000
-*color11:#FCE94F
+*color3:#c4a000
+*color11:#fce94f
 
 ! Blue
-*color4:#3465A4
-*color12:#729FCF
+*color4:#3465a4
+*color12:#729fcf
 
 ! Magenta
-*color5:#948696
-*color13:#BCACBB
+*color5:#75507b
+*color13:#ad7fa8
 
 ! Cyan
-*color6:#89B6E2
-*color14:#34E2E2
+*color6:#06989a
+*color14:#34e2e2
 
 ! White
-*color7:#EEEEEE
-*color15:#FFFFFF
+*color7:#d3d7cf
+*color15:#eeeeec
 
 ! make web links clicky
 URxvt.perl-ext-common: default,matcher
