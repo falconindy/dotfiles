@@ -6,7 +6,7 @@
 
 set nocompatible		" Don't be old and stupid
 syntax on				" Syntax highlighting on
-colorscheme dante
+colorscheme wombat
 set tabstop=4
 set shiftwidth=4
 "set autoindent			" Use current level line's indent
