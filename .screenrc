@@ -11,6 +11,7 @@ nonblock on
 vbell off
 msgwait 10
 shelltitle ''
+chdir	# start in $HOME
 
 screen    -t '' 1
 screen    -t '' 2
@@ -20,7 +21,7 @@ screen    -t '' 5
 screen    -t '' 6
 screen    -t 'htop' 7 htop
 screen    -t 'syslog' 8 sudo inotail -f -n 30 /var/log/everything.log
-screen    -t '' 9
+screen    -t 'zsh' 9
 #select 9
 
 bind = resize =
