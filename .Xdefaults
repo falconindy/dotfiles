@@ -14,11 +14,10 @@ URxvt*depth: 32
 URxvt*scrollBar:false
 URxvt*saveLines:32767
 URxvt*cursorColor:#83C048
-URxvt*highlightColor:#222222
-!URxvt*highlightColor:#3465a4
-URxvt.font: -*-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-1
-URxvt.boldFont: -*-terminus-bold-*-*-*-14-*-*-*-*-*-iso10646-1
-URxvt*geometry:100x30
+URxvt*highlightColor:#444444
+#URxvt*highlightColor:#3465a4
+URxvt.font: -*-terminus-medium-r-*-*-12-*-*-*-*-*-iso10646-1
+URxvt.boldFont: -*-terminus-bold-*-*-*-12-*-*-*-*-*-iso10646-1
 
 ! colors --------------------------------------
 URxvt*background: rgba:0000/0000/0000/dddd
