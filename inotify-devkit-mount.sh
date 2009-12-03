@@ -1,6 +1,9 @@
 #!/bin/sh
 
-echo "I'm mounting /dev/$1"
 inotifywait -qm --event CREATE --format %f /dev | while read disk; do
-	test -b /dev/$disk && devkit-disks --mount /dev/$disk
+	if test -b /dev/$disk && test `expr length $disk` -gt 3 && test `expr length $disk -lt 6`
+	then
+		sleep 3
+		devkit-disks --mount /dev/$disk
+	fi
 done
