@@ -1,173 +1,158 @@
-autoload -U compinit 
-compinit
-
-# key bindings
-bindkey "\e[1~" beginning-of-line
-bindkey "\e[4~" end-of-line
-bindkey "\e[5~" beginning-of-history
-bindkey "\e[6~" end-of-history
-bindkey "\e[3~" delete-char
-bindkey "\e[2~" quoted-insert
-bindkey "\e[5C" forward-word
-bindkey "\eOc" emacs-forward-word
-bindkey "\e[5D" backward-word
-bindkey "\eOd" emacs-backward-word
-bindkey "\e\e[C" forward-word
-bindkey "\e\e[D" backward-word
-bindkey "^H" backward-delete-word
+#------------------------------------------------------------------#
+# File:     .zshrc   ZSH resource file                             #
+# Version:  0.1.16                                                 #
+# Author:   Øyvind "Mr.Elendig" Heggstad <mrelendig@har-ikkje.net> #
+#------------------------------------------------------------------#
+ 
+#------------------------------
+# History stuff
+#------------------------------
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+ 
+#------------------------------
+# Variables
+#------------------------------
+export EDITOR="vim"
+export PAGER="vimpager"
+export PATH="${PATH}:${HOME}/bin"
+ 
+#-----------------------------
+# Dircolors
+#-----------------------------
+LS_COLORS='rs=0:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:tw=30;42:ow=34;42:st=37;44:ex=01;32:';
+export LS_COLORS
+ 
+#------------------------------
+# Keybindings
+#------------------------------
+bindkey -v
+typeset -g -A key
+#bindkey '\e[3~' delete-char
+bindkey '\e[1~' beginning-of-line
+bindkey '\e[4~' end-of-line
+#bindkey '\e[2~' overwrite-mode
+bindkey '^?' backward-delete-char
+bindkey '^[[1~' beginning-of-line
+bindkey '^[[5~' up-line-or-history
+bindkey '^[[3~' delete-char
+bindkey '^[[4~' end-of-line
+bindkey '^[[6~' down-line-or-history
+bindkey '^[[A' up-line-or-search
+bindkey '^[[D' backward-char
+bindkey '^[[B' down-line-or-search
+bindkey '^[[C' forward-char 
 # for rxvt
 bindkey "\e[8~" end-of-line
 bindkey "\e[7~" beginning-of-line
-# for non RH/Debian xterm, can't hurt for RH/DEbian xterm
+# for gnome-terminal
 bindkey "\eOH" beginning-of-line
 bindkey "\eOF" end-of-line
-# for freebsd console
-bindkey "\e[H" beginning-of-line
-bindkey "\e[F" end-of-line
-# completion in the middle of a line
-bindkey '^i' expand-or-complete-prefix
-
-function precmd {
-
-    local TERMWIDTH
-    (( TERMWIDTH = ${COLUMNS} - 1 ))
-
-
-    ###
-    # Truncate the path if it's too long.
-    
-    PR_FILLBAR=""
-    PR_PWDLEN=""
-    
-    local promptsize=${#${(%):---(%n@%m:%l)---()--}}
-    local pwdsize=${#${(%):-%~}}
-    
-    if [[ "$promptsize + $pwdsize" -gt $TERMWIDTH ]]; then
-	    ((PR_PWDLEN=$TERMWIDTH - $promptsize))
-    else
-	PR_FILLBAR="\${(l.(($TERMWIDTH - ($promptsize + $pwdsize)))..${PR_HBAR}.)}"
-    fi
-
-
-    ###
-    # Get APM info.
-
-    if which ibam > /dev/null; then
-	PR_APM_RESULT=`ibam --percentbattery`
-    elif which apm > /dev/null; then
-	PR_APM_RESULT=`apm`
-    fi
+ 
+#------------------------------
+# Alias stuff
+#------------------------------
+alias ls="ls -h --group-directories-first --color=always"
+alias ll="ls --color -lh"
+alias mkdir="mkdir -p"
+alias ..="cd .."
+alias nrestart="sudo /etc/rc.d/network stop && sudo rm /var/run/dhcpcd.pid && sudo /etc/rc.d/network start && ping google.com"
+alias torrent="cd ~/torrents && rtorrent"
+alias config="vim ~/.xmonad/xmonad.hs"
+alias spm="sudo pacman"
+alias spmc="sudo pacman-color"
+extract () {
+	if [ -f $1 ]; then
+		case $1 in
+			*.tar.bz2)	tar xjf $1	;;
+			*.tar.gz)	tar xzf $1	;;
+			*.bz2)		bunzip2 $1	;;
+			*.gz)		gzip -d $1	;;
+			*.rar)		unrar e $1	;;
+			*.tar)		tar xf $1	;;
+			*.tbz2)		tar xjf $1	;;
+			*.tgz)		tar xzf $1	;;
+			*.zip)		unzip $1	;;
+			*.7z)		7z x $1		;;
+			*)		echo "'$1' cannot be extracted via extract()" ;;
+		esac
+	else
+		echo "'1' is not a valid file"
+	fi
 }
-
-
-setopt extended_glob
-preexec () {
-    if [[ "$TERM" == "screen" ]]; then
-	local CMD=${1[(wr)^(*=*|sudo|-*)]}
-	echo -n "\ek$CMD\e\\"
-    fi
-}
-
-
+ 
+#------------------------------
+# Comp stuff
+#------------------------------
+zmodload zsh/complist 
+autoload -Uz compinit
+compinit
+zstyle :compinstall filename '${HOME}/.zshrc'
+ 
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+ 
+zstyle ':completion:*:*:kill:*' menu yes select
+zstyle ':completion:*:kill:*'   force-list always
+ 
+zstyle ':completion:*:*:killall:*' menu yes select
+zstyle ':completion:*:killall:*'   force-list always
+ 
+#------------------------------
+# Window title
+#------------------------------
+case $TERM in
+    
+*xterm*|rxvt|rxvt-unicode|rxvt-256color|(dt|k|E)term)
+		precmd () { print -Pn "\e]0; [%~]\a" } 
+		preexec () { print -Pn "\e]0; [%~] ($1)\a" }
+	;;
+    screen)
+    	precmd () { 
+			print -Pn "\e]83;title \"$1\"\a" 
+			print -Pn "\e]0;$TERM - (%L) [%n@%M]%# [%~]\a" 
+		}
+		preexec () { 
+			print -Pn "\e]83;title \"$1\"\a" 
+			print -Pn "\e]0;$TERM - (%L) [%n@%M]%# [%~] ($1)\a" 
+		}
+	;; 
+esac
+ 
+#------------------------------
+# Prompt
+#------------------------------
 setprompt () {
-    ###
-    # Need this so the prompt will work.
-
-    setopt prompt_subst
-
-
-    ###
-    # See if we can use colors.
-
-    autoload colors zsh/terminfo
-    if [[ "$terminfo[colors]" -ge 8 ]]; then
+	# load some modules
+	autoload -U colors zsh/terminfo # Used in the colour alias below
 	colors
-    fi
-    for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
-	eval PR_$color='%{$terminfo[bold]$fg[${(L)color}]%}'
-	eval PR_LIGHT_$color='%{$fg[${(L)color}]%}'
-	(( count = $count + 1 ))
-    done
-    PR_NO_COLOUR="%{$terminfo[sgr0]%}"
+	setopt prompt_subst
+ 
+	# make some aliases for the colours: (coud use normal escap.seq's too)
+	for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
+		eval PR_$color='%{$fg[${(L)color}]%}'
+	done
+	PR_NO_COLOR="%{$terminfo[sgr0]%}"
 
+	# Check the UID
+	#if [[ $UID -ge 1000 ]]; then # normal user
+	#	eval PR_USER='${PR_WHITE}%#${PR_NO_COLOR}'
+	#	eval PR_USER_OP='${PR_WHITE}%#${PR_NO_COLOR}'
+	#elif [[ $UID -eq 0 ]]; then # root
+	#	eval PR_USER='${PR_RED}%n${PR_NO_COLOR}'
+	#	eval PR_USER_OP='${PR_RED}%#${PR_NO_COLOR}'
+	#fi	
 
-    ###
-    # See if we can use extended characters to look nicer.
-    
-    typeset -A altchar
-    set -A altchar ${(s..)terminfo[acsc]}
-    PR_SET_CHARSET="%{$terminfo[enacs]%}"
-    PR_SHIFT_IN="%{$terminfo[smacs]%}"
-    PR_SHIFT_OUT="%{$terminfo[rmacs]%}"
-    PR_HBAR=${altchar[q]:--}
-    PR_ULCORNER=${altchar[l]:--}
-    PR_LLCORNER=${altchar[m]:--}
-    PR_LRCORNER=${altchar[j]:--}
-    PR_URCORNER=${altchar[k]:--}
-
-    
-    ###
-    # Decide if we need to set titlebar text.
-    
-    case $TERM in
-	xterm*)
-	    PR_TITLEBAR=$'%{\e]0;%(!.-=*[ROOT]*=- | .)%n@%m:%~ | ${COLUMNS}x${LINES} | %y\a%}'
-	    ;;
-	screen)
-	    PR_TITLEBAR=$'%{\e_screen \005 (\005t) | %(!.-=[ROOT]=- | .)%n@%m:%~ | ${COLUMNS}x${LINES} | %y\e\\%}'
-	    ;;
-	*)
-	    PR_TITLEBAR=''
-	    ;;
-    esac
-    
-    
-    ###
-    # Decide whether to set a screen title
-    if [[ "$TERM" == "screen" ]]; then
-	PR_STITLE=$'%{\ekzsh\e\\%}'
-    else
-	PR_STITLE=''
-    fi
-    
-    
-    ###
-    # APM detection
-    
-    if which ibam > /dev/null; then
-	PR_APM='$PR_RED${${PR_APM_RESULT[(f)1]}[(w)-2]}%%(${${PR_APM_RESULT[(f)3]}[(w)-1]})$PR_LIGHT_BLUE:'
-    elif which apm > /dev/null; then
-	PR_APM='$PR_RED${PR_APM_RESULT[(w)5,(w)6]/\% /%%}$PR_LIGHT_BLUE:'
-    else
-	PR_APM=''
-    fi
-    
-    
-    ###
-    # Finally, the prompt.
-
-    PROMPT='$PR_SET_CHARSET$PR_STITLE${(e)PR_TITLEBAR}\
-$PR_CYAN$PR_SHIFT_IN$PR_ULCORNER$PR_BLUE$PR_HBAR$PR_SHIFT_OUT(\
-$PR_GREEN%(!.%SROOT%s.%n)$PR_GREEN@%m:%l\
-$PR_BLUE)$PR_SHIFT_IN$PR_HBAR$PR_CYAN$PR_HBAR${(e)PR_FILLBAR}$PR_BLUE$PR_HBAR$PR_SHIFT_OUT(\
-$PR_MAGENTA%$PR_PWDLEN<...<%~%<<\
-$PR_BLUE)$PR_SHIFT_IN$PR_HBAR$PR_CYAN$PR_URCORNER$PR_SHIFT_OUT\
-
-$PR_CYAN$PR_SHIFT_IN$PR_LLCORNER$PR_BLUE$PR_HBAR$PR_SHIFT_OUT(\
-%(?..$PR_LIGHT_RED%?$PR_BLUE:)\
-${(e)PR_APM}$PR_YELLOW%D{%H:%M}\
-$PR_LIGHT_BLUE:%(!.$PR_RED.$PR_WHITE)%#$PR_BLUE)$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT\
-$PR_CYAN$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT\
-$PR_NO_COLOUR '
-
-    RPROMPT=' $PR_CYAN$PR_SHIFT_IN$PR_HBAR$PR_BLUE$PR_HBAR$PR_SHIFT_OUT\
-($PR_YELLOW%D{%a,%b%d}$PR_BLUE)$PR_SHIFT_IN$PR_HBAR$PR_CYAN$PR_LRCORNER$PR_SHIFT_OUT$PR_NO_COLOUR'
-
-    PS2='$PR_CYAN$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT\
-$PR_BLUE$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT(\
-$PR_LIGHT_GREEN%_$PR_BLUE)$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT\
-$PR_CYAN$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT$PR_NO_COLOUR '
+	# Check if we are on SSH or not  --{FIXME}--  always goes to |no SSH|
+	if [[ -z "$SSH_CLIENT"  ||  -z "$SSH2_CLIENT" ]]; then 
+		eval PR_HOST='${PR_GREEN}%M${PR_NO_COLOR}' # no SSH
+	else 
+		eval PR_HOST='${PR_YELLOW}%M${PR_NO_COLOR}' #SSH
+	fi
+	# set the prompt
+	#PS1=$'${PR_CYAN}[${PR_USER}${PR_CYAN}@${PR_HOST}${PR_CYAN}][${PR_BLUE}%~${PR_CYAN}]${PR_USER_OP}'
+	PS1=$'${PR_WHITE}[${PR_RED}%~${PR_WHITE}] ${PR_USER_OP}'
+	PS2=$'%_>'
 }
-
 setprompt
 
