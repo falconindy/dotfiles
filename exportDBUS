@@ -1,0 +1,6 @@
+#!/bin/bash
+env | grep DBUS_SESSION_BUS_ADDRESS > $HOME/.Xdbus
+echo 'export DBUS_SESSION_BUS_ADDRESS' >> $HOME/.Xdbus
+env | grep XAUTHORITY >> $HOME/.Xdbus
+echo 'export XAUTHORITY' >> $HOME/.Xdbus
+

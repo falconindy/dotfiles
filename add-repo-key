@@ -1,0 +1,21 @@
+#!/bin/bash
+#Ubuntu util to add repo keys
+
+if [[ -z $1 ]]; then
+	echo "Please specify a repository key"
+	exit 1
+fi
+
+gpg --recv-keys $1
+
+if [[ $? -eq 0 ]]; then
+	gpg --export --armor $1 | sudo apt-key add -
+else
+	echo "Error importing key $1"
+	exit 1
+fi
+
+if [[ $? -eq 0 ]]; then
+	echo "Key $1 successfully added"
+	exit 0
+fi
