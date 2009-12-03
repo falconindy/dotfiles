@@ -1,4 +1,5 @@
 startup_message off
+shell $SHELL
 #termcapinfo xterm*|Eterm|mlterm|rxvt 'hs:ts=\E]0;:fs=\007:ds=\E]0;screen\007'
 termcapinfo rxvt-256color ti@:te@     #enable SHIFT-PGUP / SHIFT-PGDOWN scroll
 #termcapinfo wy* CS=\E[?1h:CE=\E[?1l:vi=\E[?25l:ve=\E[?25h:VR=\E[?5h:VN=\E[?5l:cb=\E[1K:CD=\E[1J
