@@ -1,6 +1,6 @@
 #!/bin/sh
 
-inotifywait -qm --event CREATE --format %f /dev | grep ^sd | while read disk; do
+inotifywait -qm --event CREATE --format %f /dev | while read disk; do
 	if test -b /dev/$disk
 	then
 		sleep 3
