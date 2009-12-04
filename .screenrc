@@ -1,5 +1,4 @@
 startup_message off
-shell $SHELL
 #termcapinfo xterm*|Eterm|mlterm|rxvt 'hs:ts=\E]0;:fs=\007:ds=\E]0;screen\007'
 termcapinfo rxvt-256color ti@:te@     #enable SHIFT-PGUP / SHIFT-PGDOWN scroll
 #termcapinfo wy* CS=\E[?1h:CE=\E[?1l:vi=\E[?25l:ve=\E[?25h:VR=\E[?5h:VN=\E[?5l:cb=\E[1K:CD=\E[1J
@@ -17,12 +16,9 @@ chdir	# start in $HOME
 screen    -t '' 1
 screen    -t '' 2
 screen    -t '' 3
-screen    -t '' 4
-screen    -t '' 5
-screen    -t '' 6
-screen    -t 'htop' 7 htop
-screen    -t 'syslog' 8 sudo inotail -f -n 30 /var/log/everything.log
-screen    -t 'zsh' 9
+screen    -t 'htop' 4 htop
+screen    -t 'syslog' 5 sudo inotail -f -n 30 /var/log/everything.log
+screen    -t 'zsh' 6
 #select 9
 
 bind = resize =
