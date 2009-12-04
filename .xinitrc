@@ -5,10 +5,9 @@
 # Executed by startx (run your window manager from here)
 
 conky | dzen2 -e 'onstart=lower' -h 16 -fg '#EEEEEE' -bg '#051122' -ta r -fn '-*-terminus-*-r-normal-*-12-*-*-*-*-*-iso8859-*' -y -16 &
-~/bin/inotify-devkit-mount.sh &
 
 xcompmgr -c -t-5 -l-5 -r4.2 -o.55 -f &
-feh --bg-scale pictures/wallpaper/wispcat.jpg
+feh --bg-scale ~/pictures/wallpaper/wispcat.jpg
 setxkbmap -option terminate:ctrl_alt_bksp
 xscreensaver -no-splash &
 chromium-browser&
