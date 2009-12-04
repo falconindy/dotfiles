@@ -19,7 +19,7 @@ screen    -t '' 3
 screen    -t 'htop' 4 htop
 screen    -t 'syslog' 5 sudo inotail -f -n 30 /var/log/everything.log
 screen    -t 'zsh' 6
-#select 9
+select 1
 
 bind = resize =
 bind + resize +1
