@@ -16,7 +16,9 @@ alias webshare='python /usr/lib/python2.6/SimpleHTTPServer.py 8001'
 alias hman='man -Hchromium-browser'
 
 dsz() {
-	du -sh $(du -s $(find . -maxdepth 1 -type d) | sort -n | awk '{print $2}')
+	[[ -z $1 ]] && target=$(pwd) || target=$1
+	[[ ! -d $target ]] && echo "'$target' is not a directory" && return 1
+	du -sh $(du -s $(find $target -maxdepth 1 -type d) | sort -n | awk '{print $2}')
 }
 
 calc() {
