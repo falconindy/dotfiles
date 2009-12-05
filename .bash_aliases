@@ -11,9 +11,17 @@ alias ll='ls -la'
 alias lsd='ls -l | grep ^[dl] --color=none'
 alias md5='md5sum'
 alias cdg='cd $(git rev-parse --git-dir)/..'
-alias query='powerpill -Qi'
 alias webshare='python /usr/lib/python2.6/SimpleHTTPServer.py 8001'
 alias hman='man -Hchromium-browser'
+
+qp() {
+	pacman-color -Qi $1 2> /dev/null
+	if [[ $? -gt 0 ]]; then
+		echo "$1 not found, searching..."
+		pacman-color -Qs $1
+		[[ $? -gt 0 ]] && echo "No local results for $1"
+	fi
+}
 
 dsz() {
 	[[ -z $1 ]] && target=$(pwd) || target=$1
