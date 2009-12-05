@@ -15,6 +15,10 @@ alias query='powerpill -Qi'
 alias webshare='python /usr/lib/python2.6/SimpleHTTPServer.py 8001'
 alias hman='man -Hchromium-browser'
 
+dsz() {
+	du -sh $(du -s $(find . -maxdepth 1 -type d) | sort -n | awk '{print $2}')
+}
+
 calc() {
 	echo "scale=3; $*" | bc
 }
