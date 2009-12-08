@@ -4,35 +4,36 @@
 " Author: Dave Reisner (Falcon Industries)
 "
 
-set nocompatible		" Don't be old and stupid
-syntax on				" Syntax highlighting on
+set nocompatible        " Don't be old and stupid
+syntax on               " Syntax highlighting on
 colorscheme dante
 set tabstop=4
 set shiftwidth=4
-set autoindent			" Use current level line's indent
-set showmatch			" Show matching braces
-set virtualedit=all		" Allow cursor to stray outside text
+set expandtab           " Expand tabs to spaces
+set autoindent          " Use current level line's indent
+set showmatch           " Show matching braces
+set virtualedit=all     " Allow cursor to stray outside text
 set showcmd
-set incsearch			" Search for text as entered
+set incsearch           " Search for text as entered
 set number
 
 """"""""""""""""""""""""""""""
 " Statusline
 """"""""""""""""""""""""""""""
   "Always hide the statusline
-	set laststatus=2
+    set laststatus=2
 
-	function! CurDir()
-		let curdir = substitute(getcwd(), '/home/haruko/', "~/", "g")
-		return curdir
-	endfunction
+    function! CurDir()
+        let curdir = substitute(getcwd(), '/home/haruko/', "~/", "g")
+        return curdir
+    endfunction
 
   "Format the statusline
-	 set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
+     set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
 
 """""""""""""""""""""""""""""
 " Substitutions
 """""""""""""""""""""""""""""
 if &term !=# "linux"
-	set list listchars=tab:\➜\ ,trail:·,nbsp:-
+    set list listchars=tab:\➜\ ,trail:·,nbsp:-
 endif
