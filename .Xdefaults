@@ -16,8 +16,8 @@ URxvt*saveLines:32767
 URxvt*cursorColor:#83C048
 URxvt*highlightColor:#444444
 #URxvt*highlightColor:#3465a4
-URxvt.font: -*-terminus-medium-r-*-*-12-*-*-*-*-*-iso10646-1
-URxvt.boldFont: -*-terminus-bold-*-*-*-12-*-*-*-*-*-iso10646-1
+URxvt.font: -*-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-1
+URxvt.boldFont: -*-terminus-bold-*-*-*-14-*-*-*-*-*-iso10646-1
 URxvt.loginshell: true
 URxvt.internalborder: 0
 URxvt.underlinecolor: #999999
