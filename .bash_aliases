@@ -1,6 +1,7 @@
 #!/bin/bash
 alias !='sudo'
 alias ..='cd ..'
+alias less='less -F'
 alias pp='powerpill'
 alias spp='sudo powerpill'
 alias sls='slurpy -c -s'
@@ -13,6 +14,7 @@ alias md5='md5sum'
 alias cdg='cd $(git rev-parse --git-dir)/..'
 alias webshare='python /usr/lib/python2.6/SimpleHTTPServer.py 8001'
 alias hman='man -Hchromium-browser'
+alias mkchpkg='sudo makechrootpkg -c -r /mnt/Entropy/cleanroot'
 
 qp() {
 	pacman-color -Qi $1 2> /dev/null
@@ -26,7 +28,7 @@ qp() {
 dsz() {
 	[[ -z $1 ]] && target=$(pwd) || target=$1
 	[[ ! -d $target ]] && echo "'$target' is not a directory" && return 1
-	du -sh $(du -s $(find $target -maxdepth 1 -type d) | sort -n | awk '{print $2}')
+	du -sh $(du -s $(find $(readlink -f $target) -maxdepth 1 -type d) | sort -n | awk '{print $2}')
 }
 
 calc() {
