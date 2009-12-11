@@ -101,9 +101,5 @@ ljoin() {
 }
 
 function scr {
-	if screen -ls | grep -q Main; then
-		screen -xr Main
-	else
-		screen -S Main
-	fi
+	screen -ls | grep -q Main && screen -xr Main || screen -S Main
 }
