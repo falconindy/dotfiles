@@ -9,13 +9,16 @@ syntax on               " Syntax highlighting on
 colorscheme dante
 set tabstop=4
 set shiftwidth=4
-set expandtab           " Expand tabs to spaces
 set autoindent          " Use current level line's indent
 set showmatch           " Show matching braces
 set virtualedit=all     " Allow cursor to stray outside text
 set showcmd
 set incsearch           " Search for text as entered
 set number
+
+" I hate tabs with a fiery passion
+autocmd FileType * set expandtab
+autocmd FileType make set noexpandtab
 
 """"""""""""""""""""""""""""""
 " Statusline
