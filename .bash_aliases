@@ -103,3 +103,20 @@ ljoin() {
 function scr {
 	screen -ls | grep -q Main && screen -xr Main || screen -S Main
 }
+
+function miso() {
+    [[ ! -f $1 ]] && echo "Provide a valid iso file" && return 1
+    mountpoint=/media/${1//.iso}
+    sudo mkdir -p $mountpoint
+    sudo mount -o loop $1 $mountpoint
+
+}
+
+function umiso() {
+    mountpoint=/media/${1//.iso}
+    [[ ! -d $mountpoint ]] && echo "Not a valid mount point" && return 1
+    sudo umount $mountpoint
+    sudo rm -ir $mountpoint
+
+}
+
