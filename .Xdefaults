@@ -33,35 +33,54 @@ URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 URxvt*background: rgba:0000/0000/0000/dddd
 URxvt*foreground:#eeeeee
 
+! Gnome Terminal
+!! Black
+!*color0:#000000
+!*color8:#555753
+!! Red
+!*color1:#cc0000
+!*color9:#ef2929
+!! Green
+!*color2:#4e9a06
+!*color10:#8ae234
+!! Yellow
+!*color3:#c4a000
+!*color11:#fce94f
+!! Blue
+!*color4:#3465a4
+!*color12:#729fcf
+!! Magenta
+!*color5:#75507b
+!*color13:#ad7fa8
+!! Cyan
+!*color6:#06989a
+!*color14:#34e2e2
+!! White
+!*color7:#d3d7cf
+!*color15:#eeeeec
+
+!Tango
 ! Black
-*color0:#000000
-*color8:#555753
-
+*color0:        #000000
+*color8:        #555753
 ! Red
-*color1:#cc0000
-*color9:#ef2929
-
+*color1:        #ff6565
+*color9:        #ff8d8d
 ! Green
-*color2:#4e9a06
-*color10:#8ae234
-
+*color2:        #93d44f
+*color10:       #c8e7a8
 ! Yellow
-*color3:#c4a000
-*color11:#fce94f
-
+*color3:        #eab93d
+*color11:       #ffc123
 ! Blue
-*color4:#3465a4
-*color12:#729fcf
-
-! Magenta
-*color5:#75507b
-*color13:#ad7fa8
-
+*color4:        #204a87
+*color12:       #3465a4
+! Mangenta
+*color5:        #ce5c00
+*color13:       #f57900
 ! Cyan
-*color6:#06989a
-*color14:#34e2e2
-
+*color6:        #89b6e2
+*color14:       #46a4ff
 ! White
-*color7:#d3d7cf
-*color15:#eeeeec
-
+*color7:        #cccccc
+*color15:       #ffffff
