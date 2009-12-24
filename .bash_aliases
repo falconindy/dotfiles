@@ -16,6 +16,7 @@ alias cdg='cd $(git rev-parse --git-dir)/..'
 alias webshare='python /usr/lib/python2.6/SimpleHTTPServer.py 8001'
 alias hman='man -Hchromium-browser'
 alias mkchpkg='sudo makechrootpkg -c -r /mnt/Entropy/cleanroot'
+alias mplayer='mplayer heartbeat-cmd "xscreesaver-command -deactivate"'
 
 qp() {
 	pacman-color -Qi $1 2> /dev/null
