@@ -1,7 +1,6 @@
 #!/bin/bash
 alias !='sudo'
 alias ..='cd ..'
-alias less='less -F'
 alias pp='powerpill'
 alias spp='sudo powerpill'
 alias sls='slurpy -c -s'
