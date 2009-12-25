@@ -15,6 +15,7 @@ alias spp='sudo powerpill'
 alias sls='slurpy -c -s'
 alias sld='slurpy -c -d'
 alias sli='slurpy -c -i'
+alias t='tmux a'
 alias webshare='python /usr/lib/python2.6/SimpleHTTPServer.py 8001'
 
 qp() {
