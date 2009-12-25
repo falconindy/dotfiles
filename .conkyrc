@@ -8,4 +8,4 @@ uppercase no
 background no
 
 TEXT
-[ $nodename : $kernel : $uptime : ${execi 120 /home/haruko/.scripts/updatecount.sh} Upd ] [ CPU: ${cpu cpu1}% ${cpu cpu2}% ] [ RAM: ${memperc}% ]${execi 300 /home/haruko/.scripts/hddmon.sh} [ NET: ${downspeed eth0} down | ${upspeed eth0} up ] [ Vol: ${exec /home/haruko/.scripts/getVolume.sh}%  ] [ $time ]
+[ $nodename : $kernel : $uptime : ${execi 120 /home/haruko/.scripts/updatecount.sh} Upd ] [ CPU: ${cpu cpu1}% ${cpu cpu2}% ] [ RAM: ${memperc}% ]${execi 300 /home/haruko/.scripts/hddmon.sh} [ NET: ${downspeed eth0} down | ${upspeed eth0} up ] [ Vol: ${exec /home/haruko/.scripts/getVolume.sh}%  ] [ ${execi 5 ncmpcpp --now-playing | cut -d\  -f2-} ] [ $time ]
