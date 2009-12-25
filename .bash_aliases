@@ -1,21 +1,21 @@
 #!/bin/bash
 alias !='sudo'
 alias ..='cd ..'
+alias cdg='cd $(git rev-parse --git-dir)/..'
+alias grep='grep --color'
+alias hman='man -Hchromium-browser'
+alias ls='ls --color=auto'
+alias ll='ls -la'
+alias lsd='ls -l | grep ^[dl] --color=none'
+alias md5='md5sum'
+alias mkchpkg='sudo makechrootpkg -c -r /mnt/Entropy/cleanroot'
+alias mplayer='mplayer heartbeat-cmd "xscreensaver-command -deactivate"'
 alias pp='powerpill'
 alias spp='sudo powerpill'
 alias sls='slurpy -c -s'
 alias sld='slurpy -c -d'
 alias sli='slurpy -c -i'
-alias grep='grep --color'
-alias ls='ls --color=auto'
-alias ll='ls -la'
-alias lsd='ls -l | grep ^[dl] --color=none'
-alias md5='md5sum'
-alias cdg='cd $(git rev-parse --git-dir)/..'
 alias webshare='python /usr/lib/python2.6/SimpleHTTPServer.py 8001'
-alias hman='man -Hchromium-browser'
-alias mkchpkg='sudo makechrootpkg -c -r /mnt/Entropy/cleanroot'
-alias mplayer='mplayer heartbeat-cmd "xscreesaver-command -deactivate"'
 
 qp() {
 	pacman-color -Qi $1 2> /dev/null
@@ -28,7 +28,7 @@ qp() {
 
 dsz() {
 	[[ -z $1 ]] && target=$(pwd) || target=$1
-	[[ ! -d $target ]] && echo "'$target' is not a directory" && return 1
+	[[ ! -d "$target" ]] && echo "'$target' is not a directory" && return 1
 	du -sh $(du -s $(find $(readlink -f $target) -maxdepth 1 -type d) | sort -n | awk '{print $2}')
 }
 
