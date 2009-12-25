@@ -14,7 +14,6 @@ alias spp='sudo powerpill'
 alias sls='slurpy -c -s'
 alias sld='slurpy -c -d'
 alias sli='slurpy -c -i'
-alias t='tmux a'
 alias webshare='python /usr/lib/python2.6/SimpleHTTPServer.py 8001'
 
 qp() {
@@ -103,6 +102,10 @@ ljoin() {
 
 function scr {
 	screen -ls | grep -q Main && screen -xr Main || screen -S Main
+}
+
+function t {
+    [[ `tmux -L main ls` ]] && tmux -L main a || tmux -L main
 }
 
 function miso() {
