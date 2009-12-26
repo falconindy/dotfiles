@@ -105,7 +105,11 @@ function scr {
 }
 
 function t {
-    [[ `tmux -L main ls` ]] && tmux -L main a || tmux -L main
+    if [[ `tmux -L Main ls | grep windows` ]]; then
+        tmux -L Main a
+    else
+        tmux -L Main
+    fi
 }
 
 function miso() {
