@@ -1,0 +1,297 @@
+#################################################################
+# aka theme (v1.00)						#
+# by curson [navaeg@gmail.com] - http://www.the-shrike.net	#
+#################################################################
+
+#################################################################
+# This is the first version of this theme I finally decided to  #
+# release to the "public". The original base of the theme is    #
+# strongly inspired by lilah.theme, but I'm not sure how much   #
+# of it is actually left here.					#
+# Apart from the annoying (but known) /me hilight bug it should #
+# be working fine.						#
+# [FS#107 bug on http://bugs.irssi.org]				#
+#								#
+# Any feedback would be highly appreciated ;)			#
+#################################################################
+
+#################################################################
+# NOTES:							#
+# When testing changes, the easiest way to reload the theme is  #
+# with /RELOAD. This reloads the configuration file too, so if  #
+# you did any changes remember to /SAVE it first. Remember also #
+# that /SAVE overwrites the theme file with old data so keep    #
+# backups :)							#
+#								#
+# You can find definitions for the color format codes in 	#
+# docs/formats.txt.						#
+#################################################################
+
+# these characters are automatically replaced with specified color
+# (dark grey by default)
+replaces = { "°°=" = "%r$0-%n"; };
+
+abstracts = {
+  ##
+  ## generic
+  ##
+
+  # text to insert at the beginning of each non-message line
+  #line_start = "%w.%r.%w.%n ";
+  line_start = "%n";
+
+  # timestamp styling, nothing by default
+  timestamp = "%r$0-%n";
+
+  # any kind of text that needs hilighting, default is to bold
+  hilight = "%_$0-%_";
+
+  # any kind of error message, default is bright red
+  error = "%r$0-%n";
+
+  # channel name is printed
+  channel = "%r$0-%n";
+
+  # nick is printed
+  nick = "%r%_$0-%_";
+
+  # nick host is printed
+  nickhost = "%w:%r$0-%w:%n";
+
+  # server name is printed
+  server = "%_$0-%_";
+
+  # some kind of comment is printed
+  comment = "($0-)";
+
+  # reason for something is printed (part, quit, kick, ..)
+  reason = "{comment $0-}";
+
+  # mode change is printed ([+o nick])
+  mode = "{comment $0-}";
+
+  ##
+  ## channel specific messages
+  ##
+
+  # highlighted nick/host is printed (joins)
+  channick_hilight = "%r$0-%n";
+  chanhost_hilight = "{nickhost %r$0-%n}";
+
+  # nick/host is printed (parts, quits, etc.)
+  channick = "%r$0-%n";
+  chanhost = "{nickhost $0-}";
+
+  # highlighted channel name is printed
+  channelhilight = "%r$0-%n";
+
+  # ban/ban exception/invite list mask is printed
+  ban = "%r$0-%n";
+
+  ##
+  ## messages
+  ##
+
+  # the basic styling of how to print message, $0 = nick mode, $1 = nick
+  msgnick = "%_$0%_$1- %|";
+
+  # message from you is printed. "msgownnick" specifies the styling of the
+  # nick ($0 part in msgnick) and "ownmsgnick" specifies the styling of the
+  # whole line.
+
+  # Example1: You want the message text to be green:
+  #  ownmsgnick = "{msgnick $0 $1-}%r";
+  # Example2.1: You want < and > chars to be yellow:
+  #  ownmsgnick = "%Y{msgnick $0 $1-%Y}%n";
+  #  (you'll also have to remove <> from replaces list above)
+  # Example2.2: But you still want to keep <> grey for other messages:
+  #  pubmsgnick = "%K{msgnick $0 $1-%K}%n";
+  #  pubmsgmenick = "%K{msgnick $0 $1-%K}%n";
+  #  pubmsghinick = "%K{msgnick $1 $0$2-%n%K}%n";
+  #  ownprivmsgnick = "%K{msgnick  $0-%K}%n";
+  #  privmsgnick = "%K{msgnick  %r$0-%K}%n";
+
+  # $0 = nick mode, $1 = nick
+  ownmsgnick = "{msgnick %_$0%_ $1-:»}%w";
+  #ownmsgnick = "{msgnick %_$0 $1-:}";
+  ownnick = "%r$0-%n";
+
+  # public message in channel, $0 = nick mode, $1 = nick
+  pubmsgnick = "{msgnick %_$0%_ %w$1-%r:»%n}";
+  pubnick = "$0-%w";
+
+  # public message in channel meant for me, $0 = nick mode, $1 = nick
+  pubmsgmenick = "{msgnick %_$0%_ %w$1-%r:»}%n";
+  menick = "%r$0-%n";
+
+  # In irssi, set these in order to get hilights in red:
+  #
+  # hilight_nick_matches = OFF
+  # hilight_color = %r
+  #
+  # Also, add your own nick into hilight list. (odd bug in irssi)
+  # public highlighted message in channel
+  # $0 = highlight color, $1 = nick mode, $2 = nick
+  # 
+  # This controls only the nick part of the hilighted msg, the rest is set by /hilight_* in irssi.
+  # Now we have a white nick (normal) with the rest of the line hilighted red.
+  pubmsghinick = "{msgnick %w$1 %w$2-%w%r:»}%r";
+
+  # channel name is printed with message
+  msgchannel = "%r~%c$0-%n";
+
+  # private message, $0 = nick, $1 = host
+  privmsg = "%w$0%w(%y$1-%K)%r:»%n ";
+
+  # private message from you, $0 = "msg", $1 = target nick
+  ownprivmsg = "%r$0%w(%w$1-%c)%r:»%w ";
+
+  # own private message in query
+  ownprivmsgnick = "{msgnick  $0-}";
+  ownprivnick = "%r$0-%r:>%w";
+
+  # private message in query
+  privmsgnick = "{msgnick  %w$0-%r:»%n}";
+
+  ##
+  ## Actions (/ME stuff)
+  ##
+
+  # used internally by this theme
+  action_core = "%r** %r$0- $1-";
+
+  # generic one that's used by most actions
+  action = "%r** %r$0- $1-";
+
+  # own action, both private/public
+  #ownaction = "%r**%r$0- $1-";
+  ownaction = "%r** %r$0- $1-";
+
+  # own action with target, both private/public
+  ownaction_target = "%r** %r$0- $1-";
+
+  # private action sent by others
+  pvtaction = "%r** %r$0- $1-";
+  pvtaction_query = "%r** %r$0- $1-";
+
+  # public action sent by others
+  pubaction = "%r** %r$0- $1-";
+
+
+  ##
+  ## other IRC events
+  ##
+
+  # notices
+  ownnotice = ":%r$0%K(%W$1-%K):%n ";
+  notice = "%K-%r$0-%K-%n ";
+  pubnotice_channel = "%K:%r$0-";
+  pvtnotice_host = "%K(%r$0-%K)";
+  servernotice = "%w!$0-%n ";
+
+  # CTCPs
+  ownctcp = ":%r$0%K(%r$1-%K): ";
+  ctcp = "%r$0-%n";
+
+  # wallops
+  wallop = "%W$0-%n: ";
+  wallop_nick = "%n$0-";
+  wallop_action = "%W * $0-%n ";
+
+  # netsplits
+  netsplit = "%r$0-%n";
+  netjoin = "%r$0-%n";
+
+  # /names list
+  names_nick = ":$0%r$1-%n: ";
+  names_users = ":%w$0-%n:";
+  names_channel = "%w$0-%n";
+
+  # DCC
+  dcc = "~%r$0-%n~";
+  dccfile = "%_$0-%_";
+
+  # DCC chat, own msg/action
+  dccownmsg = "-%w$0%w($1-%K)%n- ";
+  dccownnick = ":%r$0-%n:";
+  dccownaction = "{action $0-}";
+  dccownaction_target = "{action_core $0}%K:%r$1%n ";
+
+  # DCC chat, others
+  dccmsg = "-%W$1-%K(%c$0%K)%n- ";
+  dccquerynick = "~%r$0-%n~";
+  dccaction = " %r.%w°%w.%n %r$0-%n %|";
+
+  ##
+  ## statusbar
+  ##
+
+  # background of statusbar
+  #sb_background = "%N"; #this is transparent
+  sb_background = "%N";
+  #this is black
+
+  # background for prompt / input line
+  sb_prompt_bg = "%n";
+
+  sb_info_bg = "%2";
+
+  # default statusbar item style
+  sb = "%r-|%n$0-%r|-%r";
+
+  sbmode = "%n%_%r %w(%r+$0-%w)%n";
+  sbaway = " (%rAWAY%n)";
+  sbservertag = ":$0 (change with ^X)";
+  sbmore = "%_-- more --%_";
+  sblag = "{sb Lag: $0-}";
+  sbmail = "{sb Mail: $0-}";
+
+  # usercount
+  sb_usercount = "{sb users: %r$0%n %n$1-%n}";
+  sb_uc_ircops = "%r*%w$*";
+  sb_uc_ops = "%r@%W%_$*";
+  sb_uc_halfops = "%_%r%%%W%_$*";
+  sb_uc_voices = "%_%r+%W%_$*";
+  sb_uc_normal = "%w$*";
+  sb_uc_space = " ";
+
+
+  # text at the beginning of statusbars. sb-item already puts
+  # space there,so we don't use anything by default.         
+  sbstart = "";
+  # text at the end of statusbars. Use space so that it's never
+  # used for anything.                                         
+  sbend = " ";
+
+  prompt = "%W$*%r :» ";
+
+  topicsbstart = "%R[%n{sbstart $*}";
+  topicsbend = "{sbend $*} %R]";
+
+  # activity in statusbar
+
+  # ',' separator
+  sb_act_sep = "%r$*";
+  # normal text       
+  sb_act_text = "%w$*";
+  # public message     
+  sb_act_msg = "%W$*";
+  # hilight
+  sb_act_hilight = "%r$*";
+  # hilight with specified color, $0 = color, $1 = text
+  sb_act_hilight_color = "$0$1-%n";
+
+  # activity. Det is used for hilights when display doesn't support colors
+  sbact = "{sb {sbact_act $0}{sbact_det $1}}";
+  sbact_act = " Act: $0-";
+  sbact_det = " Det: $0-";
+};
+formats = {
+  "fe-common/core" = {
+    pubmsg = "{pubmsgnick $2 {pubnick $0}}$1";
+    join = "%r»%w» %r$0 %w»%r»%n {chanhost $1} %wjoins %r$2";
+    part = "%w« %r$0 %w«%n {chanhost $1} %wleaves %r$2 %r[%w$3%r]";
+    quit = "%r«%w« %r$0 %w«%r«%n {chanhost $1} %wquits %r[%w$2%r]";
+    kick = "%w«%r«%R!%r«%w« %r$0%n has been kicked from {channel $1} by {nick $2} %r[%w$3%r]";
+  };
+};

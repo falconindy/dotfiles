@@ -1,0 +1,3 @@
+[default]
+# Write your default config options here!
+heartbeat-cmd="xscreensaver-command -deactivate &"
