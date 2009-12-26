@@ -13,6 +13,7 @@ msgwait 10
 shelltitle ''
 chdir	# start in $HOME
 
+screen    -t 'ncmpcpp' 0 ncmpcpp
 screen    -t '' 1
 screen    -t '' 2
 screen    -t '' 3
@@ -25,8 +26,8 @@ bind = resize =
 bind + resize +1
 bind - resize -1
 bind _ resize max
-bind c screen 1 # Window numbering starts at 1, not 0.
-bind 0 select 10
+#bind c screen 1 # Window numbering starts at 1, not 0.
+#bind 0 select 10
 # make life easier, f1-f10 selects screens 0-9
 #bindkey -k k1 select 1
 #bindkey -k k2 select 2
