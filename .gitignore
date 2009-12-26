@@ -1,19 +1,32 @@
 # Start by ignoring everything
 *
+!.gitconfig
 !.gitignore
 
 # Unignore specific files
+# Shells
 !.bash_aliases
 !.bash_profile
 !.bashrc
-!.conkyrc
-!.gitconfig
-!.htoprc
+!.zshrc
+
+# Input related
 !.inputrc
+!.Xmodmap
+
+# WM related
+!.conkyrc
+!.htoprc
 !.screenrc
+!.tmux.conf
 !.vimrc
 !.Xdefaults
 !.xinitrc
-!.Xmodmap
 !.xscreensaver
-!.zshrc
+
+# MPlayer
+!.mplayer/config
+
+# Irssi
+!.irssi/*
+!.irssi/scripts/*
