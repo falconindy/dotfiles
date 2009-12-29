@@ -1,6 +1,8 @@
 #!/bin/bash
 alias !='sudo'
 alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
 alias cdg='cd $(git rev-parse --git-dir)/..'
 alias grep='grep --color'
 alias hman='man -Hchromium-browser'
