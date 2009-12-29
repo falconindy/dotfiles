@@ -4,6 +4,7 @@ Xft.antialias: true
 Xft.rgba: rgb
 Xft.hinting: true
 Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
 
 ! x11 mouse theme
 Xcursor*theme: DMZ-White
