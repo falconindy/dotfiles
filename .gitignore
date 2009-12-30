@@ -15,7 +15,7 @@
 !.Xmodmap
 
 # WM related
-!.conkyrc
+!.conky/*
 !.htoprc
 !.screenrc
 !.tmux.conf
