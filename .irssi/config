@@ -301,4 +301,6 @@ settings = {
     bell_beeps = "yes";
   };
 };
-ignores = ( { mask = "Theoden"; level = "ALL"; } );
+ignores = (
+  { level = "JOINS PARTS QUITS"; channels = ( "#archlinux" ); }
+);
