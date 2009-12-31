@@ -21,6 +21,6 @@ out=`curl --connect-timeout 30 -s http://rss.accuweather.com/rss/liveweather_rss
 #echo $out
 
 cond=`echo $out | cut -d':' -f 1`
-temp=`echo $out | cut -d':' -f 2`
+temp=`echo $out | sed -n "s/.*: \([0-9]*\)/\1°/p"`
 
 echo "$temp"
