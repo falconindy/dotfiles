@@ -7,6 +7,7 @@ term screen-256color
 setenv LC_CTYPE en_US.UTF-8
 defutf8 on
 setenv DISPLAY ':0'
+defscrollback 5000
 nonblock on
 vbell off
 msgwait 10
