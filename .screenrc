@@ -10,7 +10,7 @@ setenv DISPLAY ':0'
 defscrollback 5000
 nonblock on
 vbell off
-msgwait 10
+msgwait 5
 shelltitle ''
 chdir	# start in $HOME
 
