@@ -30,3 +30,6 @@
 # Irssi
 !.irssi/*
 !.irssi/scripts/*
+
+# ncmpcpp
+!.ncmpcpp/*
