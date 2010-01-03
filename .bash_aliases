@@ -16,6 +16,7 @@ alias spp='sudo powerpill'
 alias sls='slurpy -c -s'
 alias sld='slurpy -c -d'
 alias sli='slurpy -c -i'
+alias udevinfo='udevadm info -q all -n'
 alias webshare='python /usr/lib/python2.6/SimpleHTTPServer.py 8001'
 alias wgetxc='wget `xclip -o`'
 
