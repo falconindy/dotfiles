@@ -11,14 +11,10 @@ if [ -z $1 ]; then
     echo
     echo "USAGE: weather.sh <locationcode>"
     echo
-    exit 0;
+    exit 1;
 fi
 
-#curl -s http://rss.accuweather.com/rss/liveweather_rss.asp\?metric\=${METRIC}\&locCode\=$1 | perl -ne 'if (/Currently/) {chomp;/\<title\>Currently: (.*)?\<\/title\>/; print "$1"; }'
-
-out=`curl --connect-timeout 30 -s http://rss.accuweather.com/rss/liveweather_rss.asp\?metric\=${METRIC}\&locCode\=$1 | perl -ne 'if (/Currently/) {chomp;/\<title\>Currently: (.*)?\<\/title\>/; print "$1"; }'`
-
-#echo $out
+out=`curl --connect-timeout 10 -s http://rss.accuweather.com/rss/liveweather_rss.asp\?metric\=${METRIC}\&locCode\=$1 | perl -ne 'if (/Currently/) {chomp;/\<title\>Currently: (.*)?\<\/title\>/; print "$1"; }'`
 
 cond=`echo $out | cut -d':' -f 1`
 temp=`echo $out | sed -n "s/.*: \([0-9]*\)/\1°/p"`
