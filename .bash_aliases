@@ -31,7 +31,7 @@ qp() {
 
 dsz() {
 	[[ -z $1 ]] && target=$(pwd) || target=$1
-	[[ ! -d "$target" ]] && echo "'$target' is not a directory" && return 1
+	[[ ! -d "$target" ]] && { echo "'$target' is not a directory"; return 1; }
 	du -sh $(du -s $(find $(readlink -f $target) -maxdepth 1 -type d) | sort -n | awk '{print $2}')
 }
 
@@ -104,11 +104,11 @@ ljoin() {
 	IFS=$OLDIFS
 }
 
-function scr {
+scr () {
 	screen -ls | grep -q Main && screen -xr Main || screen -S Main
 }
 
-function t {
+t () {
     if [[ `tmux -L Main ls | grep windows` ]]; then
         tmux -L Main a
     else
@@ -116,17 +116,17 @@ function t {
     fi
 }
 
-function miso() {
-    [[ ! -f "$1" ]] && echo "Provide a valid iso file" && return 1
+miso () {
+    [[ ! -f "$1" ]] && { echo "Provide a valid iso file"; return 1; }
     mountpoint="/media/${1//.iso}"
     sudo mkdir -p "$mountpoint"
     sudo mount -o loop "$1" "$mountpoint"
 
 }
 
-function umiso() {
+umiso () {
     mountpoint="/media/${1//.iso}"
-    [[ ! -d "$mountpoint" ]] && echo "Not a valid mount point" && return 1
+    [[ ! -d "$mountpoint" ]] && { echo "Not a valid mount point"; return 1; }
     sudo umount "$mountpoint"
     sudo rm -ir "$mountpoint"
 
