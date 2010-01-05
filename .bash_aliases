@@ -21,57 +21,57 @@ alias webshare='python /usr/lib/python2.6/SimpleHTTPServer.py 8001'
 alias wgetxc='wget `xclip -o`'
 
 qp() {
-	pacman-color -Qi $1 2> /dev/null
-	if [[ $? -gt 0 ]]; then
-		echo "$1 not found, searching..."
-		pacman-color -Qs $1
-		[[ $? -gt 0 ]] && echo "No local results for $1"
-	fi
+    pacman-color -Qi $1 2> /dev/null
+    if [[ $? -gt 0 ]]; then
+        echo "$1 not found, searching..."
+        pacman-color -Qs $1
+        [[ $? -gt 0 ]] && echo "No local results for $1"
+    fi
 }
 
 dsz() {
-	[[ -z $1 ]] && target=$(pwd) || target=$1
-	[[ ! -d "$target" ]] && { echo "'$target' is not a directory"; return 1; }
-	du -sh $(du -s $(find $(readlink -f $target) -maxdepth 1 -type d) | sort -n | awk '{print $2}')
+    [[ -z $1 ]] && target=$(pwd) || target=$1
+    [[ ! -d "$target" ]] && { echo "'$target' is not a directory"; return 1; }
+    du -sh $(du -s $(find $(readlink -f $target) -maxdepth 1 -type d) | sort -n | awk '{print $2}')
 }
 
 calc() {
-	echo "scale=3; $*" | bc
+    echo "scale=3; $*" | bc
 }
 
 unwork() {
-	if [[ -z $1 ]]; then
-		echo "USAGE: unwork [dirname]"
-	else
-		if [[ -d $1 ]]; then
-			count=0
-			for f in `find $1 -name .svn`; do 
-				rm -r $f
-				count=$((count + 1))
-			done
-			echo "SUCCESS. Directory is no longer a working copy ($count .svns removed)."
-			unset count
-		else
-			echo "ERROR: $1 is not a directory"
-		fi
-	fi
+    if [[ -z $1 ]]; then
+        echo "USAGE: unwork [dirname]"
+    else
+        if [[ -d $1 ]]; then
+            count=0
+            for f in `find $1 -name .svn`; do 
+                rm -r $f
+                count=$((count + 1))
+            done
+            echo "SUCCESS. Directory is no longer a working copy ($count .svns removed)."
+            unset count
+        else
+            echo "ERROR: $1 is not a directory"
+        fi
+    fi
 }
 
 man2pdf() {
     if [[ -z $1 ]]; then
-    	echo "USAGE: man2pdf [manpage]"
+        echo "USAGE: man2pdf [manpage]"
     else
-    	if [[ `find /usr/share/man -name $1\* | wc -l` -gt 0 ]]; then
-		out=/tmp/$1.pdf
-		if [[ ! -e $out ]]; then
-			man -t $1 | ps2pdf - > $out
-		fi
-		if [[ -e $out ]]; then
-			/usr/bin/evince $out
-		fi
-	else
-		echo "ERROR: manpage \"$1\" not found."
-	fi
+        if [[ `find /usr/share/man -name $1\* | wc -l` -gt 0 ]]; then
+        out=/tmp/$1.pdf
+        if [[ ! -e $out ]]; then
+            man -t $1 | ps2pdf - > $out
+        fi
+        if [[ -e $out ]]; then
+            /usr/bin/evince $out
+        fi
+    else
+        echo "ERROR: manpage \"$1\" not found."
+    fi
     fi
 }
 
@@ -98,14 +98,14 @@ ex () {
 }
 
 ljoin() {
-	local OLDIFS=$IFS
-	IFS=${1:?"Missing separator"}; shift
-	echo "$*"
-	IFS=$OLDIFS
+    local OLDIFS=$IFS
+    IFS=${1:?"Missing separator"}; shift
+    echo "$*"
+    IFS=$OLDIFS
 }
 
 scr () {
-	screen -ls | grep -q Main && screen -xr Main || screen -S Main
+    screen -ls | grep -q Main && screen -xr Main || screen -S Main
 }
 
 t () {
