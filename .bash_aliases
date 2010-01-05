@@ -21,6 +21,12 @@ alias udevinfo='udevadm info -q all -n'
 alias webshare='python /usr/lib/python2.6/SimpleHTTPServer.py 8001'
 alias wgetxc='wget `xclip -o`'
 
+deps() {
+    [[ `file $1 | grep "shared lib"` ]] || { echo "Not a dynamically linked file"; return 1; }
+    readelf -d $1 | sed -n '/NEEDED/s/.* library: \[\(.*\)\]/\1/p'
+
+}
+
 qp() {
     pacman-color -Qi $1 2> /dev/null
     if [[ $? -gt 0 ]]; then
