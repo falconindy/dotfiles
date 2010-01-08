@@ -67,6 +67,13 @@ bindkey "^[[5;2~" eval "copy" "stuff ^u"
 bindkey -m "^[[5;2~" stuff ^u
 bindkey -m "^[[6;2~" stuff ^d
 
+# Unbind a whole bunch of silly flow control keys
+bind s
+bind q 
+bind ^S
+bind ^Q
+
+
 # add CPU idle/sustem/user/interrupt stats
 #backtick 100 5 5 tail -1 /var/tmp/vermaden-stats-top
 #caption always '%{= wk} %= %100` %='
