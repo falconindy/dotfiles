@@ -74,7 +74,7 @@ man2pdf() {
             man -t $1 | ps2pdf - > $out
         fi
         if [[ -e $out ]]; then
-            /usr/bin/evince $out
+            /usr/bin/apvlv $out
         fi
     else
         echo "ERROR: manpage \"$1\" not found."
