@@ -21,6 +21,8 @@ URxvt.boldFont: -*-terminus-bold-*-*-*-14-*-*-*-*-*-iso10646-1
 URxvt.loginshell: true
 URxvt.internalborder: 0
 URxvt.underlinecolor: #999999
+URxvt.cutchars: "()*,<>[]{}|'
+URxvt.print-pipe: cat >/tmp/xxx
 
 ! --[ URL Handling ]--------------------------------
 URxvt.keysym.M-u: perl:mark-yank-urls:activate_mark_mode
