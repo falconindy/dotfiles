@@ -3,3 +3,6 @@
 	diff = auto
 	interactive = auto
 	status = auto
+[user]
+	name = Dave Reisner
+	email = d@falconindy.com
