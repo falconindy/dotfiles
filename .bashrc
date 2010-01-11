@@ -19,7 +19,7 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 # Includes truncated PWD to show no more than 25 characters
 bash_prompt_command() {
     # How many characters of the $PWD should be kept
-    local pwdmaxlen=25
+    local pwdmaxlen=40
     # Indicate that there has been dir truncation
     local trunc_symbol=".."
     local dir=${PWD##*/}
