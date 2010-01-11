@@ -8,4 +8,4 @@ uppercase no
 background no
 
 TEXT
-[ ${execi 1800 ~/.conky/getWeather.sh 07712} ] [ $nodename : $kernel : $uptime : ${execi 120 /home/haruko/.conky/updatecount.sh} Upd ] [ CPU: ${cpu cpu1}% ${cpu cpu2}% ] [ RAM: ${memperc}% ]${execi 300 /home/haruko/.conky/hddmon.sh} [ NET: ${downspeed eth0} down | ${upspeed eth0} up ] [ Vol: ${exec /home/haruko/.conky/getVolume.sh}%  ] ${execi 5 ~/.conky/nowPlaying.sh}[ $time ]
+[ ${execi 3600 ~/.conky/getWeather.sh 07712} ] [ $nodename : $kernel : $uptime : ${execi 120 /home/haruko/.conky/updatecount.sh} Upd ] [ CPU: ${cpu cpu1}% ${cpu cpu2}% ] [ RAM: ${memperc}% ]${execi 300 /home/haruko/.conky/hddmon.sh} [ NET: ${downspeed eth0} down | ${upspeed eth0} up ] [ Vol: ${exec /home/haruko/.conky/getVolume.sh}%  ] ${execi 5 ~/.conky/nowPlaying.sh}[ $time ]
