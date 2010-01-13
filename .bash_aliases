@@ -82,6 +82,11 @@ man2pdf() {
     fi
 }
 
+git-comm-xc () {
+    # send first 6 characters of git commit signature to xclip
+    git log | head -1 | cut -c8-13 | xclip
+}
+
 ex () {
   if [ -f $1 ] ; then
       case $1 in
