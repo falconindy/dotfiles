@@ -4,6 +4,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias cdg='cd $(git rev-parse --git-dir)/..'
+alias dsz='du -sh $(find $(pwd) -maxdepth 1 -type d) | sort -h'
 alias grep='grep --color'
 alias hman='man -Hchromium-browser'
 alias j='jobs'
@@ -34,12 +35,6 @@ qp() {
         pacman-color -Qs $1
         [[ $? -gt 0 ]] && echo "No local results for $1"
     fi
-}
-
-dsz() {
-    [[ -z $1 ]] && target=$(pwd) || target=$1
-    [[ ! -d "$target" ]] && { echo "'$target' is not a directory"; return 1; }
-    du -sh $(du -s $(find $(readlink -f $target) -maxdepth 1 -type d) | sort -n | awk '{print $2}')
 }
 
 calc() {
