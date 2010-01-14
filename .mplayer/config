@@ -1,3 +1,5 @@
 [default]
 # Write your default config options here!
 heartbeat-cmd="xscreensaver-command -deactivate >/dev/null &"
+vo=vdpau
+vc=ffh264vdpau,ffmpeg12vdpau,
