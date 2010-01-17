@@ -300,8 +300,13 @@ settings = {
     beep_msg_level = "MSGS NOTICES DCC DCCMSGS HILIGHT";
     bell_beeps = "yes";
   };
-  "perl/core/scripts" = { nicklist_height = "80"; nicklist_width = "20"; };
+  "perl/core/scripts" = {
+    nicklist_height = "80";
+    nicklist_width = "20";
+    notify_time = "1000";
+  };
 };
 ignores = (
-  { level = "JOINS PARTS QUITS"; channels = ( "#archlinux" ); }
+  { level = "JOINS PARTS QUITS"; channels = ( "#archlinux" ); },
+  { level = "JOINS PARTS QUITS"; channels = ( "#bash" ); }
 );
