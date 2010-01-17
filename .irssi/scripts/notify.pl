@@ -20,7 +20,7 @@ $VERSION = "0.01";
 );
 
 Irssi::settings_add_str('notify', 'notify_icon', 'gtk-dialog-info');
-Irssi::settings_add_str('notify', 'notify_time', '5000');
+Irssi::settings_add_str('notify', 'notify_time', '1000');
 
 sub notify {
     my ($server, $summary, $message) = @_;
