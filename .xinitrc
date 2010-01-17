@@ -9,7 +9,7 @@ feh --bg-scale ~/pic/wallpaper/spheres_symbols_multicolor.jpg
 setxkbmap -option terminate:ctrl_alt_bksp
 xscreensaver -no-splash &
 chromium-browser&
-pidgin &
+#pidgin &
 urxvtd -q -o -f
 exec ~/bin/startdwm
 
