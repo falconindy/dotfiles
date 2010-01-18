@@ -48,7 +48,7 @@ unwork() {
         if [[ -d $1 ]]; then
             count=0
             for f in `find $1 -name .svn`; do 
-                rm -r $f
+                rm -rf $f
                 count=$((count + 1))
             done
             echo "SUCCESS. Directory is no longer a working copy ($count .svns removed)."
