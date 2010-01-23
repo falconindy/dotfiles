@@ -3,7 +3,7 @@
 
 [[ -f /etc/bash_completion ]] && . /etc/bash_completion
 
-[[ -f ~/.bash_aliases ]] && . ~/.bash_aliases 
+[[ -f ~/.aliases ]] && . ~/.aliases 
 
 setterm -regtabs 4	#this only works on a tty
 

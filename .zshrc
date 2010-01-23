@@ -1,7 +1,9 @@
-[[ -f .bash_aliases ]] && source .bash_aliases
+[[ -f .aliases ]] && source .aliases
+export PATH=~/bin:$PATH
 
-autoload -U compinit 
+autoload -U compinit promptinit
 compinit
+promptinit
 
 # key bindings
 bindkey "\e[1~" beginning-of-line
@@ -28,6 +30,14 @@ bindkey "\e[H" beginning-of-line
 bindkey "\e[F" end-of-line
 # completion in the middle of a line
 bindkey '^i' expand-or-complete-prefix
+
+export LESS_TERMCAP_mb=$'\E[01;31m'
+export LESS_TERMCAP_md=$'\E[01;31m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;44;33m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;32m'
 
 function precmd {
 
