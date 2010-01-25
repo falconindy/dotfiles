@@ -18,9 +18,10 @@ screen    -t 'ncmpcpp' 0 ncmpcpp
 screen    -t '' 1
 screen    -t '' 2
 screen    -t '' 3
-screen    -t 'htop' 4 htop
+screen    -t 'bash' 4 bash
 screen    -t 'syslog' 5 sudo inotail -f -n 30 /var/log/everything.log
 screen    -t 'irsii' 6 irssi
+screen    -t 'htop' 7 htop
 select 1
 
 bind = resize =
