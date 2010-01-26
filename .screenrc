@@ -69,8 +69,8 @@ bindkey -m "^[[5;2~" stuff ^u
 bindkey -m "^[[6;2~" stuff ^d
 
 # Unbind a whole bunch of silly flow control keys
-bind s
-bind q 
+bind "s"
+bind "q"
 bind "^S"
 bind "^Q"
 
