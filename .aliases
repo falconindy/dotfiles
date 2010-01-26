@@ -24,9 +24,9 @@ alias webshare='python /usr/lib/python2.6/SimpleHTTPServer.py 8001'
 alias wgetxc='wget `xclip -o`'
 
 deps() {
+    [ ! -f $1 ] && { echo "File not found"; return 1; }
     [ $(file $1 | grep "shared lib") ] || { echo "Not a dynamically linked file"; return 1; }
     readelf -d $1 | sed -n '/NEEDED/s/.* library: \[\(.*\)\]/\1/p'
-
 }
 
 qp() {
@@ -140,4 +140,4 @@ umiso () {
 
 }
 
-# vim:syn=sh
+# vim:syn=sh et
