@@ -28,8 +28,11 @@ autocmd FileType make set noexpandtab
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
-" shift-c to comment
+" shift-c to comment (no <CR> so you have a chance to edit commentor)
 map C :s/^/#/
+
+" save the current file as root and reload
+cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
 
 """"""""""""""""""""""""""""""
 " Statusline
