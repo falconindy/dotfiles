@@ -12,6 +12,9 @@
 !.zprofile
 !.zshrc
 
+# xcolors
+!.xcolors/*
+
 # Input related
 !.inputrc
 !.Xmodmap
