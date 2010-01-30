@@ -15,10 +15,21 @@ set virtualedit=all     " Allow cursor to stray outside text
 set showcmd
 set incsearch           " Search for text as entered
 set number
+set ruler
 
 " I hate tabs with a fiery passion
 autocmd FileType * set expandtab
 autocmd FileType make set noexpandtab
+
+
+""""""""""""""""""""""""""""""
+" Key mappings
+""""""""""""""""""""""""""""""
+" Don't use Ex mode, use Q for formatting
+map Q gq
+
+" shift-c to comment
+map C :s/^/#/
 
 """"""""""""""""""""""""""""""
 " Statusline
