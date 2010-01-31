@@ -3,41 +3,55 @@
 "
 " Author: Dave Reisner (Falcon Industries)
 "
+set nocompatible                "Needs to be first according to Bram
 
-set nocompatible        " Don't be old and stupid
-syntax on               " Syntax highlighting on
+" AMG the colors!
+"---------------------------------
+syntax on
 colorscheme dante
-set tabstop=4
-set shiftwidth=4
-set smartindent          " Use current level line's indent
-set showmatch           " Show matching braces
-set virtualedit=all     " Allow cursor to stray outside text
-set showcmd
-set incsearch           " Search for text as entered
+
+" General Options
+"---------------------------------
+set autoindent
+set backspace=indent,eol,start
+set completeopt=longest
+set history=50
+set incsearch
 set number
 set ruler
+set shiftwidth=4
+set showcmd
+set showmatch
+set showmode
+set smarttab
+set tabstop=4
+set title
+set virtualedit=all
 
-" I hate tabs with a fiery passion
+" Tab Settings
+"---------------------------------
 autocmd FileType * set expandtab
 autocmd FileType make set noexpandtab
 
+" Code Folding
+"---------------------------------
+if has ('folding')
+  set foldenable
+  set foldmethod=marker
+  set foldmarker={{{,}}}
+  set foldcolumn=0
+endif
 
-""""""""""""""""""""""""""""""
+
 " Key mappings
-""""""""""""""""""""""""""""""
-" Don't use Ex mode, use Q for formatting
+"---------------------------------
 map Q gq
-
-" shift-c to comment (no <CR> so you have a chance to edit commentor)
 map C :s/^/#/
-
-" save the current file as root and reload
 cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
 
-""""""""""""""""""""""""""""""
+
 " Statusline
-""""""""""""""""""""""""""""""
-  "Always hide the statusline
+"---------------------------------
     set laststatus=2
 
     function! CurDir()
@@ -48,9 +62,9 @@ cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
   "Format the statusline
      set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
 
-"""""""""""""""""""""""""""""
+
 " Substitutions
-"""""""""""""""""""""""""""""
+"---------------------------------
 if &term !=# "linux"
     set list listchars=tab:\➜\ ,trail:·,nbsp:-
 endif
