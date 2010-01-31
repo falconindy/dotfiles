@@ -37,7 +37,9 @@ URxvt*background: rgba:0000/0000/0000/dddd
 URxvt*foreground:#eeeeee
 
 !#include "/home/haruko/.xcolors/gnometerm"
+!#include "/home/haruko/.xcolors/jasonwryan"
 #include "/home/haruko/.xcolors/tango"
+!#include "/home/haruko/.xcolors/zenburn"
 
 ! -- [ xscreensaver ] ------------------------------
 
