@@ -1,5 +1,6 @@
 [[ -f .aliases ]] && source .aliases
 export PATH=~/bin:$PATH
+export CLASSPATH=.:~/doc/school/COMP228/
 
 autoload -U compinit promptinit
 compinit
@@ -162,7 +163,7 @@ $PR_CYAN$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT$PR_NO_COLOUR '
 }
 
 if [ $TERM = "linux" ]; then
-    PS1=$' %n@%m %~ \$ >> '
+    prompt adam2
 else
     setprompt
 fi
