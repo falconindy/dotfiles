@@ -18,6 +18,7 @@ set completeopt=longest
 set history=50
 set incsearch
 set number
+set printoptions=left:5pc,right:5pc,top:5pc,bottom:10pc
 set ruler
 set shiftwidth=4
 set showcmd
