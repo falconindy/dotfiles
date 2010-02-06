@@ -1,18 +1,33 @@
-! Zenburn
+! Black
+*color0:        #1E2320
+*color8:        #709080
 
-*color0:  #1E2320
-*color1:  #705050
-*color2:  #60b48a
-*color3:  #dfaf8f
-*color4:  #506070
-*color5:  #dc8cc3
-*color6:  #8cd0d3
-*color7:  #dcdccc
-*color8:  #709080
-*color9:  #dca3a3
-*color10: #c3bf9f
-*color11: #f0dfaf
-*color12: #94bff3
-*color13: #ec93d3
-*color14: #93e0e3
-*color15: #ffffff
+! Red
+*color1:        #705050
+.color9:        #dca3a3
+
+! Green
+*color2:        #60b48a
+*color10:       #c3bf9f
+
+! Yellow
+*color3:        #dfaf8f
+*color11:       #f0dfaf
+
+! Blue
+*color4:        #506070
+*color12:       #94bff3
+
+! Magenta
+*color5:        #dc8cc3
+*color13:       #ec93d3
+
+! Cyan
+*color6:        #8cd0d3
+*color14:       #93e0e3
+
+! White
+*color7:        #dcdccc
+*color15:       #ffffff
+
+! vim: syn=xdefaults et sw=2
