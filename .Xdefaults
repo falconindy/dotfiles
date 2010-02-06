@@ -1,4 +1,4 @@
-! screen font
+! --[ Font Rendering ]-------------------------------------
 Xft.dpi: 96
 Xft.antialias: true
 Xft.rgba: rgb
@@ -6,16 +6,16 @@ Xft.hinting: true
 Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
 
-! x11 mouse theme
-Xcursor*theme: DMZ-White
+! --[ Mouse ]-------------------------------------
+Xcursor.theme: DMZ-White
 Xcursor.size:  24
 
-! --[ General ]-------------------------------------
-URxvt*depth: 32
-URxvt*scrollBar:false
-URxvt*saveLines:32767
-URxvt*cursorColor:#83C048
-URxvt*highlightColor:#444444
+! --[ URxvt - General ]-------------------------------------
+URxvt.depth: 32
+URxvt.scrollBar:false
+URxvt.saveLines:32767
+URxvt.cursorColor:#83C048
+URxvt.highlightColor:#444444
 URxvt.font: -*-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-1
 URxvt.boldFont: -*-terminus-bold-*-*-*-14-*-*-*-*-*-iso10646-1
 URxvt.loginshell: true
@@ -25,24 +25,25 @@ URxvt.cutchars: "()*,<>[]{}|'
 URxvt.print-pipe: cat >/tmp/xxx
 URxvt.visualBell: false
 
-! --[ URL Handling ]--------------------------------
+! --[ URxvt - URL Handling ]--------------------------------
 URxvt.keysym.M-u: perl:mark-yank-urls:activate_mark_mode
 URxvt.perl-ext: default,matcher,mark-yank-urls
-
 URxvt.urlLauncher: chromium-browser
 URxvt.matcher.button: 1
 URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 
-! --[ colors ]--------------------------------------
-URxvt*background: rgba:0000/0000/0000/dddd
-URxvt*foreground:#eeeeee
+
+! --[ URxvt - colors ]--------------------------------------
+URxvt.background: rgba:0000/0000/0000/dddd
+URxvt.foreground:#eeeeee
 
 !#include "/home/haruko/.xcolors/gnometerm"
 !#include "/home/haruko/.xcolors/jasonwryan"
 #include "/home/haruko/.xcolors/tango"
 !#include "/home/haruko/.xcolors/zenburn"
 
-! -- [ xscreensaver ] ------------------------------
+
+! -- [ XScreenSaver ] ------------------------------
 
 !font settings
 xscreensaver.Dialog.headingFont:        -*-terminus-bold-r-*-*-14-*-*-*-*-*-*-*
