@@ -23,6 +23,7 @@ URxvt.internalborder: 0
 URxvt.underlinecolor: #999999
 URxvt.cutchars: "()*,<>[]{}|'
 URxvt.print-pipe: cat >/tmp/xxx
+URxvt.visualBell: false
 
 ! --[ URL Handling ]--------------------------------
 URxvt.keysym.M-u: perl:mark-yank-urls:activate_mark_mode
