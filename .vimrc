@@ -77,4 +77,4 @@ endif
 "--------------------------------
 autocmd FileType java set smartindent
 autocmd FileType java map <F9>  <Esc>:w<CR>:!javac %<CR>
-autocmd FileType java map <F10> <Esc>:!java %<<CR>:
+autocmd FileType java map <F10> <Esc>:!java %<<CR><CR>
