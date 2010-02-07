@@ -49,6 +49,7 @@ endif
 map Q gq
 map C :s/^/#/
 cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
+cmap jc w<CR>:!javac %<CR>
 
 
 " Statusline
