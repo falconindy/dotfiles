@@ -10,9 +10,9 @@ set nocompatible                "Needs to be first according to Bram
 syntax on
 colorscheme dante
 
+
 " General Options
 "---------------------------------
-set autoindent
 set backspace=indent,eol,start
 set completeopt=longest
 set history=50
@@ -29,10 +29,12 @@ set tabstop=4
 set title
 set virtualedit=all
 
-" Tab Settings
+
+" Tab/Indent Settings
 "---------------------------------
 autocmd FileType * set expandtab
 autocmd FileType make set noexpandtab
+
 
 " Code Folding
 "---------------------------------
@@ -49,7 +51,6 @@ endif
 map Q gq
 map C :s/^/#/
 cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
-cmap jc w<CR>:!javac %<CR>
 
 
 " Statusline
@@ -70,3 +71,10 @@ cmap jc w<CR>:!javac %<CR>
 if &term !=# "linux"
     set list listchars=tab:\➜\ ,trail:·,nbsp:-
 endif
+
+
+" Java Specific
+"--------------------------------
+autocmd FileType java set smartindent
+autocmd FileType java map <F9>  <Esc>:w<CR>:!javac %<CR>
+autocmd FileType java map <F10> <Esc>:!java %<<CR>:
