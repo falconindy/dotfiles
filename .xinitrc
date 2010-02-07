@@ -9,7 +9,7 @@ feh --bg-scale $(find ~/pic/wallpaper/16\:10/ -type f | shuf -n 1)
 setxkbmap -option terminate:ctrl_alt_bksp
 xscreensaver -no-splash &
 chromium-browser&
-urxvtd -q -o -f
+urxvtd -q -o -f && urxvtc & urxvtc &
 wmname LG3D
 exec ~/bin/startdwm
 
