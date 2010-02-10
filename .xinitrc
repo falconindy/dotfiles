@@ -8,7 +8,7 @@ xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 -f &
 feh --bg-scale $(find ~/pic/wallpaper/16\:10/ -type f | shuf -n 1)
 setxkbmap -option terminate:ctrl_alt_bksp
 xscreensaver -no-splash &
-chromium-browser&
+chromium&
 urxvtd -q -o -f && urxvtc & urxvtc &
 wmname LG3D
 exec ~/bin/startdwm

@@ -28,7 +28,7 @@ URxvt.visualBell: false
 ! --[ URxvt - URL Handling ]--------------------------------
 URxvt.keysym.M-u: perl:mark-yank-urls:activate_mark_mode
 URxvt.perl-ext: default,matcher,mark-yank-urls
-URxvt.urlLauncher: chromium-browser
+URxvt.urlLauncher: chromium
 URxvt.matcher.button: 1
 URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 
