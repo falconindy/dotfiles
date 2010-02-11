@@ -3,7 +3,7 @@ startup_message off
 termcapinfo rxvt-256color ti@:te@     #enable SHIFT-PGUP / SHIFT-PGDOWN scroll
 #termcapinfo wy* CS=\E[?1h:CE=\E[?1l:vi=\E[?25l:ve=\E[?25h:VR=\E[?5h:VN=\E[?5l:cb=\E[1K:CD=\E[1J
 terminfo rxvt-256color ti@:te@:
-term screen-256color
+#term screen-256color
 setenv LC_CTYPE en_US.UTF-8
 defutf8 on
 setenv DISPLAY ':0'
