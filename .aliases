@@ -14,6 +14,7 @@ alias md5='md5sum'
 alias mkchpkg='sudo makechrootpkg -c -r /mnt/Entropy/cleanroot'
 alias pp='powerpill'
 alias randbg='feh --bg-scale $(find ~/pic/wallpaper/16\:10/ -type f | shuf -n 1)'
+
 alias spp='sudo powerpill'
 alias sls='slurpy -c -s'
 alias sld='slurpy -c -d'
@@ -57,6 +58,10 @@ unwork() {
             echo "ERROR: $1 is not a directory"
         fi
     fi
+}
+
+nitrobg() {
+     sed -i 's|^\(file=\).*|\1'"$(find ~/pic/wallpaper/16\:10/ -type f | shuf -n 1)"'|' .config/nitrogen/bg-saved.cfg; nitrogen --restore
 }
 
 man2pdf() {
