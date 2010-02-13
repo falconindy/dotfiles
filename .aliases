@@ -61,7 +61,7 @@ unwork() {
 }
 
 nitrobg() {
-     sed -i 's|^\(file=\).*|\1'"$(find ~/pic/wallpaper/16\:10/ -type f | shuf -n 1)"'|' .config/nitrogen/bg-saved.cfg; nitrogen --restore
+     sed -i 's|^\(file=\).*|\1'"$(find ~/pic/wallpaper/16\:10/ -type f | shuf -n 1)"'|' ~/.config/nitrogen/bg-saved.cfg; nitrogen --restore
 }
 
 man2pdf() {
