@@ -215,7 +215,7 @@ mpd_music_dir = "/mnt/Gluttony/music"
 #
 playlist_display_mode = "columns" # (classic/columns)
 #
-#browser_display_mode = "classic" (classic/columns)
+browser_display_mode = "columns" (classic/columns)
 #
 #search_engine_display_mode = "classic" (classic/columns)
 #
