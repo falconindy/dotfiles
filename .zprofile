@@ -1,7 +1,7 @@
 # Keychain
-eval `keychain --eval --agents ssh id_rsa`
+eval $(keychain --eval --agents ssh id_rsa)
 
-# Deluge
+# User Daemons
 deluged
 
 # Schenanagins
@@ -10,3 +10,4 @@ if [ -f ~/.zshrc ]; then
     . ~/.zshrc
 fi
 
+# vim: ft=zsh
