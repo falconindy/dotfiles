@@ -1,5 +1,5 @@
 # Keychain
-eval $(keychain --eval --agents ssh id_rsa)
+eval $(keychain --eval id_rsa)
 
 # User Daemons
 deluged
