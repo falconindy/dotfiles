@@ -6,6 +6,7 @@ deluged
 
 # Schenanagins
 export EDITOR=vi
+export BROWSER=chromium
 if [ -f ~/.zshrc ]; then
     . ~/.zshrc
 fi
