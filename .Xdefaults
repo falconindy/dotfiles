@@ -34,9 +34,10 @@ URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 
 
 ! --[ URxvt - colors ]--------------------------------------
-URxvt.background: rgba:0000/0000/0000/dddd
+URxvt.background: rgba:0000/0000/0000/aaaa
 URxvt.foreground:#eeeeee
 
+!#include "/home/haruko/.xcolors/dwmrob"
 !#include "/home/haruko/.xcolors/gnometerm"
 !#include "/home/haruko/.xcolors/jasonwryan"
 #include "/home/haruko/.xcolors/tango"
