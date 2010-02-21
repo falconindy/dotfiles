@@ -34,6 +34,7 @@ set virtualedit=all
 "---------------------------------
 autocmd FileType * set expandtab
 autocmd FileType make set noexpandtab
+autocmd FileType java,c,cpp set smartindent
 
 
 " Code Folding
@@ -75,6 +76,6 @@ endif
 
 " Java Specific
 "--------------------------------
-autocmd FileType java set smartindent
 autocmd FileType java map <F9>  <Esc>:w<CR>:!javac %<CR>
 autocmd FileType java map <F10> <Esc>:!java %<<CR><CR>
+
