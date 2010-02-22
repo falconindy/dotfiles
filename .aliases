@@ -118,6 +118,10 @@ ljoin() {
 }
 
 scr () {
+    screen -ls | grep -q Main && screen -dR Main || screen -S Main
+}
+
+scrx () {
     screen -ls | grep -q Main && screen -xr Main || screen -S Main
 }
 
