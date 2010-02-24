@@ -1,9 +1,6 @@
 # Keychain
 eval $(keychain --eval id_rsa)
 
-# User Daemons
-deluged
-
 # Schenanagins
 export EDITOR=vi
 export BROWSER=chromium
