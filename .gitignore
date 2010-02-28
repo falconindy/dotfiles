@@ -14,6 +14,7 @@
 
 # xcolors
 !.xcolors/*
+!.xcolors/
 
 # Input related
 !.inputrc
@@ -37,4 +38,4 @@
 !.irssi/scripts/*
 
 # ncmpcpp
-!.ncmpcpp/*
+!.ncmpcpp/config
