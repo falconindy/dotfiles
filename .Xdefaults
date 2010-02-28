@@ -1,6 +1,6 @@
 ! --[ Font Rendering ]-------------------------------------
 Xft.dpi: 96
-Xft.antialias: true
+Xft.antialias: false
 Xft.rgba: rgb
 Xft.hinting: true
 Xft.hintstyle: hintslight
@@ -16,8 +16,9 @@ URxvt.scrollBar:false
 URxvt.saveLines:5000
 URxvt.cursorColor:#83C048
 URxvt.highlightColor:#444444
-URxvt.font: -*-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-1
-URxvt.boldFont: -*-terminus-bold-*-*-*-14-*-*-*-*-*-iso10646-1
+!URxvt.font: -*-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-1
+!URxvt.boldFont: -*-terminus-bold-*-*-*-14-*-*-*-*-*-iso10646-1
+URxvt.font: xft:DroidSansMono:pixelsize=12
 URxvt.loginshell: true
 URxvt.internalborder: 0
 URxvt.underlinecolor: #999999
@@ -41,6 +42,7 @@ URxvt.foreground:#eeeeee
 !#include "/home/haruko/.xcolors/gnometerm"
 !#include "/home/haruko/.xcolors/jasonwryan"
 #include "/home/haruko/.xcolors/tango"
+!#include "/home/haruko/.xcolors/tango2"
 !#include "/home/haruko/.xcolors/zenburn"
 
 
