@@ -41,8 +41,8 @@ URxvt.foreground:#eeeeee
 !#include "/home/haruko/.xcolors/dwmrob"
 !#include "/home/haruko/.xcolors/gnometerm"
 !#include "/home/haruko/.xcolors/jasonwryan"
+!#include "/home/haruko/.xcolors/rydgel"
 #include "/home/haruko/.xcolors/tango"
-!#include "/home/haruko/.xcolors/tango2"
 !#include "/home/haruko/.xcolors/zenburn"
 
 
