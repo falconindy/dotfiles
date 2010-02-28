@@ -14,8 +14,8 @@ feh --bg-scale $(find ~/pic/wallpaper/16\:10/ -type f | shuf -n 1)
 xscreensaver -no-splash &
 
 # Startup programs
-chromium&
-urxvtd -q -o -f && urxvtc &
+chromium &
+urxvtd -q -o -f && urxvtc
 
 # Startup
 wmname LG3D
