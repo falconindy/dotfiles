@@ -37,6 +37,11 @@ autocmd FileType make set noexpandtab
 autocmd FileType java,c,cpp set smartindent
 
 
+" Tab Windows
+"---------------------------------
+map ,t <Esc>:tabnew<CR>
+
+
 " Code Folding
 "---------------------------------
 if has ('folding')
