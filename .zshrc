@@ -2,6 +2,8 @@
 export PATH=~/bin:$PATH
 export CLASSPATH=.:~/doc/school/COMP228/
 
+export READNULLCMD=less
+
 autoload -U compinit promptinit
 compinit
 promptinit
