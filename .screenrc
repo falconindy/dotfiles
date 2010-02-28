@@ -22,6 +22,7 @@ screen    -t 'bash' 4 bash
 screen    -t 'syslog' 5 sudo inotail -f -n 30 /var/log/everything.log
 screen    -t 'irsii' 6 irssi
 screen    -t 'htop' 7 htop
+screen    -t 'rtorrent' 8 rtorrent
 select 1
 
 bind = resize =
