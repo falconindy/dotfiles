@@ -86,6 +86,27 @@ git-comm-xc () {
     git log | head -1 | cut -c8-13 | xclip
 }
 
+ju () {
+    if [[ $# -ne 1 ]]; then
+        echo "Usage ${0##*/} <target>" >&2
+        exit 1
+    fi
+
+    results=($(find . \( ! -regex '.*/\..*' \) -type d | grep -iE "${1}$"))
+
+    if [[ ${#results[@]} -eq 0 ]]; then
+        echo "No results found for '$1'." >&2
+        exit 2
+    fi
+
+    if [[ ${#results[@]} -gt 1 ]]; then
+        echo "Multiple results for '$1'. Please refine your search" >&2
+        exit 3
+    fi
+
+    cd ${results[@]}
+}
+
 ex () {
   if [ -f $1 ] ; then
       case $1 in
@@ -148,4 +169,4 @@ umiso () {
 
 }
 
-# vim:syn=sh et
+# vim: syn=sh et
