@@ -75,7 +75,8 @@ cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
 " Substitutions
 "---------------------------------
 if &term !=# "linux"
-    set list listchars=tab:»·,trail:·,extends:›,precedes:‹,nbsp:∙
+    set list listchars=tab:\»\ ,trail:·,extends:›,precedes:‹,nbsp:∙
+    "set list listchars=tab:»·,trail:·,extends:›,precedes:‹,nbsp:∙
 endif
 
 
@@ -84,3 +85,13 @@ endif
 autocmd FileType java map <F9>  <Esc>:w<CR>:!javac %<CR>
 autocmd FileType java map <F10> <Esc>:!java %<<CR><CR>
 
+
+" Go to last file(s) if invoked without arguments.
+"--------------------------------
+autocmd VimLeave * nested if (!isdirectory($HOME . "/.vim")) |
+    \ call mkdir($HOME . "/.vim") |
+    \ endif |
+    \ execute "mksession! " . $HOME . "/.vim/Session.vim"
+
+autocmd VimEnter * nested if argc() == 0 && filereadable($HOME . "/.vim/Session.vim") |
+    \ execute "source " . $HOME . "/.vim/Session.vim"
