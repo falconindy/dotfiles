@@ -49,13 +49,20 @@ URxvt.foreground:#eeeeee
 ! -- [ XScreenSaver ] ------------------------------
 
 !font settings
-xscreensaver.Dialog.headingFont:        -*-terminus-bold-r-*-*-14-*-*-*-*-*-*-*
-xscreensaver.Dialog.bodyFont:           -*-terminus-medium-r-*-*-14-*-*-*-*-*-*-*
-xscreensaver.Dialog.labelFont:          -*-terminus-medium-r-*-*-14-*-*-*-*-*-*-*
-xscreensaver.Dialog.unameFont:          -*-terminus-medium-r-*-*-14-*-*-*-*-*-*-*
-xscreensaver.Dialog.buttonFont:         -*-terminus-bold-r-*-*-14-*-*-*-*-*-*-*
-xscreensaver.Dialog.dateFont:           -*-terminus-medium-r-*-*-12-*-*-*-*-*-*-*
-xscreensaver.passwd.passwdFont:         -*-terminus-bold-r-*-*-14-*-*-*-*-*-*-*
+xscreensaver.Dialog.headingFont:        -*-droid sans-bold-r-*-*-14-*-*-*-*-*-*-*
+xscreensaver.Dialog.bodyFont:           -*-droid sans-medium-r-*-*-14-*-*-*-*-*-*-*
+xscreensaver.Dialog.labelFont:          -*-droid sans-medium-r-*-*-14-*-*-*-*-*-*-*
+xscreensaver.Dialog.unameFont:          -*-droid sans-medium-r-*-*-14-*-*-*-*-*-*-*
+xscreensaver.Dialog.buttonFont:         -*-droid sans-bold-r-*-*-14-*-*-*-*-*-*-*
+xscreensaver.Dialog.dateFont:           -*-droid sans-medium-r-*-*-12-*-*-*-*-*-*-*
+xscreensaver.passwd.passwdFont:         -*-droid sans-bold-r-*-*-14-*-*-*-*-*-*-* 
+!xscreensaver.Dialog.headingFont:        -*-terminus-bold-r-*-*-12-*-*-*-*-*-*-*
+!xscreensaver.Dialog.bodyFont:           -*-terminus-medium-r-*-*-12-*-*-*-*-*-*-*
+!xscreensaver.Dialog.labelFont:          -*-terminus-medium-r-*-*-12-*-*-*-*-*-*-*
+!xscreensaver.Dialog.unameFont:          -*-terminus-medium-r-*-*-12-*-*-*-*-*-*-*
+!xscreensaver.Dialog.buttonFont:         -*-terminus-bold-r-*-*-12-*-*-*-*-*-*-*
+!xscreensaver.Dialog.dateFont:           -*-terminus-medium-r-*-*-12-*-*-*-*-*-*-*
+!xscreensaver.passwd.passwdFont:         -*-terminus-bold-r-*-*-12-*-*-*-*-*-*-*
 !general dialog box (affects main hostname, username, password text)
 xscreensaver.Dialog.foreground:         #ffffff
 xscreensaver.Dialog.background:         #111111
