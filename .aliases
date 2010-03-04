@@ -102,6 +102,9 @@ ju () {
 
     if [[ ${#results[@]} -gt 1 ]]; then
         echo "Multiple results for '$1' -- Please refine your search" >&2
+        for r in "${results[@]}"; do
+            echo $r
+        done
         return 3
     fi
 
