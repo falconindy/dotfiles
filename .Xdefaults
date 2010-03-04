@@ -16,8 +16,6 @@ URxvt.scrollBar:false
 URxvt.saveLines:5000
 URxvt.cursorColor:#83C048
 URxvt.highlightColor:#444444
-!URxvt.font: -*-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-1
-!URxvt.boldFont: -*-terminus-bold-*-*-*-14-*-*-*-*-*-iso10646-1
 URxvt.font: xft:DroidSansMono:pixelsize=12
 URxvt.loginshell: true
 URxvt.internalborder: 0
@@ -41,6 +39,8 @@ URxvt.foreground:#eeeeee
 !#include "/home/haruko/.xcolors/dwmrob"
 !#include "/home/haruko/.xcolors/gnometerm"
 !#include "/home/haruko/.xcolors/jasonwryan"
+!#include "/home/haruko/.xcolors/phrak1"
+!#include "/home/haruko/.xcolors/rezza"
 !#include "/home/haruko/.xcolors/rydgel"
 #include "/home/haruko/.xcolors/tango"
 !#include "/home/haruko/.xcolors/zenburn"
