@@ -37,5 +37,10 @@
 !.irssi/*
 !.irssi/scripts/*
 
+# Weechat
+!.weechat/
+!.weechat/python/
+!.weechat/python/*
+
 # ncmpcpp
 !.ncmpcpp/config

@@ -67,7 +67,7 @@ def notify_show(data, bufferp, uber_empty, tagsn, isdisplayed, ishilight, prefix
 
     elif (ishilight == "1" and weechat.config_get_plugin('show_hilights') == "on"):
         buffer = (weechat.buffer_get_string(bufferp, "short_name") or weechat.buffer_get_string(bufferp, "name"))
-        if not "root" in prefix:
+        if prefix != "@root" and not "falconindy" in buffer:
             show_notification(buffer, prefix + weechat.config_get_plugin('nick_separator') + message)
 
     return weechat.WEECHAT_RC_OK
