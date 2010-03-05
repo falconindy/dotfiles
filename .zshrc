@@ -1,12 +1,29 @@
-[[ -f .aliases ]] && source .aliases
-export PATH=~/bin:$PATH
-export CLASSPATH=.:~/doc/school/COMP228/
-
-export READNULLCMD=less
-
 autoload -U compinit promptinit
 compinit
 promptinit
+
+# aliases
+[[ -f .aliases ]] && source .aliases
+alias -g L=' | less'
+
+export PATH=~/bin:$PATH
+export CLASSPATH=.:~/doc/school/COMP228/
+
+# history options
+export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd*"
+export HISTSIZE=25000
+export HISTFILE=~/.zsh_history
+export SAVEHIST=250
+setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_REDUCE_BLANKS
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_VERIFY
+
+# define pager
+export READNULLCMD=less
 
 # key bindings
 bindkey "\e[1~" beginning-of-line
