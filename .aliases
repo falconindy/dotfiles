@@ -8,7 +8,8 @@ alias grep='grep --color'
 alias hman='man -H'
 alias j='jobs'
 alias ls='ls --color=auto'
-alias ll='ls -la --group-directories-first'
+alias ll='ls -l --group-directories-first'
+alias lla='ls -la --group-directories-first'
 alias lsd='ls -l | grep ^[dl] --color=none'
 alias md5='md5sum'
 alias mkchpkg='sudo makechrootpkg -c -r /mnt/Entropy/cleanroot'
@@ -85,6 +86,15 @@ man2pdf() {
 git-comm-xc () {
     # send first 6 characters of git commit signature to xclip
     git log | head -1 | cut -c8-13 | xclip
+}
+
+goc () {
+    6g $1
+}
+
+gocl () {
+    6g $1
+    [ $? -eq 0 ] && 6l -o ${1%%.*} ${1%%.*}.6
 }
 
 ju () {
@@ -173,4 +183,4 @@ umiso () {
 
 }
 
-# vim: syn=sh et
+# vim: syn=sh ft=sh et
