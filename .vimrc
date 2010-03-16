@@ -86,6 +86,14 @@ autocmd FileType java map <F9>  <Esc>:w<CR>:!javac %<CR>
 autocmd FileType java map <F10> <Esc>:!java %<<CR><CR>
 
 
+" Doxygen settings
+"--------------------------------
+let g:DoxygenToolkit_briefTag_pre="@brief " 
+let g:DoxygenToolkit_paramTag_pre="@param " 
+let g:DoxygenToolkit_returnTag="@return " 
+let g:DoxygenToolkit_authorName="Dave Reisner" 
+
+
 " Go to last file(s) if invoked without arguments.
 "--------------------------------
 autocmd VimLeave * nested if (!isdirectory($HOME . "/.vim")) |
