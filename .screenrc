@@ -14,14 +14,14 @@ msgwait 5
 shelltitle ''
 chdir	# start in $HOME
 
-screen    -t 'ncmpcpp' 0 ncmpcpp
+#screen    -t 'ncmpcpp' 0 ncmpcpp
 screen    -t '' 1
 screen    -t '' 2
 screen    -t '' 3
 screen    -t 'bash' 4 bash
 screen    -t 'syslog' 5 sudo inotail -f -n 30 /var/log/everything.log
 screen    -t 'chat' 6 weechat-curses
-screen    -t 'htop' 7 htop
+#screen    -t 'htop' 7 htop
 screen    -t 'rtorrent' 8 rtorrent
 select 1
 
@@ -108,4 +108,4 @@ hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u
 sorendition kw
 
 # hardcopydir:  The directory which contains all hardcopies.
-hardcopydir /home/haruko/.hardcopy
+hardcopydir $HOME/.hardcopy
