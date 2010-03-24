@@ -20,12 +20,12 @@ set incsearch
 set number
 set printoptions=left:5pc,right:5pc,top:5pc,bottom:10pc,syntax:n
 set ruler
-set shiftwidth=4
+set shiftwidth=2
 set showcmd
 set showmatch
 set showmode
 set smarttab
-set tabstop=4
+set tabstop=2
 set title
 set virtualedit=all
 
@@ -35,6 +35,7 @@ set virtualedit=all
 autocmd FileType * set expandtab
 autocmd FileType make set noexpandtab
 autocmd FileType java,c,cpp set smartindent
+autocmd FileType python set shiftwidth=4 tabstop=4
 
 
 " Tab Windows
