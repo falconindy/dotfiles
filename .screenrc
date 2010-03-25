@@ -29,7 +29,7 @@ bind = resize =
 bind + resize +1
 bind - resize -1
 bind _ resize max
-#bind c screen 1 # Window numbering starts at 1, not 0.
+bind c screen 1 # Window numbering starts at 1, not 0.
 #bind 0 select 10
 # make life easier, f1-f10 selects screens 0-9
 #bindkey -k k1 select 1
