@@ -14,7 +14,7 @@ colorscheme dante
 " General Options
 "---------------------------------
 set backspace=indent,eol,start
-set completeopt=longest
+set completeopt=longest,menuone
 set history=50
 set incsearch
 set number
