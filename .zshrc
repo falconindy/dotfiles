@@ -8,6 +8,11 @@ alias -g L=' | less'
 
 export PATH=~/bin:$PATH
 export CLASSPATH=.:~/doc/school/COMP228/
+export DE=gnome
+
+# in case gtk+/qt don't use xft, force it (thanks tvale)
+export GDK_USE_XFT=true
+export QT_XFT=true
 
 # history options
 export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd*"
