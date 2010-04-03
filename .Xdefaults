@@ -36,14 +36,14 @@ URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 URxvt.background: rgba:0000/0000/0000/bbbb
 URxvt.foreground:#eeeeee
 
-!#include "/home/haruko/.xcolors/dwmrob"
-!#include "/home/haruko/.xcolors/gnometerm"
-!#include "/home/haruko/.xcolors/jasonwryan"
-!#include "/home/haruko/.xcolors/phrak1"
-!#include "/home/haruko/.xcolors/rezza"
-!#include "/home/haruko/.xcolors/rydgel"
-#include "/home/haruko/.xcolors/tango"
-!#include "/home/haruko/.xcolors/zenburn"
+!#include ".xcolors/dwmrob"
+!#include ".xcolors/gnometerm"
+!#include ".xcolors/jasonwryan"
+!#include ".xcolors/phrak1"
+!#include ".xcolors/rezza"
+!#include ".xcolors/rydgel"
+#include ".xcolors/tango"
+!#include ".xcolors/zenburn"
 
 
 ! -- [ XScreenSaver ] ------------------------------
@@ -56,13 +56,6 @@ xscreensaver.Dialog.unameFont:          -*-droid sans-medium-r-*-*-14-*-*-*-*-*-
 xscreensaver.Dialog.buttonFont:         -*-droid sans-bold-r-*-*-14-*-*-*-*-*-*-*
 xscreensaver.Dialog.dateFont:           -*-droid sans-medium-r-*-*-12-*-*-*-*-*-*-*
 xscreensaver.passwd.passwdFont:         -*-droid sans-bold-r-*-*-14-*-*-*-*-*-*-* 
-!xscreensaver.Dialog.headingFont:        -*-terminus-bold-r-*-*-12-*-*-*-*-*-*-*
-!xscreensaver.Dialog.bodyFont:           -*-terminus-medium-r-*-*-12-*-*-*-*-*-*-*
-!xscreensaver.Dialog.labelFont:          -*-terminus-medium-r-*-*-12-*-*-*-*-*-*-*
-!xscreensaver.Dialog.unameFont:          -*-terminus-medium-r-*-*-12-*-*-*-*-*-*-*
-!xscreensaver.Dialog.buttonFont:         -*-terminus-bold-r-*-*-12-*-*-*-*-*-*-*
-!xscreensaver.Dialog.dateFont:           -*-terminus-medium-r-*-*-12-*-*-*-*-*-*-*
-!xscreensaver.passwd.passwdFont:         -*-terminus-bold-r-*-*-12-*-*-*-*-*-*-*
 !general dialog box (affects main hostname, username, password text)
 xscreensaver.Dialog.foreground:         #ffffff
 xscreensaver.Dialog.background:         #111111
