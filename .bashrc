@@ -89,5 +89,3 @@ source ~/.bash_prompt
 zer0prompt
 unset zer0prompt
 
-PATH=$HOME/bin:$PATH
-export PATH
