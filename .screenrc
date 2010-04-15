@@ -20,7 +20,7 @@ screen    -t '' 2
 screen    -t '' 3
 screen    -t 'bash' 4 bash
 screen    -t 'syslog' 5 inotail -f -n 30 /var/log/everything.log
-screen    -t 'chat' 6 weechat-curses
+screen    -t 'chat' 6 irssi
 #screen    -t 'htop' 7 htop
 screen    -t 'rtorrent' 8 rtorrent
 select 1
