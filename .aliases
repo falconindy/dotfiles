@@ -6,20 +6,15 @@ alias cower='cower -c'
 alias cdg='cd $(git rev-parse --git-dir)/..'
 alias dsz='du -sh $(find $(pwd -P) -maxdepth 1 -type d) | sort -h'
 alias grep='grep --color'
-alias hman='man -H'
 alias j='jobs'
 alias ls='ls --color=auto'
 alias ll='ls -l --group-directories-first'
 alias lla='ls -la --group-directories-first'
 alias lsd='ls -l | grep ^[dl] --color=none'
 alias md5='md5sum'
-alias mkchpkg='sudo makechrootpkg -c -r /mnt/Entropy/cleanroot'
 alias pp='powerpill'
 alias randbg='feh --bg-scale $(find ~/pic/wallpaper/16\:10/ -type f | shuf -n 1)'
 alias spp='sudo powerpill'
-alias sls='slurpy -c -s'
-alias sld='slurpy -c -d'
-alias sli='slurpy -c -i'
 alias udevinfo='udevadm info -q all -n'
 alias v='vim'
 alias wakeht='wakeonlan 6C:F0:49:17:BF:A3'
@@ -82,44 +77,6 @@ man2pdf() {
         echo "ERROR: manpage \"$1\" not found."
     fi
     fi
-}
-
-git-comm-xc () {
-    # send first 6 characters of git commit signature to xclip
-    git log | head -1 | cut -c8-13 | xclip
-}
-
-goc () {
-    6g $1
-}
-
-gocl () {
-    6g $1
-    [ $? -eq 0 ] && 6l -o ${1%%.*} ${1%%.*}.6
-}
-
-ju () {
-    if [[ $# -ne 1 ]]; then
-        echo "Usage ${0##*/} <target>" >&2
-        return 1
-    fi
-
-    results=($(find . \( ! -regex '.*/\..*' \) -type d | grep -iE "${1}$"))
-
-    if [[ ${#results[@]} -eq 0 ]]; then
-        echo "No results found for '$1'" >&2
-        return 2
-    fi
-
-    if [[ ${#results[@]} -gt 1 ]]; then
-        echo "Multiple results for '$1' -- Please refine your search" >&2
-        for r in "${results[@]}"; do
-            echo $r
-        done
-        return 3
-    fi
-
-    cd ${results[@]}
 }
 
 ex () {
