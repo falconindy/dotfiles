@@ -35,6 +35,14 @@ servers = (
     use_ssl = "no";
     ssl_verify = "no";
     autoconnect = "yes";
+  },
+  {
+    address = "avalanche";
+    chatnet = "bitlbee";
+    port = "6667";
+    use_ssl = "no";
+    ssl_verify = "no";
+    autoconnect = "yes";
   }
 );
 
@@ -104,12 +112,22 @@ chatnets = {
   SILC = { type = "SILC"; };
   0autosendcmd = { type = "IRC"; };
   freenode = { type = "IRC"; };
+  bitlbee = {
+    type = "IRC";
+    autosendcmd = "/^msg root identify N1ghtmare!";
+  };
 };
 
 channels = (
   { name = "#irssi"; chatnet = "ircnet"; autojoin = "No"; },
   { name = "silc"; chatnet = "silc"; autojoin = "No"; },
-  { name = "#archlinux"; chatnet = "freenode"; autojoin = "yes"; }
+  { name = "#archlinux"; chatnet = "freenode"; autojoin = "yes"; },
+  {
+    name = "#archlinux-offtopic";
+    chatnet = "freenode";
+    autojoin = "yes";
+  },
+  { name = "#bash"; chatnet = "freenode"; autojoin = "yes"; }
 );
 
 aliases = {
@@ -292,7 +310,7 @@ settings = {
     use_msgs_window = "yes";
     autoclose_windows = "no";
     reuse_unused_windows = "yes";
-    windows_auto_renumber = "no";
+    windows_auto_renumber = "yes";
     print_active_channel = "yes";
     theme = "r2d2";
     beep_when_window_active = "yes";
