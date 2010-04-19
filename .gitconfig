@@ -1,8 +1,22 @@
-[color]
-	branch = auto
-	diff = auto
-	interactive = auto
-	status = auto
 [user]
-	name = Dave Reisner
-	email = d@falconindy.com
+  name = Dave Reisner
+  email = d@falconindy.com
+
+[alias]
+  br = branch
+  co = checkout
+  logdel = log --diff-filter=D --summary
+
+[color]
+  branch = auto
+  diff = auto
+  interactive = auto
+  status = auto
+
+[merge]
+  tool = vimdiff
+  log = true
+
+[push]
+  default = current
+
