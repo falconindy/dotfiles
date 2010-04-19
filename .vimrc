@@ -34,7 +34,7 @@ set virtualedit=all
 "---------------------------------
 autocmd FileType * set expandtab
 autocmd FileType make set noexpandtab
-autocmd FileType java,c,cpp set smartindent
+autocmd FileType java,c,cpp,go set smartindent
 autocmd FileType python set shiftwidth=4 tabstop=4
 
 
@@ -80,6 +80,10 @@ if &term !=# "linux"
     "set list listchars=tab:»·,trail:·,extends:›,precedes:‹,nbsp:∙
 endif
 
+
+" Go Specific
+"--------------------------------
+au BufRead,BufNewFile *.go set filetype=go
 
 " Java Specific
 "--------------------------------
