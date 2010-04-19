@@ -2,7 +2,7 @@
 eval $(keychain --eval id_rsa)
 
 # Schenanagins
-export CDPATH=~/:~/devel/:~/doc/school/:/mnt/Gluttony/:/mnt/Destruction/
+export CDPATH=.:..:~/:~/devel/:~/doc/school/:/mnt/Gluttony/:/mnt/Destruction/
 export PATH=~/bin:$PATH
 export CLASSPATH=.:~/doc/school/COMP228/
 export EDITOR=vi
