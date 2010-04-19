@@ -1,18 +1,18 @@
 startup_message off
-#termcapinfo xterm*|Eterm|mlterm|rxvt 'hs:ts=\E]0;:fs=\007:ds=\E]0;screen\007'
-termcapinfo rxvt-256color ti@:te@     #enable SHIFT-PGUP / SHIFT-PGDOWN scroll
-#termcapinfo wy* CS=\E[?1h:CE=\E[?1l:vi=\E[?25l:ve=\E[?25h:VR=\E[?5h:VN=\E[?5l:cb=\E[1K:CD=\E[1J
-terminfo rxvt-256color ti@:te@:
+autodetach on
+
+defshell -$SHELL
+shell -$SHELL
+terminfo rxvt* 'ti@:te@:Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 #term screen-256color
-setenv LC_CTYPE en_US.UTF-8
+#setenv LC_CTYPE en_US.UTF-8
 defutf8 on
 setenv DISPLAY ':0'
-defscrollback 5000
+defscrollback 2048
 nonblock on
 vbell off
-msgwait 5
+msgwait 2
 shelltitle ''
-chdir	# start in $HOME
 
 #screen    -t 'ncmpcpp' 0 ncmpcpp
 screen    -t '' 1
@@ -26,8 +26,8 @@ screen    -t 'rtorrent' 8 rtorrent
 select 1
 
 bind = resize =
-bind + resize +1
-bind - resize -1
+bind + resize +3
+bind - resize -3
 bind _ resize max
 bind c screen 1 # Window numbering starts at 1, not 0.
 #bind 0 select 10
@@ -105,6 +105,7 @@ hardstatus alwayslastline
 #hardstatus string '%{= kB}%-Lw%{+r}%50> %n%f* %t%{= kB}%+Lw%< %{= kB}%-= %{-}'
 #hardstatus alwayslastline '%{bk}[ %{W}%H %{b}][ %{w}%l%{b} ]   %{b}[%{w} %D %d.%m %c:%s%{b} ]'
 hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m/%d %{W}%c %{g}]'
+#hardstatus alwayslastline "%{=bu kg}(%H %l%)(%{= kw} %=%?%-Lw%?%{=b kc}((%n %t))%{= kw}%?%+Lw%?%= %{=bu kg})(%D %Y.%m.%d %0C%A)"
 sorendition kw
 
 # hardcopydir:  The directory which contains all hardcopies.
