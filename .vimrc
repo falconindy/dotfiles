@@ -81,6 +81,8 @@ if &term !=# "linux"
 endif
 
 
+filetype plugin on
+
 " Go Specific
 "--------------------------------
 au BufRead,BufNewFile *.go set filetype=go
@@ -89,6 +91,7 @@ au BufRead,BufNewFile *.go set filetype=go
 "--------------------------------
 autocmd FileType java map <F9>  <Esc>:w<CR>:!javac %<CR>
 autocmd FileType java map <F10> <Esc>:!java %<<CR><CR>
+autocmd Filetype java setlocal omnifunc=javacomplete#Complete
 
 
 " Doxygen settings
@@ -108,3 +111,4 @@ autocmd VimLeave * nested if (!isdirectory($HOME . "/.vim")) |
 
 autocmd VimEnter * nested if argc() == 0 && filereadable($HOME . "/.vim/Session.vim") |
     \ execute "source " . $HOME . "/.vim/Session.vim"
+
