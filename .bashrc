@@ -1,6 +1,10 @@
 # Check for an interactive session
 [ -z "$PS1" ] && return
 
+if [ -e /bin/dircolors ]; then
+    eval $(dircolors -b ~/.dircolors)
+fi
+
 [[ -f /etc/bash_completion ]] && . /etc/bash_completion
 
 [[ -f ~/.aliases ]] && . ~/.aliases 
