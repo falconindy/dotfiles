@@ -2,15 +2,19 @@ autoload -U compinit promptinit
 compinit
 promptinit
 
+# Apply extra dircolors
+if [ -e /bin/dircolors ]; then
+    eval $(dircolors -b ~/.dircolors)
+fi
+
 # aliases
 [[ -f .aliases ]] && source .aliases
 alias -g L=' | less'
 
-export DE=gnome
-
 # in case gtk+/qt don't use xft, force it (thanks tvale)
 export GDK_USE_XFT=true
 export QT_XFT=true
+export DE=gnome
 
 # history options
 export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd*"
@@ -192,7 +196,7 @@ fi
 
 # The following lines were added by compinstall
 
-zstyle ':completion:*' use-cache on
+zstyle ':completion:*' use-cache 'yes'
 zstyle ':completion:*' cache-path ~/.config/zsh/cache
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
