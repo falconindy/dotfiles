@@ -77,7 +77,6 @@ cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
 "---------------------------------
 if &term !=# "linux"
     set list listchars=tab:\»\ ,trail:·,extends:›,precedes:‹,nbsp:∙
-    "set list listchars=tab:»·,trail:·,extends:›,precedes:‹,nbsp:∙
 endif
 
 
@@ -91,7 +90,6 @@ au BufRead,BufNewFile *.go set filetype=go
 "--------------------------------
 autocmd FileType java map <F9>  <Esc>:w<CR>:!javac %<CR>
 autocmd FileType java map <F10> <Esc>:!java %<<CR><CR>
-autocmd Filetype java setlocal omnifunc=javacomplete#Complete
 
 
 " Doxygen settings
