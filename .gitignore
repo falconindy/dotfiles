@@ -9,6 +9,7 @@
 !.bash_profile
 !.bash_prompt
 !.bashrc
+!.dircolors
 !.zprofile
 !.zshrc
 
@@ -33,10 +34,6 @@
 
 # MPlayer
 !.mplayer/config
-
-# Irssi
-!.irssi/*
-!.irssi/scripts/*
 
 # Weechat
 !.weechat/
