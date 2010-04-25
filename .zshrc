@@ -203,6 +203,4 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 zstyle ':completion:*' max-errors 2
 zstyle :compinstall filename '/home/haruko/.zshrc'
 
-autoload -Uz compinit
-compinit
 # End of lines added by compinstall
