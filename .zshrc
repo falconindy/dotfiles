@@ -35,6 +35,7 @@ export READNULLCMD=less
 # vi bindings
 bindkey -v
 
+# color for less
 export LESS_TERMCAP_mb=$'\E[01;31m'
 export LESS_TERMCAP_md=$'\E[01;31m'
 export LESS_TERMCAP_me=$'\E[0m'
@@ -43,15 +44,14 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
+# Begin prompt madness
+#################
 function precmd {
-
     local TERMWIDTH
     (( TERMWIDTH = ${COLUMNS} - 1 ))
 
-
     ###
     # Truncate the path if it's too long.
-
     PR_FILLBAR=""
     PR_PWDLEN=""
 
@@ -63,9 +63,7 @@ function precmd {
     else
     PR_FILLBAR="\${(l.(($TERMWIDTH - ($promptsize + $pwdsize)))..${PR_HBAR}.)}"
     fi
-
 }
-
 
 setopt extended_glob
 preexec () {
@@ -75,17 +73,13 @@ preexec () {
     fi
 }
 
-
 setprompt () {
     ###
     # Need this so the prompt will work.
-
     setopt prompt_subst
-
 
     ###
     # See if we can use colors.
-
     autoload colors zsh/terminfo
     if [[ "$terminfo[colors]" -ge 8 ]]; then
     colors
@@ -97,10 +91,8 @@ setprompt () {
     done
     PR_NO_COLOUR="%{$terminfo[sgr0]%}"
 
-
     ###
     # See if we can use extended characters to look nicer.
-    
     typeset -A altchar
     set -A altchar ${(s..)terminfo[acsc]}
     PR_SET_CHARSET="%{$terminfo[enacs]%}"
@@ -112,10 +104,8 @@ setprompt () {
     PR_LRCORNER=${altchar[j]:--}
     PR_URCORNER=${altchar[k]:--}
 
-    
     ###
     # Decide if we need to set titlebar text.
-    
     case $TERM in
     xterm*)
         PR_TITLEBAR=$'%{\e]0;%(!.-=*[ROOT]*=- | .)%n@%m:%~ | ${COLUMNS}x${LINES} | %y\a%}'
@@ -127,8 +117,7 @@ setprompt () {
         PR_TITLEBAR=''
         ;;
     esac
-    
-    
+
     ###
     # Decide whether to set a screen title
     if [[ "$TERM" == "screen" ]]; then
@@ -136,11 +125,9 @@ setprompt () {
     else
     PR_STITLE=''
     fi
-    
-    
+
     ###
     # Finally, the prompt.
-
     PROMPT='$PR_SET_CHARSET$PR_STITLE${(e)PR_TITLEBAR}\
 $PR_CYAN$PR_SHIFT_IN$PR_ULCORNER$PR_BLUE$PR_HBAR$PR_SHIFT_OUT(\
 $PR_GREEN%(!.%SROOT%s.%n)$PR_GREEN@%m:%l\
@@ -164,14 +151,14 @@ $PR_LIGHT_GREEN%_$PR_BLUE)$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT\
 $PR_CYAN$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT$PR_NO_COLOUR '
 }
 
+# After all that, use simpler prompt if we're on a tty
 if [ $TERM = "linux" ]; then
     prompt adam2
 else
     setprompt
 fi
 
-# The following lines were added by compinstall
-
+# Completion
 zstyle ':completion:*' use-cache 'yes'
 zstyle ':completion:*' cache-path ~/.config/zsh/cache
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
@@ -179,4 +166,3 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 zstyle ':completion:*' max-errors 2
 zstyle :compinstall filename '/home/haruko/.zshrc'
 
-# End of lines added by compinstall
