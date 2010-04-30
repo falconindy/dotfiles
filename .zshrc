@@ -57,6 +57,24 @@ bindkey "\e[H" beginning-of-line
 bindkey "\e[F" end-of-line
 # completion in the middle of a line
 bindkey '^i' expand-or-complete-prefix
+
+
+zle-keymap-select () {
+  if [ "$TERM" != "linux" ]; then
+    if [ $KEYMAP = vicmd ]; then
+      echo -ne "\033]12;Red\007"
+    else
+      echo -ne "\033]12;Green\007"
+    fi
+  fi
+}
+zle -N zle-keymap-select
+
+zle-line-init () {
+  zle -K viins
+  echo -ne "\033]12;Green\007"
+}
+zle -N zle-line-init
 bindkey -v
 
 # color for less
