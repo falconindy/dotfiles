@@ -102,6 +102,10 @@ ex () {
   fi
 }
 
+hex2dec() {
+  printf "%d\n" 0x$1
+}
+
 ljoin() {
     local OLDIFS=$IFS
     IFS=${1:?"Missing separator"}; shift
