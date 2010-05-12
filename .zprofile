@@ -7,6 +7,7 @@ export PATH=~/bin:$PATH
 export CLASSPATH=.:~/doc/school/COMP228/
 export EDITOR=vi
 export BROWSER=chromium
+export LC_COLLATE=C
 
 if [ -f ~/.zshrc ]; then
     . ~/.zshrc
