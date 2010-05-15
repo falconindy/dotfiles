@@ -57,22 +57,22 @@ bindkey "\e[H" beginning-of-line
 bindkey "\e[F" end-of-line
 # completion in the middle of a line
 bindkey '^i' expand-or-complete-prefix
+bindkey -v
 
 # Set cursor color based on vi mode. Sadly, this only works in rxvt.
-zle-keymap-select () {
-  if [ "$TERM" != "linux" ]; then
-    if [ $KEYMAP = vicmd ]; then
-      echo -ne "\033]12;#ff6565\007"
-    else
-      echo -ne "\033]12;#93d44f\007"
-    fi
-  fi
-}; zle -N zle-keymap-select
-zle-line-init () {
-  zle -K viins
-  echo -ne "\033]12;#93d44f\007"
-}; zle -N zle-line-init
-bindkey -v
+#zle-keymap-select () {
+#  if [ "$TERM" != "linux" ]; then
+#    if [ $KEYMAP = vicmd ]; then
+#      echo -ne "\033]12;#ff6565\007"
+#    else
+#      echo -ne "\033]12;#93d44f\007"
+#    fi
+#  fi
+#}; zle -N zle-keymap-select
+#zle-line-init () {
+#  zle -K viins
+#  echo -ne "\033]12;#93d44f\007"
+#}; zle -N zle-line-init
 
 # color for less
 export LESS_TERMCAP_mb=$'\E[01;31m'
