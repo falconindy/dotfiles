@@ -2,12 +2,12 @@
 [ -z "$PS1" ] && return
 
 if [ -e /bin/dircolors ]; then
-    eval $(dircolors -b ~/.dircolors)
+    eval $(dircolors -b $XDG_CONFIG_HOME/dircolors)
 fi
 
 [[ -f /etc/bash_completion ]] && . /etc/bash_completion
 
-[[ -f ~/.aliases ]] && . ~/.aliases 
+[[ -f $XDG_CONFIG_HOME/aliases ]] && . $XDG_CONFIG_HOME/aliases
 
 setterm -regtabs 4	#this only works on a tty
 
@@ -89,7 +89,7 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 #PROMPT_COMMAND=bash_prompt_command
 #bash_prompt
 #unset bash_prompt
-source ~/.bash_prompt
+source $XDG_CONFIG_HOME/bash/prompt
 zer0prompt
 unset zer0prompt
 

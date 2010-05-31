@@ -3,12 +3,10 @@ compinit
 promptinit
 
 # Apply extra dircolors
-if [ -e /bin/dircolors ]; then
-    eval $(dircolors -b ~/.dircolors)
-fi
+[ -e /bin/dircolors ] && eval $(dircolors -b $XDG_CONFIG_HOME/dircolors)
 
 # aliases
-[[ -f .aliases ]] && source .aliases
+[ -f $XDG_CONFIG_HOME/aliases ] && . $XDG_CONFIG_HOME/aliases
 alias -g L=' | less'
 
 # in case gtk+/qt don't use xft, force it (thanks tvale)
@@ -19,7 +17,7 @@ export DE=gnome
 # history options
 export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd*"
 export HISTSIZE=25000
-export HISTFILE=~/.zsh_history
+export HISTFILE=$XDG_CONFIG_HOME/zsh/zhistory
 export SAVEHIST=250
 setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
