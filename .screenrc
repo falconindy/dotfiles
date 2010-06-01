@@ -18,7 +18,7 @@ shelltitle ''
 screen    -t '' 1
 screen    -t '' 2
 screen    -t '' 3
-screen    -t 'bash' 4 bash
+screen    -t '' 4
 screen    -t 'syslog' 5 inotail -f -n 30 /var/log/everything.log
 screen    -t 'chat' 6 irssi
 #screen    -t 'htop' 7 htop

@@ -3,22 +3,12 @@
 !.gitconfig
 !.gitignore
 
-!.config
-!.config/*
-!.config/zsh
-!.config/bash
-!.config/zsh/*
-!.config/bash/*
-
 # Unignore specific files
 # Shells
-!.config/.aliases
+!.bash_aliases
 !.bash_profile
-!.config/bash/bash_prompt
 !.bashrc
 !.dircolors
-!.zprofile
-!.zshrc
 
 # xcolors
 !.config/xcolors/
@@ -26,14 +16,12 @@
 
 # Input related
 !.inputrc
-!.Xmodmap
 
 # WM related
 !.conky/*
 !.fonts.conf
 !.htoprc
 !.screenrc
-!.tmux.conf
 !.vimrc
 !.Xdefaults
 !.xinitrc
@@ -42,10 +30,6 @@
 # MPlayer
 !.mplayer/config
 
-# Weechat
-!.weechat/
-!.weechat/python/
-!.weechat/python/*
-
 # ncmpcpp
 !.ncmpcpp/config
+

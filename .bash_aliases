@@ -1,3 +1,4 @@
+#!/bin/bash
 alias !='sudo'
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -23,16 +24,16 @@ alias webshare='python /usr/lib/python2.6/SimpleHTTPServer.py 8001'
 alias wgetxc='wget `xclip -o`'
 
 deps() {
-    [ ! -f "$1" ] && { echo "File not found"; return 1; }
+    [[ ! -f "$1" ]] && { echo "File not found"; return 1; }
     readelf -d $1 | sed -n '/NEEDED/s/.* library: \[\(.*\)\]/\1/p'
 }
 
 qp() {
     pacman-color -Qi $1 2> /dev/null
-    if [ $? -gt 0 ]; then
+    if [[ $? -gt 0 ]]; then
         echo "$1 not found, searching..."
         pacman-color -Qs $1
-        [ $? -gt 0 ] && echo "No local results for $1"
+        [[ $? -gt 0 ]] && echo "No local results for $1"
     fi
 }
 
@@ -41,10 +42,10 @@ calc() {
 }
 
 unwork() {
-    if [ -z $1 ]; then
-        echo "USAGE: unwork [dirname]"
+    if [[ -z $1 ]]; then
+        echo "USAGE: unwork [[dirname]]"
     else
-        if [ -d $1 ]; then
+        if [[ -d $1 ]]; then
             count=0
             for f in `find $1 -name .svn`; do 
                 rm -rf $f
@@ -58,20 +59,16 @@ unwork() {
     fi
 }
 
-nitrobg() {
-     sed -i 's|^\(file=\).*|\1'"$(find ~/pic/wallpaper/16\:10/ -type f | shuf -n 1)"'|' ~/.config/nitrogen/bg-saved.cfg; nitrogen --restore
-}
-
 man2pdf() {
-    if [ -z $1 ]; then
-        echo "USAGE: man2pdf [manpage]"
+    if [[ -z $1 ]]; then
+        echo "USAGE: man2pdf [[manpage]]"
     else
-        if [ `find /usr/share/man -name $1\* | wc -l` -gt 0 ]; then
+        if [[ `find /usr/share/man -name $1\* | wc -l` -gt 0 ]]; then
         out=/tmp/$1.pdf
-        if [ ! -e $out ]; then
+        if [[ ! -e $out ]]; then
             man -t $1 | ps2pdf - > $out
         fi
-        if [ -e $out ]; then
+        if [[ -e $out ]]; then
             /usr/bin/apvlv $out
         fi
     else
@@ -81,7 +78,7 @@ man2pdf() {
 }
 
 ex () {
-  if [ -f $1 ] ; then
+  if [[ -f $1 ]] ; then
       case $1 in
           *.tar.bz2)   tar xvjf $1    ;;
           *.tar.gz)    tar xvzf $1    ;;
@@ -124,7 +121,7 @@ scrx () {
 }
 
 t () {
-    if [ `tmux -L Main ls | grep windows` ]; then
+    if [[ `tmux -L Main ls | grep windows` ]]; then
         tmux -L Main a
     else
         tmux -L Main
@@ -132,19 +129,17 @@ t () {
 }
 
 miso () {
-    [ ! -f "$1" ] && { echo "Provide a valid iso file"; return 1; }
+    [[ ! -f "$1" ]] && { echo "Provide a valid iso file"; return 1; }
     mountpoint="/media/${1//.iso}"
     sudo mkdir -p "$mountpoint"
     sudo mount -o loop "$1" "$mountpoint"
-
 }
 
 umiso () {
     mountpoint="/media/${1//.iso}"
-    [ ! -d "$mountpoint" ] && { echo "Not a valid mount point"; return 1; }
+    [[ ! -d "$mountpoint" ]] && { echo "Not a valid mount point"; return 1; }
     sudo umount "$mountpoint"
     sudo rm -ir "$mountpoint"
-
 }
 
 # vim: syn=sh ft=sh et

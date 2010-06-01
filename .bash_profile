@@ -5,6 +5,7 @@ export EDITOR=vi
 export BROWSER=chromium
 export PATH=$HOME/bin:$PATH
 export LC_COLLATE=C
+export CDPATH=.:..:~/:~/devel/:~/doc/school/:/mnt/Gluttony/:/mnt/Destruction/
 
 # turn off control character echoing
 stty -ctlecho
