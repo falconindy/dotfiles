@@ -20,16 +20,16 @@
 # WM related
 !.conky/*
 !.fonts.conf
-!.htoprc
-!.screenrc
-!.vimrc
 !.Xdefaults
 !.xinitrc
 !.xscreensaver
 
-# MPlayer
-!.mplayer/config
+# system mail
+!.mailrc
 
-# ncmpcpp
+# other random apps
+!.screenrc
+!.vimrc
+!.htoprc
 !.ncmpcpp/config
-
+!.mplayer/config
