@@ -20,23 +20,6 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
-# A whole lot of shenanagins follow to create a fancy pants prompt
-# Includes truncated PWD to show no more than 'pwdmaxlen' characters
-bash_prompt_command() {
-    # How many characters of the $PWD should be kept
-    local pwdmaxlen=40
-    # Indicate that there has been dir truncation
-    local trunc_symbol=".."
-    local dir=${PWD##*/}
-    pwdmaxlen=$(( ( pwdmaxlen < ${#dir} ) ? ${#dir} : pwdmaxlen ))
-    NEW_PWD=${PWD/#$HOME/\~}
-    local pwdoffset=$(( ${#NEW_PWD} - pwdmaxlen ))
-    if [ ${pwdoffset} -gt "0" ]; then
-        NEW_PWD=${NEW_PWD:$pwdoffset:$pwdmaxlen}
-        NEW_PWD=${trunc_symbol}/${NEW_PWD#*/}
-    fi
-}
-
 bash_prompt() {
   case $TERM in
     xterm*|rxvt*)
@@ -80,12 +63,12 @@ bash_prompt() {
   local UC=$W                 # user's color
   [ $UID -eq "0" ] && UC=$R   # root's color
 
-  PS1="$TITLEBAR ${EMK}[${UC}\u${EMK}@${UC}\h ${EMB}\${NEW_PWD}${EMK}]${UC}\\$ ${NONE}"
-  # without colors: PS1="[\u@\h \${NEW_PWD}]\\$ "
-  # extra backslash in front of \$ to make bash colorize the prompt
+  RET_VALUE='$(if [[ $RET -ne 0 ]];then echo -n ":\[\033[1;31m\]$RET\[\033[0m\]";fi)'
+  PS1="$TITLEBAR ${EMK}[${UC}\u${EMK}@${UC}\h${RET_VALUE} ${EMB}\w${EMK}]${UC}\\$ ${NONE}"
 }
 
-PROMPT_COMMAND=bash_prompt_command
+PROMPT_COMMAND='RET=$?'
+
 bash_prompt
 unset bash_prompt
 
