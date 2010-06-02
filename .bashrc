@@ -1,17 +1,25 @@
 # Check for an interactive session
 [[ -z "$PS1" ]] && return
 
-if [[ -e /bin/dircolors ]]; then
-    eval $(dircolors -b ~/.dircolors)
-fi
-
+# External files
+[[ -e /bin/dircolors ]] && eval $(dircolors -b ~/.dircolors)
 [[ -f /etc/bash_completion ]] && . /etc/bash_completion
 [[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
 
-setterm -regtabs 4  #this only works on a tty
+# default umask
+umask 0022
 
+# shell opts
+shopt -s cdspell
+shopt -s extglob
 shopt -s histverify
+shopt -s no_empty_cmd_completion
+shopt -s dirspell
 
+# notify of completed background jobs immediately
+set -o notify
+
+# more for less
 export LESS_TERMCAP_mb=$'\E[01;31m'
 export LESS_TERMCAP_md=$'\E[01;31m'
 export LESS_TERMCAP_me=$'\E[0m'
@@ -20,6 +28,19 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
+# history options
+export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd*"
+export HISTFILESIZE=2000
+export HISTCONTROL="ignoreboth"
+export HISTSIZE=500
+
+# set tab width of 4 (only works on TTY)
+setterm -regtabs 2
+
+# disable core dumps
+ulimit -S -c 0
+
+# a functional but sane prompt
 bash_prompt() {
   case $TERM in
     xterm*|rxvt*)
@@ -67,8 +88,10 @@ bash_prompt() {
   PS1="$TITLEBAR ${EMK}[${UC}\u${EMK}@${UC}\h${RET_VALUE} ${EMB}\w${EMK}]${UC}\\$ ${NONE}"
 }
 
+# show return val of last command in prompt
 PROMPT_COMMAND='RET=$?'
 
+# 'execute' the prompt
 bash_prompt
 unset bash_prompt
 
