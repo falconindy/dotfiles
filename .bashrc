@@ -71,17 +71,23 @@ bash_prompt() {
   local EMC="\[\033[1;36m\]"
   local EMW="\[\033[1;37m\]"
 
-  local UC=$W                 # user's color
-  [ $UID -eq "0" ] && UC=$R   # root's color
+  local UC=$W                   # user's color
+  [[ $UID -eq "0" ]] && UC=$R   # root's color
 
   RET_VALUE='$(if [[ $RET -ne 0 ]];then echo -n ":\[\033[1;31m\]$RET\[\033[0m\]";fi)'
-  PS1="$TITLEBAR ${EMK}[${UC}\u${EMK}@${UC}\h${RET_VALUE} ${EMB}\w${NONE}"'$(__git_ps1 " \[\033[0;32m\]%s\[\033[0m\]")'"${EMK}]${UC} \\$ ${NONE}"
+  PS1="$TITLEBAR ${EMK}[${UC}\u${EMK}@${UC}\h${RET_VALUE} ${EMB}\w${NONE}"'$(__git_ps1 " \[\033[0;32m\]%s\[\033[0m\]")'"${EMK}]${UC}\\$ ${NONE}"
 }
 
-# show return val of last command in prompt
+# show return val of last command
 PROMPT_COMMAND='RET=$?'
 
-# 'execute' the prompt
-bash_prompt
+
+# after all that, change prompts inside a chroot
+if [ -e /.chroot ]; then
+  PS1='[\u@\h32 \w]\$ '
+else
+  GIT_PS1_SHOWDIRTYSTATE=yes bash_prompt
+fi
+
 unset bash_prompt
 
