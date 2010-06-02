@@ -71,21 +71,11 @@ bash_prompt() {
   local EMC="\[\033[1;36m\]"
   local EMW="\[\033[1;37m\]"
 
-  # background colors
-  local BGK="\[\033[40m\]"
-  local BGR="\[\033[41m\]"
-  local BGG="\[\033[42m\]"
-  local BGY="\[\033[43m\]"
-  local BGB="\[\033[44m\]"
-  local BGM="\[\033[45m\]"
-  local BGC="\[\033[46m\]"
-  local BGW="\[\033[47m\]"
-
   local UC=$W                 # user's color
   [ $UID -eq "0" ] && UC=$R   # root's color
 
   RET_VALUE='$(if [[ $RET -ne 0 ]];then echo -n ":\[\033[1;31m\]$RET\[\033[0m\]";fi)'
-  PS1="$TITLEBAR ${EMK}[${UC}\u${EMK}@${UC}\h${RET_VALUE} ${EMB}\w${EMK}]${UC}\\$ ${NONE}"
+  PS1="$TITLEBAR ${EMK}[${UC}\u${EMK}@${UC}\h${RET_VALUE} ${EMB}\w${NONE}"'$(__git_ps1 " \[\033[0;32m\]%s\[\033[0m\]")'"${EMK}]${UC} \\$ ${NONE}"
 }
 
 # show return val of last command in prompt
