@@ -25,6 +25,7 @@ set showcmd
 set showmatch
 set showmode
 set smarttab
+set smartindent
 set tabstop=2
 set title
 set virtualedit=all
@@ -34,7 +35,6 @@ set virtualedit=all
 "---------------------------------
 autocmd FileType * set expandtab
 autocmd FileType make set noexpandtab
-autocmd FileType java,c,cpp,go set smartindent
 autocmd FileType python set shiftwidth=4 tabstop=4
 
 
