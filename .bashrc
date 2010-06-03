@@ -34,6 +34,9 @@ export HISTFILESIZE=2000
 export HISTCONTROL="ignoreboth"
 export HISTSIZE=500
 
+# disable tidle expansion by overriding it
+_expand() { return 0; }
+
 # set tab width of 4 (only works on TTY)
 setterm -regtabs 2
 
