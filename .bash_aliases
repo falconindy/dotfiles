@@ -121,11 +121,7 @@ scrx () {
 }
 
 t () {
-    if [[ `tmux -L Main ls | grep windows` ]]; then
-        tmux -L Main a
-    else
-        tmux -L Main
-    fi
+    tmux -L main attach
 }
 
 miso () {
