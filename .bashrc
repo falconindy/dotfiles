@@ -78,7 +78,7 @@ bash_prompt() {
   [[ $UID -eq "0" ]] && UC=$R   # root's color
 
   RET_VALUE='$(if [[ $RET -ne 0 ]];then echo -n ":\[\033[1;31m\]$RET\[\033[0m\]";fi)'
-  PS1="$TITLEBAR ${EMK}[${UC}\u${EMK}@${UC}\h${RET_VALUE} ${EMB}\w${NONE}"'$(__git_ps1 " \[\033[0;32m\]%s\[\033[0m\]")'"${EMK}]${UC}\\$ ${NONE}"
+  PS1="$TITLEBAR ${EMK}┌┤${UC}\u${EMK}@${UC}\h${RET_VALUE}"'$(__git_ps1 " \[\033[0;32m\]%s\[\033[0m\]")'" ${EMB}\w${NONE}${EMK}${UC}${EMK}\n └─${NONE}\\$ "
 }
 
 # show return val of last command
