@@ -114,6 +114,7 @@ let vala_no_tab_space_error = 1
 " Minimum lines used for comment syncing (default 50)
 let vala_minlines = 120
 
+
 " Doxygen settings
 "--------------------------------
 let g:DoxygenToolkit_briefTag_pre="@brief " 
@@ -132,3 +133,7 @@ autocmd VimLeave * nested if (!isdirectory($HOME . "/.vim")) |
 autocmd VimEnter * nested if argc() == 0 && filereadable($HOME . "/.vim/Session.vim") |
     \ execute "source " . $HOME . "/.vim/Session.vim"
 
+
+" Mutt
+"--------------------------------
+au BufRead /tmp/mutt-* set tw=72
