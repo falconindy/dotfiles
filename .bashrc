@@ -4,6 +4,7 @@
 # External files
 [[ -e /bin/dircolors ]] && eval $(dircolors -b ~/.dircolors)
 [[ -f /etc/bash_completion ]] && . /etc/bash_completion
+[[ -f ~/.bash_completion ]] && . ~/.bash_completion
 [[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
 
 # default umask

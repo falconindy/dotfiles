@@ -1,0 +1,26 @@
+#!/bin/bash
+
+_git_commit () {
+  local cur prev ng_set
+
+  # save current nullglob setting and turn it on
+  ng_set=$(shopt -p nullglob)
+  shopt -s nullglob
+
+  COMPREPLY=()
+  cur=${COMP_WORDS[COMP_CWORD]}
+  prev=${COMP_WORDS[COMP_CWORD-1]}
+
+  # complete uncommitted files
+  if [[ ${COMP_WORDS[1]} = "commit" ]]; then
+    COMPREPLY=( $(compgen -W "\
+                $( git status -s | while read file; do
+                     echo ${file:2}
+                   done )" -- $cur ) )
+  fi
+
+
+  # restore the previous nullglob setting
+  $ng_set
+}
+complete -F _git_commit git
