@@ -10,6 +10,4 @@ export CDPATH=.:..:~/:~/devel/:~/doc/school/:/mnt/Gluttony/:/mnt/Destruction/
 # turn off control character echoing
 stty -ctlecho
 
-if [[ -f ~/.bashrc ]]; then
-    . ~/.bashrc
-fi
+[[ -f ~/.bashrc ]] && . ~/.bashrc
