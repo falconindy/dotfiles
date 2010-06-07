@@ -23,4 +23,3 @@ _git_commit () {
   # restore the previous nullglob setting
   $ng_set
 }
-complete -F _git_commit git
