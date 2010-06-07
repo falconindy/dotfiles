@@ -22,4 +22,5 @@ urxvtd -q -o -f && urxvtc
 wmname LG3D
 
 [[ $WM == "openbox" ]] && exec /usr/bin/openbox
-[[ $WM == "dwm" ]] && exec ~/bin/startdwm
+exec ~/bin/startdwm # dwm as default
+
