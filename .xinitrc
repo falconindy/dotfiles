@@ -22,5 +22,11 @@ urxvtd -q -o -f && urxvtc
 wmname LG3D
 
 [[ $WM == "openbox" ]] && exec /usr/bin/openbox
+
+# only open these clients for dwm
+urxvtc -name tmux -e tmux -L main attach
+urxvtc -name ncmpcpp
+urxvtc -name htop
+
 exec ~/bin/startdwm # dwm as default
 
