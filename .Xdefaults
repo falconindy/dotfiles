@@ -35,6 +35,7 @@ URxvt.background: rgba:0000/0000/0000/bbbb
 URxvt.foreground:#eeeeee
 
 !#include ".config/xcolors/dwmrob"
+!#include ".config/xcolors/derp"
 !#include ".config/xcolors/gnometerm"
 !#include ".config/xcolors/jasonwryan"
 !#include ".config/xcolors/phrak1"
