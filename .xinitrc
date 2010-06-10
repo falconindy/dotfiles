@@ -25,8 +25,8 @@ wmname LG3D
 
 # only open these clients for dwm
 urxvtc -name tmux -e tmux -L main attach
-urxvtc -name ncmpcpp
-urxvtc -name htop
+urxvtc -name htop -e htop
+urxvtc -name ncmpcpp -e ncmpcpp
 
 exec ~/bin/startdwm # dwm as default
 
