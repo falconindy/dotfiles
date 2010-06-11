@@ -36,6 +36,7 @@ URxvt.foreground:#eeeeee
 
 !#include ".config/xcolors/dwmrob"
 !#include ".config/xcolors/derp"
+!#include ".config/xcolors/digerati"
 !#include ".config/xcolors/gnometerm"
 !#include ".config/xcolors/jasonwryan"
 !#include ".config/xcolors/phrak1"
