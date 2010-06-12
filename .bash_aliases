@@ -121,7 +121,7 @@ scrx () {
 }
 
 t () {
-    tmux -L main attach
+    tmux -L main ${1:-attach}
 }
 
 miso () {
