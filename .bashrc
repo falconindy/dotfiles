@@ -93,7 +93,8 @@ PROMPT_COMMAND='RET=$?'
 if [ -e /.chroot ]; then
   PS1='[\u@\h32 \w]\$ '
 else
-  GIT_PS1_SHOWDIRTYSTATE=yes bash_prompt
+  GIT_PS1_SHOWDIRTYSTATE=yes
+  bash_prompt
 fi
 
 unset bash_prompt
