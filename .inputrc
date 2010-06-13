@@ -1,1 +1,5 @@
 set editing-mode vi
+set echo-control-characters Off
+set completion-ignore-case On
+set expand-tilde Off
+set match-hidden-files On
