@@ -65,7 +65,7 @@ cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
     set laststatus=2
 
     function! CurDir()
-        let curdir = substitute(getcwd(), '/home/haruko/', "~/", "g")
+        let curdir = substitute(getcwd(), '/home/noclaf/', "~/", "g")
         return curdir
     endfunction
 
