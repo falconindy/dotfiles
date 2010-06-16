@@ -13,11 +13,15 @@ colorscheme dante
 
 " General Options
 "---------------------------------
+set autoread
 set backspace=indent,eol,start
 set completeopt=longest,menuone
 set history=50
 set incsearch
 set number
+set nobackup
+set nowb
+set noswapfile
 set printoptions=left:5pc,right:5pc,top:5pc,bottom:10pc,syntax:n
 set ruler
 set shiftwidth=2
