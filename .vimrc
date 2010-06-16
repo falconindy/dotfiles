@@ -33,6 +33,8 @@ set smartindent
 set tabstop=2
 set title
 set virtualedit=all
+set wildmenu
+set wildmode=list:longest,full
 
 
 " Tab/Indent Settings
