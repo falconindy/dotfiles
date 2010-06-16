@@ -38,6 +38,17 @@ set wildmenu
 set wildmode=list:longest,full
 
 
+" Session Control
+"--------------------------------
+autocmd VimLeave * nested if (!isdirectory($HOME . "/.vim")) |
+    \ call mkdir($HOME . "/.vim") |
+    \ endif |
+    \ execute "mksession! " . $HOME . "/.vim/Session.vim"
+
+autocmd VimEnter * nested if argc() == 0 && filereadable($HOME . "/.vim/Session.vim") |
+    \ execute "source " . $HOME . "/.vim/Session.vim"
+
+
 " Tab/Indent Settings
 "---------------------------------
 autocmd FileType * set expandtab
@@ -87,6 +98,8 @@ if &term !=# "linux"
 endif
 
 
+" FileType Specific
+"--------------------------------
 filetype plugin indent on
 
 " Go
@@ -104,43 +117,21 @@ autocmd BufRead *.vala set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
 autocmd BufRead *.vapi set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
 au BufRead,BufNewFile *.vala            setfiletype vala
 au BufRead,BufNewFile *.vapi            setfiletype vala
-
-" Disable valadoc syntax highlight
 let vala_ignore_valadoc = 1
-
-" Enable comment strings
 let vala_comment_strings = 1
-
-" Highlight space errors
 let vala_space_errors = 1
-" Disable trailing space errors
 let vala_no_trail_space_error = 1
-" Disable space-tab-space errors
 let vala_no_tab_space_error = 1
-
-" Minimum lines used for comment syncing (default 50)
 let vala_minlines = 120
 
-
-" Doxygen settings
+" Doxygen
 "--------------------------------
 let g:DoxygenToolkit_briefTag_pre="@brief " 
 let g:DoxygenToolkit_paramTag_pre="@param " 
 let g:DoxygenToolkit_returnTag="@return " 
 let g:DoxygenToolkit_authorName="Dave Reisner" 
 
-
-" Go to last file(s) if invoked without arguments.
-"--------------------------------
-autocmd VimLeave * nested if (!isdirectory($HOME . "/.vim")) |
-    \ call mkdir($HOME . "/.vim") |
-    \ endif |
-    \ execute "mksession! " . $HOME . "/.vim/Session.vim"
-
-autocmd VimEnter * nested if argc() == 0 && filereadable($HOME . "/.vim/Session.vim") |
-    \ execute "source " . $HOME . "/.vim/Session.vim"
-
-
 " Mutt
 "--------------------------------
 au BufRead /tmp/mutt-* set tw=72
+
