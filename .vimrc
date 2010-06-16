@@ -9,6 +9,7 @@ set nocompatible                "Needs to be first according to Bram
 "---------------------------------
 syntax on
 colorscheme dante
+hi Pmenu ctermfg=Cyan ctermbg=Blue
 
 
 " General Options
