@@ -80,7 +80,7 @@ if &term !=# "linux"
 endif
 
 
-filetype plugin on
+filetype plugin indent on
 
 " Go
 "--------------------------------
