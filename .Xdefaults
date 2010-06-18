@@ -46,4 +46,4 @@ URxvt.foreground:#eeeeee
 #include ".config/xcolors/tango"
 !#include ".config/xcolors/zenburn"
 
-
+#include ".Xresources"
