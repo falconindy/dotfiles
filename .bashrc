@@ -2,7 +2,7 @@
 [[ -z "$PS1" ]] && return
 
 # External files
-[[ -e /bin/dircolors ]] && eval $(dircolors -b ~/.dircolors)
+[[ -x /bin/dircolors ]] && eval $(dircolors -b ~/.dircolors)
 [[ -f /etc/bash_completion ]] && . /etc/bash_completion
 [[ -f ~/.bash_completion ]] && . ~/.bash_completion
 [[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
@@ -87,7 +87,6 @@ bash_prompt() {
 
 # show return val of last command
 PROMPT_COMMAND='RET=$?'
-
 
 # after all that, change prompts inside a chroot
 if [ -e /.chroot ]; then
