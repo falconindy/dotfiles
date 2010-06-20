@@ -1,0 +1,8 @@
+# DO NOT EDIT!  This file will be overwritten by LXAppearance.
+# Any customization should be done in ~/.gtkrc-2.0.mine
+
+gtk-theme-name="MurrezaSilver"
+gtk-icon-theme-name="Tango"
+gtk-font-name="DejaVu Sans 10"
+gtk-toolbar-style=3
+include "/home/noclaf/.gtkrc-2.0.mine"
