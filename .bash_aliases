@@ -23,6 +23,12 @@ alias wakeht='wakeonlan 6C:F0:49:17:BF:A3'
 alias webshare='python /usr/lib/python2.6/SimpleHTTPServer.py 8001'
 alias wgetxc='wget `xclip -o`'
 
+aget() {
+  for pkg; do
+    curl "http://aur.archlinux.org/packages/$pkg/$pkg.tar.gz" | tar -xzvf -
+  done
+}
+
 deps() {
     [[ ! -f "$1" ]] && { echo "File not found"; return 1; }
     readelf -d $1 | sed -n '/NEEDED/s/.* library: \[\(.*\)\]/\1/p'
