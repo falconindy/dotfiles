@@ -46,4 +46,53 @@ URxvt.foreground:#eeeeee
 #include ".config/xcolors/tango"
 !#include ".config/xcolors/zenburn"
 
-#include ".Xresources"
+! -- [ XScreenSaver ] ------------------------------
+xscreensaver.Dialog.headingFont:        -*-droid sans-bold-r-*-*-14-*-*-*-*-*-*-*
+xscreensaver.Dialog.bodyFont:           -*-droid sans-medium-r-*-*-14-*-*-*-*-*-*-*
+xscreensaver.Dialog.labelFont:          -*-droid sans-medium-r-*-*-14-*-*-*-*-*-*-*
+xscreensaver.Dialog.unameFont:          -*-droid sans-medium-r-*-*-14-*-*-*-*-*-*-*
+xscreensaver.Dialog.buttonFont:         -*-droid sans-bold-r-*-*-14-*-*-*-*-*-*-*
+xscreensaver.Dialog.dateFont:           -*-droid sans-medium-r-*-*-12-*-*-*-*-*-*-*
+xscreensaver.passwd.passwdFont:         -*-droid sans-bold-r-*-*-14-*-*-*-*-*-*-* 
+xscreensaver.Dialog.foreground:         #ffffff
+xscreensaver.Dialog.background:         #111111
+xscreensaver.Dialog.topShadowColor:     #111111
+xscreensaver.Dialog.bottomShadowColor:  #111111
+xscreensaver.Dialog.Button.foreground:  #666666
+xscreensaver.Dialog.Button.background:  #ffffff
+xscreensaver.Dialog.text.foreground:    #666666
+xscreensaver.Dialog.text.background:    #ffffff
+xscreensaver.Dialog.internalBorderWidth:24
+xscreensaver.Dialog.borderWidth:        20
+xscreensaver.Dialog.shadowThickness:    2
+xscreensaver.passwd.thermometer.foreground:  #ff0000
+xscreensaver.passwd.thermometer.background:  #000000
+xscreensaver.passwd.thermometer.width:       8
+xscreensaver.dateFormat:    %I:%M%P %a %b %d, %Y
+
+! -- [ XFontSel ] ------------------------------
+XFontSel*sampleText.background:       TEXTBG
+XFontSel*menu*showUnselectable:       false
+XFontSel*MenuButton.shadowWidth:      0
+XFontSel*Toggle*ToggleStyle:          check
+XFontSel*MenuButton*Justify:          left
+XFontSel*MenuButton*MenuButtonStyle:  select
+.xfontsel.pane.commandBox.quitButton.background:  #252525
+.xfontsel.pane.commandBox.quitButton.foreground:  snow
+.xfontsel.pane.commandBox.ownButton.background:   orange3
+.xfontsel.pane.commandBox.ownButton.foreground:   snow
+.xfontsel.pane.commandBox.countLabel.background:  snow
+.xfontsel.pane.viewPort.sampleText.background:    #252525
+.xfontsel.pane.viewPort.sampleText.foreground:    snow
+.xfontsel.pane.fieldBox.field0.background:        #252525
+.xfontsel.pane.fieldBox.field0.foreground:        snow
+.xfontsel.pane.fieldBox.field1.background:        #252525
+.xfontsel.pane.fieldBox.field1.foreground:        snow
+.xfontsel.pane.fieldBox.field2.background:        #252525
+.xfontsel.pane.fieldBox.field2.foreground:        snow
+.xfontsel.pane.fieldBox.field3.background:        #252525
+.xfontsel.pane.fieldBox.field3.foreground:        snow
+.xfontsel.pane.fieldBox.field4.background:        #252525
+.xfontsel.pane.fieldBox.field4.foreground:        snow
+.xfontsel.pane.fieldBox.field5.background:        #252525
+.xfontsel.pane.fieldBox.field5.foreground:        snow
