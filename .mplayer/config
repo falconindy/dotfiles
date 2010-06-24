@@ -5,3 +5,5 @@ fs=yes
 ao=oss
 vo=vdpau
 vc=ffh264vdpau,ffmpeg12vdpau,
+ass=yes
+ass-force-style="FontName=DejaVuSans"
