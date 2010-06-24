@@ -21,7 +21,7 @@ urxvtd -q -o -f && urxvtc
 # Startup
 wmname LG3D
 
-urxvtc -name tmux -e tmux -L main attach
+urxvtc -name tmux -geometry 122x77 -e tmux -L main attach
 urxvtc -name htop -e htop
 urxvtc -name ncmpcpp -e ncmpcpp
 
