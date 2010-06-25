@@ -32,7 +32,7 @@ mpd_music_dir = "/mnt/Gluttony/music"
 ## }
 ##
 #
-#visualizer_fifo_path = ""
+visualizer_fifo_path = "/tmp/mpd.fifo"
 #
 ##
 ## Note: Below parameter is needed for ncmpcpp
