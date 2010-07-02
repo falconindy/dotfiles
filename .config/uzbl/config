@@ -272,6 +272,7 @@ set preset = event PRESET_TABS
 @cbind  \\awiki<Archwiki:>_  = uri http://wiki.archlinux.org/index.php/Special:Search?search=\@<encodeURIComponent(%r)>\@&go=Go
 @cbind  \\wiki<Wikipedia:>_  = uri http://en.wikipedia.org/w/index.php?title=Special:Search&search=\@<encodeURIComponent(%r)>\@&go=Go
 @cbind  \\aur<AUR:>_         = uri http://aur.archlinux.org/packages.php?O=0&K=\@<encodeURIComponent(%r)>\@&do_Search=Go
+@cbind  \\man<man:>_         = uri http://man.cx/\@<encodeURIComponent(%r)>\@
 
 # --- Handy binds ---
 # Set function shortcut
