@@ -36,12 +36,11 @@ deps() {
 }
 
 qp() {
-    pacman-color -Qi $1 2> /dev/null
-    if [[ $? -gt 0 ]]; then
-        echo "$1 not found, searching..."
-        pacman-color -Qs $1
-        [[ $? -gt 0 ]] && echo "No local results for $1"
-    fi
+  local pacman=$(type -p pacman-color || type -p pacman)
+
+  local res=($($pacman -Qsq $1))
+  [[ ${#res[@]} -eq 0 ]] && echo "No results for '$1'" && return
+  [[ ${#res[@]} -eq 1 ]] && $pacman -Qi ${res[0]} || $pacman -Qs $1
 }
 
 calc() {
