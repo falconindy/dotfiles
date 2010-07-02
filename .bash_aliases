@@ -22,7 +22,7 @@ alias udevinfo='udevadm info -q all -n'
 alias v='vim'
 alias wakeht='wakeonlan 6C:F0:49:17:BF:A3'
 alias webshare='python /usr/lib/python2.6/SimpleHTTPServer.py 8001'
-alias wgetxc='wget `xclip -o`'
+alias wgetxc='wget $(xclip -o)'
 
 aget() {
   for pkg; do
@@ -49,62 +49,58 @@ calc() {
 }
 
 unwork() {
-    if [[ -z $1 ]]; then
-        echo "USAGE: unwork [[dirname]]"
+  if [[ -z $1 ]]; then
+    echo "USAGE: unwork <dirname>"
+  else
+    if [[ -d $1 ]]; then
+      local count=0
+      while read f; do
+        rm -rf $f
+        (( ++count ))
+      done < <(find $1 -name .svn)
+      echo "SUCCESS. Directory is no longer a working copy ($count .svns removed)."
     else
-        if [[ -d $1 ]]; then
-            count=0
-            for f in `find $1 -name .svn`; do 
-                rm -rf $f
-                count=$((count + 1))
-            done
-            echo "SUCCESS. Directory is no longer a working copy ($count .svns removed)."
-            unset count
-        else
-            echo "ERROR: $1 is not a directory"
-        fi
+      echo "ERROR: $1 is not a directory"
     fi
+  fi
 }
 
 man2pdf() {
-    if [[ -z $1 ]]; then
-        echo "USAGE: man2pdf [[manpage]]"
-    else
-        if [[ `find /usr/share/man -name $1\* | wc -l` -gt 0 ]]; then
-        out=/tmp/$1.pdf
-        if [[ ! -e $out ]]; then
-            man -t $1 | ps2pdf - > $out
-        fi
-        if [[ -e $out ]]; then
-            /usr/bin/apvlv $out
-        fi
-    else
-        echo "ERROR: manpage \"$1\" not found."
-    fi
-    fi
+  if [[ -z $1 ]]; then
+    echo "USAGE: man2pdf <manpage>"
+    return
+  fi
+
+  if [[ $(find /usr/share/man -name $1\* | wc -l) -gt 0 ]]; then
+  out=/tmp/$1.pdf
+  [[ ! -e $out ]] && man -t $1 | ps2pdf - > $out
+  [[ -e $out ]] && xo $out
+  else
+    echo "ERROR: manpage \"$1\" not found."
+  fi
 }
 
 ex () {
-  if [[ -f $1 ]] ; then
-      case $1 in
-          *.tar.bz2)   tar xvjf $1    ;;
-          *.tar.gz)    tar xvzf $1    ;;
-          *.tar.xz)    tar xvJf $1    ;;
-          *.bz2)       bunzip2 $1     ;;
-          *.rar)       unrar x $1     ;;
-          *.gz)        gunzip $1      ;;
-          *.lzma)      unxz $1        ;;
-          *.tar)       tar xvf $1     ;;
-          *.tbz2)      tar xvjf $1    ;;
-          *.tgz)       tar xvzf $1    ;;
-          *.zip)       unzip $1       ;;
-          *.Z)         uncompress $1  ;;
-          *.7z)        7z x $1        ;;
-          *.exe)       cabextract $1  ;;
-          *)           echo "'$1': unrecognized file compression" ;;
-      esac
+  if [[ -f $1 ]]; then
+    case $1 in
+      *.tar.bz2)   tar xvjf $1    ;;
+      *.tar.gz)    tar xvzf $1    ;;
+      *.tar.xz)    tar xvJf $1    ;;
+      *.bz2)       bunzip2 $1     ;;
+      *.rar)       unrar x $1     ;;
+      *.gz)        gunzip $1      ;;
+      *.lzma)      unxz $1        ;;
+      *.tar)       tar xvf $1     ;;
+      *.tbz2)      tar xvjf $1    ;;
+      *.tgz)       tar xvzf $1    ;;
+      *.zip)       unzip $1       ;;
+      *.Z)         uncompress $1  ;;
+      *.7z)        7z x $1        ;;
+      *.exe)       cabextract $1  ;;
+      *)           echo "'$1': unrecognized file compression" ;;
+    esac
   else
-      echo "'$1' is not a valid file"
+    echo "'$1' is not a valid file"
   fi
 }
 
@@ -113,18 +109,10 @@ hex2dec() {
 }
 
 ljoin() {
-    local OLDIFS=$IFS
-    IFS=${1:?"Missing separator"}; shift
-    echo "$*"
-    IFS=$OLDIFS
-}
-
-scr () {
-    screen -ls | grep -q Main && screen -dR Main || screen -S Main
-}
-
-scrx () {
-    screen -ls | grep -q Main && screen -xr Main || screen -S Main
+  local OLDIFS=$IFS
+  IFS=${1:?"Missing separator"}; shift
+  echo "$*"
+  IFS=$OLDIFS
 }
 
 t () {
@@ -132,17 +120,17 @@ t () {
 }
 
 miso () {
-    [[ ! -f "$1" ]] && { echo "Provide a valid iso file"; return 1; }
-    mountpoint="/media/${1//.iso}"
-    sudo mkdir -p "$mountpoint"
-    sudo mount -o loop "$1" "$mountpoint"
+  [[ ! -f "$1" ]] && { echo "Provide a valid iso file"; return 1; }
+  mountpoint="/media/${1//.iso}"
+  sudo mkdir -p "$mountpoint"
+  sudo mount -o loop "$1" "$mountpoint"
 }
 
 umiso () {
-    mountpoint="/media/${1//.iso}"
-    [[ ! -d "$mountpoint" ]] && { echo "Not a valid mount point"; return 1; }
-    sudo umount "$mountpoint"
-    sudo rm -ir "$mountpoint"
+  mountpoint="/media/${1//.iso}"
+  [[ ! -d "$mountpoint" ]] && { echo "Not a valid mount point"; return 1; }
+  sudo umount "$mountpoint"
+  sudo rm -ir "$mountpoint"
 }
 
 # vim: syn=sh ft=sh et
