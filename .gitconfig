@@ -6,6 +6,7 @@
   br = branch
   co = checkout
   logdel = log --diff-filter=D --summary
+  st = status
 
 [color]
   branch = auto
