@@ -1,11 +1,11 @@
 # Check for an interactive session
 [[ -z "$PS1" ]] && return
 
-# External files
-[[ -x /bin/dircolors ]] && eval $(dircolors -b ~/.dircolors)
-[[ -f /etc/bash_completion ]] && . /etc/bash_completion
-[[ -f ~/.bash_completion ]] && . ~/.bash_completion
-[[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
+# External config
+[[ -r ~/.bash_aliases ]] && . ~/.bash_aliases
+[[ -r /etc/bash_completion ]] && . /etc/bash_completion
+[[ -r ~/.bash_completion ]] && . ~/.bash_completion
+[[ -r ~/.dircolors && -x /bin/dircolors ]] && eval $(dircolors -b ~/.dircolors)
 
 # default umask
 umask 0022
@@ -47,6 +47,14 @@ setterm -regtabs 2
 # disable core dumps
 ulimit -S -c 0
 
+# chroot prompt
+if [[ -f /.chroot ]]; then
+  root_name=$(< /.chroot)
+  root_name=${root_name:-NONAME}
+  PS1='[\u@\h${root_name} \w]\$ '
+  return
+fi
+
 # a functional but sane prompt
 bash_prompt() {
   case $TERM in
@@ -87,14 +95,7 @@ bash_prompt() {
 
 # show return val of last command
 PROMPT_COMMAND='RET=$?'
-
-# after all that, change prompts inside a chroot
-if [ -e /.chroot ]; then
-  PS1='[\u@\h32 \w]\$ '
-else
-  GIT_PS1_SHOWDIRTYSTATE=yes
-  bash_prompt
-fi
-
+GIT_PS1_SHOWDIRTYSTATE=yes
+bash_prompt
 unset bash_prompt
 
