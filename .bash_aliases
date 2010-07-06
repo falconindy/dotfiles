@@ -37,9 +37,8 @@ deps() {
 
 qp() {
   local pacman=$(type -p pacman-color || type -p pacman)
-
-  local res=($($pacman -Qsq $1))
-  [[ ${#res[@]} -eq 0 ]] && echo "No results for '$1'" && return
+  res=($($pacman -Qsq $1))
+  [[ ${#res[@]} -eq 0 ]] && { echo "No results for '$1'"; return; }
   [[ ${#res[@]} -eq 1 ]] && $pacman -Qi ${res[0]} || $pacman -Qs $1
 }
 
@@ -71,9 +70,9 @@ man2pdf() {
   fi
 
   if [[ $(find /usr/share/man -name $1\* | wc -l) -gt 0 ]]; then
-  out=/tmp/$1.pdf
-  [[ ! -e $out ]] && man -t $1 | ps2pdf - > $out
-  [[ -e $out ]] && xo $out
+    local out=/tmp/$1.pdf
+    [[ ! -e $out ]] && man -t $1 | ps2pdf - > $out
+    [[ -e $out ]] && xo $out
   else
     echo "ERROR: manpage \"$1\" not found."
   fi
