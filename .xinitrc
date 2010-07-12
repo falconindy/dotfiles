@@ -7,6 +7,7 @@
 # Input options
 xset r rate 220 45
 setxkbmap -option terminate:ctrl_alt_bksp
+[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
 # Background services
 xcompmgr -n -c -C -t-5 -l-5 -r4.2 -o.55 -f 2>/dev/null &
