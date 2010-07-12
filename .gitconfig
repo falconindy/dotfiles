@@ -2,6 +2,9 @@
   name = Dave Reisner
   email = d@falconindy.com
 
+[sendemail]
+  smtpserver = /usr/bin/msmtp
+
 [alias]
   br = branch
   co = checkout
