@@ -95,7 +95,7 @@ cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
 " Substitutions
 "---------------------------------
 if &term !=# "linux"
-    set list listchars=tab:\»\ ,trail:·,extends:›,precedes:‹,nbsp:∙
+    set list listchars=tab:\»\ ,trail:·,extends:›,precedes:‹
 endif
 
 
