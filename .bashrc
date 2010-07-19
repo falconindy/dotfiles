@@ -24,6 +24,7 @@ set -o notify
 stty -ctlecho
 
 # more for less
+export LESS=-R # use -X to avoid sending terminal initialization
 export LESS_TERMCAP_mb=$'\E[01;31m'
 export LESS_TERMCAP_md=$'\E[01;31m'
 export LESS_TERMCAP_me=$'\E[0m'
