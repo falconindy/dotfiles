@@ -3,9 +3,8 @@
 _git_commit () {
   local cur prev ng_set
 
-  # save current nullglob setting and turn it on
-  ng_set=$(shopt -p nullglob)
-  shopt -s nullglob
+  # do nothing if we're not in a repo
+  git rev-parse 2>/dev/null || return 0
 
   COMPREPLY=()
   cur=${COMP_WORDS[COMP_CWORD]}
@@ -18,10 +17,6 @@ _git_commit () {
                      echo ${file:2}
                    done )" -- $cur ) )
   fi
-
-
-  # restore the previous nullglob setting
-  $ng_set
 }
 
 complete -o filenames -F _pacman spp pp
