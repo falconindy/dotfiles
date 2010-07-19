@@ -23,3 +23,5 @@ _git_commit () {
   # restore the previous nullglob setting
   $ng_set
 }
+
+complete -o filenames -F _pacman spp pp
