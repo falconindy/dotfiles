@@ -4,6 +4,6 @@ heartbeat-cmd="xscreensaver-command -deactivate >/dev/null &"
 fs=yes
 ao=oss
 vo=vdpau
-vc=ffh264vdpau,ffmpeg12vdpau,
+vc=ffh264vdpau,ffmpeg12vdpau,ffvc1vdpau,ffwmv3vdpau,ffodivxvdpau,
 ass=yes
 ass-force-style="FontName=DejaVuSans"
