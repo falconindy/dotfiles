@@ -38,6 +38,8 @@ set virtualedit=all
 set wildmenu
 set wildmode=list:longest,full
 
+let maplocalleader = ","
+
 
 " Session Control
 "--------------------------------
@@ -62,6 +64,30 @@ autocmd FileType python set shiftwidth=4 tabstop=4
 map ,t <Esc>:tabnew<CR>
 
 
+" Commenting
+"---------------------------------
+" default comment symbol
+let g:StartComment="#"
+let g:EndComment=""
+
+" example of changing it for a filetype
+au FileType c,cpp  let g:StartComment = "//"
+
+" call the function on ,c
+vmap <LocalLeader>c :call CommentLines()<CR>
+
+" and the function itself
+function! CommentLines()
+  try
+    execute ":s@^".g:StartComment."@\@g"
+    execute ":s@".g:EndComment."$@@g"
+  catch
+    execute ":s@^@".g:StartComment."@g"
+    execute ":s@$@".g:EndComment."@g"
+  endtry
+endfunction
+
+
 " Code Folding
 "---------------------------------
 if has ('folding')
@@ -75,7 +101,6 @@ endif
 " Key mappings
 "---------------------------------
 map Q gq
-map C :s/^/#/
 cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
 
 
