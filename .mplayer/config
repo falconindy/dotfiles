@@ -2,8 +2,5 @@
 # Write your default config options here!
 heartbeat-cmd="xscreensaver-command -deactivate >/dev/null &"
 fs=yes
-ao=oss
-vo=vdpau
-vc=ffh264vdpau,ffmpeg12vdpau,
 ass=yes
 ass-force-style="FontName=DejaVuSans"
