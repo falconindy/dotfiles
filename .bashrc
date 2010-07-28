@@ -3,7 +3,6 @@
 
 # External config
 [[ -r ~/.bash_aliases ]] && . ~/.bash_aliases
-[[ -r /etc/bash_completion ]] && . /etc/bash_completion
 [[ -r ~/.bash_completion ]] && . ~/.bash_completion
 [[ -r ~/.dircolors && -x /bin/dircolors ]] && eval $(dircolors -b ~/.dircolors)
 
