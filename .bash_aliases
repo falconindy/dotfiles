@@ -3,7 +3,6 @@ alias !='sudo'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-alias cc='c99 -Wall -pedantic -pipe'
 alias cower='cower -c'
 alias cdg='cd $(git rev-parse --git-dir)/..'
 alias dsz='find $(pwd -P) -maxdepth 1 -type d -exec du -sh {} \; | sort -h'
@@ -30,6 +29,15 @@ aget() {
   for pkg; do
     curl "http://aur.archlinux.org/packages/$pkg/$pkg.tar.gz" | tar -xzvf -
   done
+}
+
+cc() {
+  eval $(sed -n 's/^\(\(LD\|C\)FLAGS.*\)/local \1/p' /etc/makepkg.conf)
+  case ${1##*.} in
+    c) CC="c99 -Wall -pedantic" ;;
+    @(C|cpp)) CC="g++ -Wall -pedantic" ;;
+  esac
+  make CC="$CC" CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" $1 ${1%.*} | grep -v "make: Nothing"
 }
 
 deps() {
