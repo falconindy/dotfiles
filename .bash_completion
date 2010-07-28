@@ -13,9 +13,9 @@ _git_commit () {
   # complete uncommitted files
   if [[ ${COMP_WORDS[1]} = "commit" ]]; then
     COMPREPLY=( $(compgen -W "\
-                $( git status -s | while read file; do
+                $( while read file; do
                      echo ${file:2}
-                   done )" -- $cur ) )
+                   done < <(git status -s) )" -- $cur ) )
   fi
 }
 
