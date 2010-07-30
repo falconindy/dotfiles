@@ -3,7 +3,6 @@
 
 # External config
 [[ -r ~/.bash_aliases ]] && . ~/.bash_aliases
-[[ -r ~/.bash_completion ]] && . ~/.bash_completion
 [[ -r ~/.dircolors && -x /bin/dircolors ]] && eval $(dircolors -b ~/.dircolors)
 
 # default umask
