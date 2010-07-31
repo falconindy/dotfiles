@@ -16,7 +16,7 @@ xscreensaver -no-splash &
 xsetroot -cursor_name left_ptr
 
 # Startup programs
-uzbl-tabbed&
+jumanji&
 urxvtd -q -o -f && urxvtc
 
 # Startup
