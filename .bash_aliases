@@ -41,8 +41,16 @@ cc() {
 }
 
 deps() {
-    [[ ! -f "$1" ]] && { echo "File not found"; return 1; }
-    readelf -d $1 | sed -n '/NEEDED/s/.* library: \[\(.*\)\]/\1/p'
+  local prog
+  if [[ -f "$1" ]]; then
+    prog=$1
+  else
+    prog=$(type -P $1)
+    echo -e "$1 => $prog\n"
+  fi
+
+  [[ -z $prog ]] && { echo "File not found"; return 1; }
+  readelf -d $prog | sed -n '/NEEDED/s/.* library: \[\(.*\)\]/\1/p'
 }
 
 qp() {
