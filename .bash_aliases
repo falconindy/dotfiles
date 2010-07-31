@@ -68,17 +68,22 @@ calc() {
 unwork() {
   if [[ -z $1 ]]; then
     echo "USAGE: unwork <dirname>"
-  else
-    if [[ -d $1 ]]; then
-      local count=0
-      while read f; do
-        rm -rf $f
-        (( ++count ))
-      done < <(find $1 -name .svn)
-      echo "SUCCESS. Directory is no longer a working copy ($count .svns removed)."
+    return 1
+  fi
+
+  if [[ -d $1 ]]; then
+    local count
+    # ugly. abuse process substitution to get deletion count and save it.
+    read count < <(find "$1" -type d -name '.svn' -print -exec rm -rf {} + > >(wc -l))
+    if [[ $? != 0 ]]; then
+      echo "Error occurred. Nothing done." >&2
+    elif [[ $count = 0 ]]; then
+      echo "Nothing done."
     else
-      echo "ERROR: $1 is not a directory"
+      echo "SUCCESS. Directory is no longer a working copy ($count .svns removed)."
     fi
+  else
+    echo "ERROR: $1 is not a directory"
   fi
 }
 
