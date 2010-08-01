@@ -73,8 +73,7 @@ unwork() {
 
   if [[ -d $1 ]]; then
     local count
-    # ugly. abuse process substitution to get deletion count and save it.
-    read count < <(find "$1" -type d -name '.svn' -print -exec rm -rf {} + > >(wc -l))
+    read count < <(find "$1" -type d -name '.svn' -printf 'foo\n' -exec rm -rf {} + | wc -l)
     if [[ $? != 0 ]]; then
       echo "Error occurred. Nothing done." >&2
     elif [[ $count = 0 ]]; then
