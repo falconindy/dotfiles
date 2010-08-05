@@ -90,6 +90,7 @@ bash_prompt() {
 
   RET_VALUE='$(if [[ $RET -ne 0 ]];then echo -n ":\[\033[1;31m\]$RET\[\033[0m\]";fi)'
   PS1="$TITLEBAR ${EMK}┌┤${UC}\u${EMK}@${UC}\h${RET_VALUE}"'$(__git_ps1 " \[\033[0;32m\]%s\[\033[0m\]")'" ${EMB}\w${NONE}${EMK}${UC}\n ${EMK}└╼${NONE} "
+  PS4='+$BASH_SOURCE:$LINENO:$FUNCNAME: '
 }
 
 # show return val of last command
