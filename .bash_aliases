@@ -8,6 +8,7 @@ alias cower='cower -c'
 alias dsz='find $(pwd -P) -maxdepth 1 -type d -exec du -sh {} \; | sort -h'
 alias dvdburn='growisofs -Z /dev/dvd -R -J'
 alias gensums='[[ -f PKGBUILD ]] && makepkg -g >> PKGBUILD'
+alias getflags='eval $(sed -n "s/^\(\(C\|LD\)FLAGS\)/export \1/p" /etc/makepkg.conf)'
 alias grep='grep --color'
 alias j='jobs'
 alias ll='ls -l'
@@ -52,6 +53,13 @@ deps() {
 
   [[ -z $prog ]] && { echo "File not found"; return 1; }
   readelf -d $prog | sed -n '/NEEDED/s/.* library: \[\(.*\)\]/\1/p'
+}
+
+depscan () {
+  [[ -z $1 ]] && return
+  while read elfobj; do
+    readelf -d $elfobj | sed -n 's|.*NEEDED.*\[\(.*\)\].*|'$elfobj' -- \1|p'
+  done < <(file $(pacman -Qlq $1) | sed -n '/ELF/s/^\(.*\):.*/\1/p') | nl
 }
 
 qp() {
