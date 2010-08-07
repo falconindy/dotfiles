@@ -10,6 +10,7 @@
   co = checkout
   logdel = log --diff-filter=D --summary
   st = status
+  last = show --stat HEAD
 
 [color]
   branch = auto
