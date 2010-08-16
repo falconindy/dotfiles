@@ -1,17 +1,9 @@
 "
-" ViM Runtime Configuration
+" .vimrc
+" Dave Reisner
 "
-" Author: Dave Reisner (Falcon Industries)
-"
+
 set nocompatible                "Needs to be first according to Bram
-
-" AMG the colors!
-"---------------------------------
-syntax on
-colorscheme dante
-hi Pmenu ctermfg=Cyan ctermbg=Blue
-hi PmenuSel ctermfg=White ctermbg=DarkYellow
-
 
 " General Options
 "---------------------------------
@@ -38,7 +30,33 @@ set virtualedit=all
 set wildmenu
 set wildmode=list:longest,full
 
+
+" AMG the colors!
+"---------------------------------
+syntax on
+colorscheme dante
+hi Pmenu ctermfg=Cyan ctermbg=Blue
+hi PmenuSel ctermfg=White ctermbg=DarkYellow
+
+
+" Variables
+"---------------------------------
 let maplocalleader = ","
+
+
+" Plugins
+"---------------------------------
+filetype plugin indent on
+
+
+" Key mappings
+"---------------------------------
+map Q gq
+cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
+map <LocalLeader>t <Esc>:tabnew<CR>
+vmap <LocalLeader>y "+y
+vmap <LocalLeader>p "+p
+vmap <LocalLeader>c :call CommentLines()<CR>
 
 
 " Session Control
@@ -59,11 +77,6 @@ autocmd FileType make set noexpandtab
 autocmd FileType python set shiftwidth=4 tabstop=4
 
 
-" Tab Windows
-"---------------------------------
-map ,t <Esc>:tabnew<CR>
-
-
 " Commenting
 "---------------------------------
 " default comment symbol
@@ -71,7 +84,8 @@ let g:StartComment="#"
 let g:EndComment=""
 
 " example of changing it for a filetype
-au FileType c,cpp  let g:StartComment = "//"
+au FileType c,cpp,go  let g:StartComment = "//"
+au FileType vim       let g:StartComment = "\""
 
 " call the function on ,c
 vmap <LocalLeader>c :call CommentLines()<CR>
@@ -98,23 +112,17 @@ if has ('folding')
 endif
 
 
-" Key mappings
-"---------------------------------
-map Q gq
-cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
-
 
 " Statusline
 "---------------------------------
-    set laststatus=2
+set laststatus=2
 
-    function! CurDir()
-        let curdir = substitute(getcwd(), '/home/noclaf/', "~/", "g")
-        return curdir
-    endfunction
+function! CurDir()
+    let curdir = substitute(getcwd(), '/home/noclaf/', "~/", "g")
+    return curdir
+endfunction
 
-  "Format the statusline
-     set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
+set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
 
 
 " Substitutions
@@ -124,18 +132,11 @@ if &term !=# "linux"
 endif
 
 
-" FileType Specific
-"--------------------------------
-filetype plugin indent on
 
 " Go
 "--------------------------------
 au BufRead,BufNewFile *.go set filetype=go
 
-" Java
-"--------------------------------
-autocmd FileType java map <F9>  <Esc>:w<CR>:!javac %<CR>
-autocmd FileType java map <F10> <Esc>:!java %<<CR><CR>
 
 " Vala
 "--------------------------------
@@ -150,12 +151,14 @@ let vala_no_trail_space_error = 1
 let vala_no_tab_space_error = 1
 let vala_minlines = 120
 
+
 " Doxygen
 "--------------------------------
 let g:DoxygenToolkit_briefTag_pre="@brief " 
 let g:DoxygenToolkit_paramTag_pre="@param " 
 let g:DoxygenToolkit_returnTag="@return " 
 let g:DoxygenToolkit_authorName="Dave Reisner" 
+
 
 " Mutt
 "--------------------------------
