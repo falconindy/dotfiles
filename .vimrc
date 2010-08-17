@@ -11,6 +11,7 @@ set autoread
 set backspace=indent,eol,start
 set completeopt=longest,menuone
 set history=50
+set ignorecase
 set incsearch
 set number
 set nobackup
@@ -19,9 +20,11 @@ set noswapfile
 set printoptions=left:5pc,right:5pc,top:5pc,bottom:10pc,syntax:n
 set ruler
 set shiftwidth=2
+set shortmess=atI
 set showcmd
 set showmatch
 set showmode
+set smartcase
 set smarttab
 set smartindent
 set tabstop=2
@@ -30,8 +33,10 @@ set virtualedit=all
 set wildmenu
 set wildmode=list:longest,full
 
+filetype plugin indent on
 
-" AMG the colors!
+
+" extra colors
 "---------------------------------
 syntax on
 colorscheme dante
@@ -39,24 +44,34 @@ hi Pmenu ctermfg=Cyan ctermbg=Blue
 hi PmenuSel ctermfg=White ctermbg=DarkYellow
 
 
-" Variables
+" variables
 "---------------------------------
 let maplocalleader = ","
 
 
-" Plugins
-"---------------------------------
-filetype plugin indent on
-
-
-" Key mappings
+" keymapping
 "---------------------------------
 map Q gq
-cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
 map <LocalLeader>t <Esc>:tabnew<CR>
+map <LocalLeader><Tab> gt
+map <LocalLeader>1  1gt
+map <LocalLeader>2  2gt
+map <LocalLeader>3  3gt
+map <LocalLeader>4  4gt
+map <LocalLeader>5  5gt
+map <LocalLeader>6  6gt
+map <LocalLeader>7  7gt
+map <LocalLeader>8  8gt
+map <LocalLeader>9  9gt
+
+cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
+
 vmap <LocalLeader>y "+y
 vmap <LocalLeader>p "+p
 vmap <LocalLeader>c :call CommentLines()<CR>
+
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
 
 
 " Session Control
@@ -118,7 +133,7 @@ endif
 set laststatus=2
 
 function! CurDir()
-    let curdir = substitute(getcwd(), '/home/noclaf/', "~/", "g")
+    let curdir = substitute(getcwd(), '/home/noclaf', "~", "g")
     return curdir
 endfunction
 
