@@ -1,0 +1,46 @@
+##################################################
+# General definitions
+##################################################
+
+[general]
+metadata = ~/.config/offlineimap/metadata
+accounts = gmail
+ui = TTY.TTYUI, Noninteractive.Basic, Noninteractive.Quiet
+ignore-readonly = no
+
+#[mbnames]
+#enabled = yes
+#filename = ~/.mutt/muttrc.mailboxes
+#header = "mailboxes "
+#peritem = "+%(foldername)s"
+#sep = " "
+#footer = "\n"
+
+[Account gmail]
+localrepository = gmail_local
+remoterepository = gmail_remote
+maxsyncaccounts = 3
+maxconnections = 3
+
+[Repository gmail_local]
+type = Maildir
+localfolders = ~/var/mail/gmail
+
+[Repository gmail_remote]
+type = Gmail
+remoteuser = d@falconindy.com
+realdelete = no
+nametrans = lambda folder: re.sub('.*Spam$', 'spam',
+                           re.sub('.*ArchLists$', 'arch',
+                           re.sub('.*Reisner$', 'reisner',
+                           re.sub('.*go-nuts$', 'gonuts',
+                           re.sub('.*Brookdale$', 'brookdale',
+                           re.sub('.*Drafts$', 'drafts',
+                           re.sub('.*Sent Mail$', 'sent',
+                           re.sub('.*Starred$', 'flagged',
+                           re.sub('.*Trash$', 'trash',
+                           re.sub('.*All Mail$', 'archive', folder))))))))))
+
+folderfilter = lambda foldername: foldername not in ['[Gmail]/All Mail']
+
+# vim: ft=cfg tw=0
