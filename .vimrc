@@ -9,14 +9,15 @@ set nocompatible                "Needs to be first according to Bram
 "---------------------------------
 set autoread
 set backspace=indent,eol,start
+set backupcopy=yes                     " keep attributes of original file
+set backupdir=$HOME/.vim/backup        " store backups under ~/.vim/backup
+set backupskip=/tmp/*
 set completeopt=longest,menuone
+set directory=~/.vim/swap,~/tmp,.      " keep swp files under ~/.vim/swap
 set history=50
 set ignorecase
 set incsearch
 set number
-set nobackup
-set nowb
-set noswapfile
 set printoptions=left:5pc,right:5pc,top:5pc,bottom:10pc,syntax:n
 set ruler
 set shiftwidth=2
@@ -25,8 +26,8 @@ set showcmd
 set showmatch
 set showmode
 set smartcase
-set smarttab
 set smartindent
+set smarttab
 set tabstop=2
 set title
 set virtualedit=all
@@ -49,11 +50,13 @@ hi PmenuSel ctermfg=White ctermbg=DarkYellow
 let maplocalleader = ","
 
 
+
 " keymapping
 "---------------------------------
 map Q gq
 map <LocalLeader>t <Esc>:tabnew<CR>
-map <LocalLeader><Tab> gt
+map <C-Tab> gt
+map <C-S-Tab> Gt
 map <LocalLeader>1  1gt
 map <LocalLeader>2  2gt
 map <LocalLeader>3  3gt
