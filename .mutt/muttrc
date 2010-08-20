@@ -4,7 +4,7 @@
 
 # [mailboxes]
   set mbox_type           = Maildir                       # mailbox type
-  #set folder              = ~/Mail
+  set folder              = ~/var/mail
   set spoolfile           = "+gmail/INBOX"
 
 subscribe arch-dev-public arch-general suckless-dev systemd-devel
