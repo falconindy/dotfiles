@@ -20,6 +20,7 @@ set incsearch
 set number
 set printoptions=left:5pc,right:5pc,top:5pc,bottom:10pc,syntax:n
 set ruler
+set scrolloff=5
 set shiftwidth=2
 set shortmess=atI
 set showcmd
@@ -55,8 +56,6 @@ let maplocalleader = ","
 "---------------------------------
 map Q gq
 map <LocalLeader>t <Esc>:tabnew<CR>
-map <C-Tab> gt
-map <C-S-Tab> Gt
 map <LocalLeader>1  1gt
 map <LocalLeader>2  2gt
 map <LocalLeader>3  3gt
