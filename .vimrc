@@ -169,14 +169,6 @@ let vala_no_tab_space_error = 1
 let vala_minlines = 120
 
 
-" Doxygen
-"--------------------------------
-let g:DoxygenToolkit_briefTag_pre="@brief " 
-let g:DoxygenToolkit_paramTag_pre="@param " 
-let g:DoxygenToolkit_returnTag="@return " 
-let g:DoxygenToolkit_authorName="Dave Reisner" 
-
-
 " Mutt
 "--------------------------------
 au BufRead /tmp/mutt-* set tw=72
