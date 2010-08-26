@@ -57,7 +57,7 @@ deps() {
 }
 
 depscan () {
-  [[ -z $1 ]] && return
+  [[ -z $1 ]] && { echo "usage: depscan <package>"; return; }
   while read elfobj; do
     readelf -d $elfobj | sed -n 's|.*NEEDED.*\[\(.*\)\].*|'$elfobj' -- \1|p'
   done < <(file $(pacman -Qlq $1) | sed -n '/ELF/s/^\(.*\):.*/\1/p') | nl
