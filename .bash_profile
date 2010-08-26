@@ -5,9 +5,10 @@ export LC_COLLATE=C
 export EDITOR=vim
 export VISUAL=$EDITOR
 export BROWSER=chromium
+export GOROOT=$HOME/go
 
 # path
-export PATH=$HOME/bin:$PATH
+export PATH=$HOME/go/bin:$HOME/bin:$PATH
 export CDPATH=.:~:/mnt/Gluttony:/mnt/Destruction
 
 # local daemons
