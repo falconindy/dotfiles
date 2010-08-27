@@ -13,7 +13,7 @@ export CDPATH=.:~:/mnt/Gluttony:/mnt/Destruction
 
 # local daemons
 eval $(keychain --eval id_rsa)
-pidof gocode &>/dev/null || gocode -s
+pidof gocode &>/dev/null || gocode
 
 # if interactive, source .bashrc
 [[ -n $PS1 && -f ~/.bashrc ]] && . ~/.bashrc
