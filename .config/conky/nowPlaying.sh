@@ -1,10 +1,14 @@
 #!/bin/bash
 
-track=$(mpc current)
-maxlength=50
+MAXLEN=50
+
+read track < <(mpc current)
 
 # Truncate if longer than maxlength
-[[ ${#track} -gt $maxlength ]] && track=${track:0:$maxlength}...
+if (( ${#track} > MAXLEN )); then
+  truncated=${track:0:MAXLEN}
+  track=${truncated% *}...
+fi
 
 # Display
-[[ -n "$track" ]] && echo "[ $track ] "
+[[ -n $track ]] && echo "[ $track ] "
