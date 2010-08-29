@@ -26,6 +26,7 @@ set shortmess=atI
 set showcmd
 set showmatch
 set showmode
+set shell=/bin/bash
 set smartcase
 set smartindent
 set smarttab
