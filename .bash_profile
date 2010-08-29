@@ -5,6 +5,10 @@ export LC_COLLATE=C
 export EDITOR=vim
 export VISUAL=$EDITOR
 export BROWSER=chromium
+
+# go
+export GOOS=linux
+export GOARCH=386
 export GOROOT=$HOME/go
 
 # path
