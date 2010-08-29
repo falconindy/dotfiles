@@ -31,7 +31,11 @@ alias wtc="curl --silent 'http://whatthecommit.com' | sed -n '/^<p>/s/<p>\(.*\)/
 
 aget() {
   for pkg; do
-    curl "http://aur.archlinux.org/packages/$pkg/$pkg.tar.gz" | tar -xzvf -
+    if curl --silent "http://aur.archlinux.org/packages/$pkg/$pkg.tar.gz" | tar xz 2>/dev/null; then
+      echo ":: downloaded $pkg"
+    else
+      echo ":: $pkg not found"
+    fi
   done
 }
 
