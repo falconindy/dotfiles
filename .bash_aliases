@@ -3,7 +3,8 @@ alias !='sudo'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-alias cdg='cd $(git rev-parse --git-dir)/..'
+alias cdg='cd_up .git'
+alias cdp='cd_up PKGBUILD'
 alias cower='cower -c'
 alias dsz='find $(pwd -P) -maxdepth 1 -type d -exec du -sh {} + 2>/dev/null | sort -h'
 alias dvdburn='growisofs -Z /dev/dvd -R -J'
@@ -46,6 +47,14 @@ cc() {
     @(C|cpp)) CC="g++ -Wall -pedantic" ;;
   esac
   make CC="$CC" CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" $1 ${1%.*} | grep -v "make: Nothing"
+}
+
+cd_up() {
+  curpath=$PWD
+  while [[ $curpath && ! -e $curpath/$1 ]]; do
+    curpath=${curpath%/*}
+  done
+  [[ $curpath ]] && cd $curpath
 }
 
 deps() {
