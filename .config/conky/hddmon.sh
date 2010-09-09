@@ -1,4 +1,8 @@
 #!/bin/bash
-# Print any mount points that have passed 60% capacity
 
-df | awk '/^\/dev\/sd/{split($5,a,"%"); if (a[1] > 60) printf " [ %s: %s ]", $6, $5;}'
+[[ -z $1 ]] && exit 0
+
+df -x nfs -x tmpfs -x devtmpfs | while read _ _ _ _ used mount; do
+  used=${used%\%}
+  (( used > $1 )) && echo " [ ${mount}: $used% ]"
+done

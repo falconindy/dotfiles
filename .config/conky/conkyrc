@@ -8,4 +8,4 @@ uppercase no
 background no
 
 TEXT
-[ ${execi 3600 ~/.config/conky/getWeather.sh 07724} ] [ $uptime : ${execi 120 pacman -Qu | wc -l} Upd ] [ CPU: ${cpu cpu1}% ${cpu cpu2}% ] [ RAM: ${memperc}% ]${execi 300 ~/.config/conky/hddmon.sh} [ NET: ${downspeed eth0} down | ${upspeed eth0} up ] ${execi 5 ~/.config/conky/nowPlaying.sh}[ $time ]
+[ ${execi 3600 ~/.config/conky/getWeather.sh 07724} ] [ $uptime : ${execi 120 pacman -Qu | wc -l} Upd ] [ CPU: ${cpu cpu1}% ${cpu cpu2}% ] [ RAM: ${memperc}% ]${execi 300 ~/.config/conky/hddmon.sh 60} [ NET: ${downspeed eth0} down | ${upspeed eth0} up ] ${execi 5 ~/.config/conky/nowPlaying.sh}[ $time ]
