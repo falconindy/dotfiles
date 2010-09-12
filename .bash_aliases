@@ -156,7 +156,7 @@ ljoin() {
 }
 
 t () {
-    tmux -L main ${1:-attach}
+  tmux -L main ${1:-attach}
 }
 
 miso () {
