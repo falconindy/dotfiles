@@ -2,6 +2,7 @@
 
 # graphical/display tweaking
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+xset +dpms +fp /usr/share/fonts/local,/usr/share/fonts/artwiz-fonts
 feh --bg-scale $(randomWallpaper)
 xscreensaver -no-splash &
 xcompmgr -n -c -C -t-5 -l-5 -r4.2 -o.55 -f 2>/dev/null &
