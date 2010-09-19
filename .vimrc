@@ -14,6 +14,7 @@ set backupdir=$HOME/.vim/backup        " store backups under ~/.vim/backup
 set backupskip=/tmp/*
 set completeopt=longest,menuone
 set directory=~/.vim/swap,~/tmp,.      " keep swp files under ~/.vim/swap
+set expandtab
 set history=50
 set ignorecase
 set incsearch
@@ -88,9 +89,8 @@ autocmd VimEnter * nested if argc() == 0 && filereadable($HOME . "/.vim/Session.
     \ execute "source " . $HOME . "/.vim/Session.vim"
 
 
-" Tab/Indent Settings
+" Tab/Indent Exceptions
 "---------------------------------
-autocmd FileType * set expandtab
 autocmd FileType make set noexpandtab
 autocmd FileType python set shiftwidth=4 tabstop=4
 
