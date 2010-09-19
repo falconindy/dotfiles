@@ -6,11 +6,13 @@
   smtpserver = /usr/bin/msmtp
 
 [alias]
+  all = !git-all
   br = branch
   co = checkout
   logdel = log --diff-filter=D --summary
   st = status
   last = show --stat HEAD
+  out = !git-out
 
 [color]
   branch = auto
