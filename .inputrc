@@ -2,3 +2,6 @@ set editing-mode vi
 set echo-control-characters Off
 set expand-tilde Off
 set match-hidden-files On
+set page-completions Off
+
+"\C-j": "|less\C-m"
