@@ -5,6 +5,7 @@ export LC_COLLATE=C
 export EDITOR=vim
 export VISUAL=$EDITOR
 export BROWSER=chromium
+export PAGER=less
 
 # go
 export GOOS=linux
