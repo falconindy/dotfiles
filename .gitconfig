@@ -9,9 +9,8 @@
   all = !git-all
   br = branch
   co = checkout
-  logdel = log --diff-filter=D --summary
-  st = status
   last = show --stat HEAD
+  logdel = log --diff-filter=D --summary
   out = !git --no-pager log --pretty=oneline origin/master..HEAD
 
 [color]
@@ -29,3 +28,6 @@
 
 [branch]
   autosetuprebase = always
+
+[help]
+  autocorrect = 1
