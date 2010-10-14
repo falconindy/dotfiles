@@ -10,10 +10,11 @@ umask 0022
 
 # shell opts
 shopt -s cdspell
+shopt -s dirspell
 shopt -s extglob
+shopt -s globstar # ooh yeah she's a killin' machine, she globs everything
 shopt -s histverify
 shopt -s no_empty_cmd_completion
-shopt -s dirspell
 
 # notify of completed background jobs immediately
 set -o notify
