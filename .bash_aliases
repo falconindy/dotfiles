@@ -84,6 +84,12 @@ qp() {
   (( ${#res[@]} == 1 )) && $pacman -Qi ${res[0]} || $pacman -Qs $1
 }
 
+mkcd() {
+  [[ $1 ]] || return 0
+  [[ ! -d $1 ]] && mkdir -vp "$1"
+  [[ -d $1 ]] && builtin cd "$1"
+}
+
 calc() {
     echo "scale=3; $*" | bc
 }
