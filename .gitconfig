@@ -12,7 +12,7 @@
   logdel = log --diff-filter=D --summary
   st = status
   last = show --stat HEAD
-  out = !git-out
+  out = !git --no-pager log --pretty=oneline origin/master..HEAD
 
 [color]
   branch = auto
