@@ -40,6 +40,10 @@ aget() {
   done
 }
 
+calc() {
+    echo "scale=3; $*" | bc
+}
+
 cc() {
   eval $(sed -n 's/^\(\(LD\|C\)FLAGS.*\)/local \1/p' /etc/makepkg.conf)
   case ${1##*.} in
@@ -77,59 +81,6 @@ depscan () {
   done < <(file $(pacman -Qlq $1) | sed -n '/ELF/s/^\(.*\):.*/\1/p') | nl
 }
 
-qp() {
-  local pacman=$(type -p pacman-color || type -p pacman)
-  res=($($pacman -Qsq $1))
-  (( ${#res[@]} == 0 )) && { echo "No local results for '$1'. Searching syncs..."; $pacman -Ss $1; return; }
-  (( ${#res[@]} == 1 )) && $pacman -Qi ${res[0]} || $pacman -Qs $1
-}
-
-mkcd() {
-  [[ $1 ]] || return 0
-  [[ ! -d $1 ]] && mkdir -vp "$1"
-  [[ -d $1 ]] && builtin cd "$1"
-}
-
-calc() {
-    echo "scale=3; $*" | bc
-}
-
-unwork() {
-  if [[ -z $1 ]]; then
-    echo "USAGE: unwork <dirname>"
-    return 1
-  fi
-
-  if [[ -d $1 ]]; then
-    local count
-    read count < <(find "$1" -type d -name '.svn' -printf 'foo\n' -exec rm -rf {} + | wc -l)
-    if [[ $? != 0 ]]; then
-      echo "Error occurred. Nothing done." >&2
-    elif [[ $count = 0 ]]; then
-      echo "Nothing done."
-    else
-      echo "SUCCESS. Directory is no longer a working copy ($count .svns removed)."
-    fi
-  else
-    echo "ERROR: $1 is not a directory"
-  fi
-}
-
-man2pdf() {
-  if [[ -z $1 ]]; then
-    echo "USAGE: man2pdf <manpage>"
-    return
-  fi
-
-  if [[ $(find /usr/share/man -name $1\* | wc -l) -gt 0 ]]; then
-    local out=/tmp/$1.pdf
-    [[ ! -e $out ]] && man -t $1 | ps2pdf - > $out
-    [[ -e $out ]] && xo $out
-  else
-    echo "ERROR: manpage \"$1\" not found."
-  fi
-}
-
 ex () {
   if [[ -f $1 ]]; then
     case $1 in
@@ -161,10 +112,6 @@ ljoin() {
   IFS=$OLDIFS
 }
 
-t () {
-  tmux -L main ${1:-attach}
-}
-
 miso () {
   [[ ! -f "$1" ]] && { echo "Provide a valid iso file"; return 1; }
   mountpoint="/media/${1//.iso}"
@@ -172,11 +119,64 @@ miso () {
   sudo mount -o loop "$1" "$mountpoint"
 }
 
+man2pdf() {
+  if [[ -z $1 ]]; then
+    echo "USAGE: man2pdf <manpage>"
+    return
+  fi
+
+  if [[ $(find /usr/share/man -name $1\* | wc -l) -gt 0 ]]; then
+    local out=/tmp/$1.pdf
+    [[ ! -e $out ]] && man -t $1 | ps2pdf - > $out
+    [[ -e $out ]] && xo $out
+  else
+    echo "ERROR: manpage \"$1\" not found."
+  fi
+}
+
+mkcd() {
+  [[ $1 ]] || return 0
+  [[ ! -d $1 ]] && mkdir -vp "$1"
+  [[ -d $1 ]] && builtin cd "$1"
+}
+
+qp() {
+  local pacman=$(type -p pacman-color || type -p pacman)
+  res=($($pacman -Qsq $1))
+  (( ${#res[@]} == 0 )) && { echo "No local results for '$1'. Searching syncs..."; $pacman -Ss $1; return; }
+  (( ${#res[@]} == 1 )) && $pacman -Qi ${res[0]} || $pacman -Qs $1
+}
+
+t () {
+  tmux -L main ${1:-attach}
+}
+
 umiso () {
   mountpoint="/media/${1//.iso}"
   [[ ! -d "$mountpoint" ]] && { echo "Not a valid mount point"; return 1; }
   sudo umount "$mountpoint"
   sudo rm -ir "$mountpoint"
+}
+
+unwork() {
+  if [[ -z $1 ]]; then
+    echo "USAGE: unwork <dirname>"
+    return 1
+  fi
+
+  if [[ -d $1 ]]; then
+    local count
+    read count < <(find "$1" -type d -name '.svn' -printf 'foo\n' -exec rm -rf {} + | wc -l)
+    if [[ $? != 0 ]]; then
+      echo "Error occurred. Nothing done." >&2
+    elif [[ $count = 0 ]]; then
+      echo "Nothing done."
+    else
+      echo "SUCCESS. Directory is no longer a working copy ($count .svns removed)."
+    fi
+  else
+    echo "ERROR: $1 is not a directory"
+  fi
 }
 
 # vim: syn=sh ft=sh et
