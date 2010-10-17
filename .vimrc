@@ -16,6 +16,7 @@ set completeopt=longest,menuone
 set directory=~/.vim/swap,~/tmp,.      " keep swp files under ~/.vim/swap
 set expandtab
 set history=50
+set hlsearch
 set ignorecase
 set incsearch
 set number
@@ -69,6 +70,8 @@ map <LocalLeader>8  8gt
 map <LocalLeader>9  9gt
 
 cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
+
+nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
 vmap <LocalLeader>y "+y
 vmap <LocalLeader>p "+p
