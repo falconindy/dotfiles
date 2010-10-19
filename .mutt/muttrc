@@ -105,3 +105,6 @@ macro index Z   "<shell-escape>offlineimap -q -o<return>" "sync IMAP"
 # [abook]
 macro generic,index,pager \Ca "<shell-escape>abook<return>" "launch abook"
 macro index,pager         A   "<pipe-message>abook --add-email<return>" "add sender to abook"
+
+# [reading]
+auto_view     text/html
