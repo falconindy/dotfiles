@@ -34,9 +34,9 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 
 # history options
 export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd*"
+export HISTCONTROL="ignoreboth:erasedups"
+export HISTSIZE=1000
 export HISTFILESIZE=2000
-export HISTCONTROL="ignoreboth"
-export HISTSIZE=500
 
 # disable tidle expansion by overriding it
 _expand() { return 0; }
