@@ -173,8 +173,7 @@ let vala_no_trail_space_error = 1
 let vala_no_tab_space_error = 1
 let vala_minlines = 120
 
-
 " Mutt
 "--------------------------------
-au BufRead /tmp/mutt-* set tw=72
+au BufRead so ~/.mutt/mutt.vim
 
