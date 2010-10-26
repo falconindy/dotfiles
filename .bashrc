@@ -17,13 +17,13 @@ _expand() { return 0; } # disable tidle expansion by overriding it
 
 # more for less
 LESS=-R # use -X to avoid sending terminal initialization
-LESS_TERMCAP_mb=$'\E[01;31m'
-LESS_TERMCAP_md=$'\E[01;31m'
-LESS_TERMCAP_me=$'\E[0m'
-LESS_TERMCAP_se=$'\E[0m'
-LESS_TERMCAP_so=$'\E[01;44;33m'
-LESS_TERMCAP_ue=$'\E[0m'
-LESS_TERMCAP_us=$'\E[01;32m'
+LESS_TERMCAP_mb=$'\e[01;31m'
+LESS_TERMCAP_md=$'\e[01;31m'
+LESS_TERMCAP_me=$'\e[0m'
+LESS_TERMCAP_se=$'\e[0m'
+LESS_TERMCAP_so=$'\e[01;44;33m'
+LESS_TERMCAP_ue=$'\e[0m'
+LESS_TERMCAP_us=$'\e[01;32m'
 export ${!LESS@}
 
 # history
