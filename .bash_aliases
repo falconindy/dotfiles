@@ -17,7 +17,7 @@ alias lla='ls -la'
 alias ls='ls --group-directories-first --color'
 alias lsd='ls -l | grep ^[dl] --color=none'
 alias md5='md5sum'
-alias pm='pacman'
+alias pm='pacman-color'
 alias pqu='paste -d "" <(printf "%-20.20s %12s => \n" $(pacman -Qu)) <(pacman --config <(grep -v "^Ignore" /etc/pacman.conf) -Sdp --print-format "%v" $(pacman -Qqu))'
 alias randbg='feh --bg-scale $(randomWallpaper)'
 alias rename='/usr/lib/perl5/vendor_perl/bin/rename'
@@ -100,6 +100,11 @@ ex () {
   fi
 }
 
+ghclone() {
+  (( $# == 2 )) || return 1
+  git clone git://github.com/$1/${2%.git}.git
+}
+
 hex2dec() {
   printf "%d\n" 0x$1
 }
@@ -148,6 +153,10 @@ qp() {
 
 t () {
   tmux -L main ${1:-attach}
+}
+
+sprunge() {
+  curl -F 'sprunge=<-' 'http://sprunge.us'
 }
 
 umiso () {
