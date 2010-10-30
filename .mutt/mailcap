@@ -1,3 +1,6 @@
-text/html;    w3m -dump %s; nametemplate=%s.html; copiousoutput
-image/*;      feh %s
+text/html;              w3m -dump %s; nametemplate=%s.html; copiousoutput
+image/*;                feh %s
+application/x-gzip;     less %s
+application/x-xz;       less %s
+application/x-bzip2;    less %s
 
