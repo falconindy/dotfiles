@@ -20,8 +20,8 @@ _git_commit () {
   fi
 }
 
-# powerpill
-complete -o filenames -F _pacman spp pp
+# pacman wrappers
+complete -o filenames -F _pacman pp pm
 
 # go
 complete -f -X '!*.8' 8l
