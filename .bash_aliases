@@ -73,14 +73,14 @@ deps() {
   readelf -d $prog | sed -n '/NEEDED/s/.* library: \[\(.*\)\]/\1/p'
 }
 
-depscan () {
+depscan() {
   [[ -z $1 ]] && { echo "usage: depscan <package>"; return; }
   while read elfobj; do
     readelf -d $elfobj | sed -n 's|.*NEEDED.*\[\(.*\)\].*|'$elfobj' -- \1|p'
   done < <(file $(pacman -Qlq $1) | sed -n '/ELF/s/^\(.*\):.*/\1/p') | nl
 }
 
-ex () {
+ex() {
   if [[ -f $1 ]]; then
     case $1 in
       *.tar.@(bz2|gz|xz))  tar xvf $1     ;;
@@ -116,9 +116,9 @@ ljoin() {
   IFS=$OLDIFS
 }
 
-miso () {
+miso() {
   [[ ! -f "$1" ]] && { echo "Provide a valid iso file"; return 1; }
-  mountpoint="/media/${1//.iso}"
+  local mountpoint="/media/${1%.iso}"
   sudo mkdir -p "$mountpoint"
   sudo mount -o loop "$1" "$mountpoint"
 }
@@ -146,21 +146,24 @@ mkcd() {
 
 qp() {
   local pacman=$(type -p pacman-color || type -p pacman)
-  res=($($pacman -Qsq $1))
+  local res=($($pacman -Qsq $1))
   (( ${#res[@]} == 0 )) && { echo "No local results for '$1'. Searching syncs..."; $pacman -Ss $1; return; }
   (( ${#res[@]} == 1 )) && $pacman -Qi ${res[0]} || $pacman -Qs $1
 }
 
-t () {
+t() {
   tmux -L main ${1:-attach}
 }
 
 sprunge() {
-  curl -F 'sprunge=<-' 'http://sprunge.us'
+  local flag URI;
+  URI=$(curl -F 'sprunge=<-' 'http://sprunge.us')
+  [[ ! -t 1 ]] && flag='-n'
+  echo $flag "$URI"
 }
 
-umiso () {
-  mountpoint="/media/${1//.iso}"
+umiso() {
+  local mountpoint="/media/${1%.iso}"
   [[ ! -d "$mountpoint" ]] && { echo "Not a valid mount point"; return 1; }
   sudo umount "$mountpoint"
   sudo rm -ir "$mountpoint"
