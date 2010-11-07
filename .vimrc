@@ -75,6 +75,10 @@ cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
 
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
+nnoremap <F5> :make<CR>
+nnoremap <S-F5> :make %<<CR>
+nnoremap <S-F6> :./%<<CR>
+
 vmap <LocalLeader>y "+y
 vmap <LocalLeader>p "+p
 vmap <LocalLeader>c :call CommentLines()<CR>
