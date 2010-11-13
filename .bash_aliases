@@ -157,7 +157,7 @@ t() {
 
 sprunge() {
   local flag URI;
-  URI=$(curl -F 'sprunge=<-' 'http://sprunge.us')
+  URI=$(curl -sF 'sprunge=<-' 'http://sprunge.us')
   [[ ! -t 1 ]] && flag='-n'
   echo $flag "$URI"
 }
