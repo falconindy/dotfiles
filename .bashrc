@@ -45,24 +45,24 @@ fi
 bash_prompt() {
   case $TERM in
     @(xterm|rxvt)*)
-      local TITLEBAR='\[\033]0;\u:${NEW_PWD}\007\]' ;;
+      local TITLEBAR='\[\e]0;\u:${NEW_PWD}\007\]' ;;
   esac
 
-  local NONE="\[\033[0m\]"    # unsets color to term's fg color
+  local NONE="\[\e[0m\]"    # unsets color to term's fg color
 
   # regular colors
-  local K="\[\033[0;30m\]" R="\[\033[0;31m\]" G="\[\033[0;32m\]" Y="\[\033[0;33m\]" \
-        B="\[\033[0;34m\]" M="\[\033[0;35m\]" C="\[\033[0;36m\]" W="\[\033[0;37m\]"
+  local K="\[\e[0;30m\]" R="\[\e[0;31m\]" G="\[\e[0;32m\]" Y="\[\e[0;33m\]" \
+        B="\[\e[0;34m\]" M="\[\e[0;35m\]" C="\[\e[0;36m\]" W="\[\e[0;37m\]"
 
   # emphasized (bolded) colors
-  local EMK="\[\033[1;30m\]" EMR="\[\033[1;31m\]" EMG="\[\033[1;32m\]" EMY="\[\033[1;33m\]" \
-        EMB="\[\033[1;34m\]" EMM="\[\033[1;35m\]" EMC="\[\033[1;36m\]" EMW="\[\033[1;37m\]"
+  local EMK="\[\e[1;30m\]" EMR="\[\e[1;31m\]" EMG="\[\e[1;32m\]" EMY="\[\e[1;33m\]" \
+        EMB="\[\e[1;34m\]" EMM="\[\e[1;35m\]" EMC="\[\e[1;36m\]" EMW="\[\e[1;37m\]"
 
   local UC=$W                   # user's color
   [[ $UID -eq "0" ]] && UC=$R   # root's color
 
-  RET_VALUE='$((( RET )) && printf ":\[\033[1;31m\]$RET\[\033[0m\]")'
-  PS1="$TITLEBAR ${EMK}┌┤${UC}\u${EMK}@${UC}\h${RET_VALUE}"'$(__git_ps1 " \[\033[0;32m\]%s\[\033[0m\]")'" ${EMB}\w${NONE}${EMK}${UC}\n ${EMK}└╼${NONE} "
+  RET_VALUE='$((( RET )) && printf ":\[\e[1;31m\]$RET\[\e[0m\]")'
+  PS1="$TITLEBAR ${EMK}┌┤${UC}\u${EMK}@${UC}\h${RET_VALUE}"'$(__git_ps1 " \[\e[0;32m\]%s\[\e[0m\]")'" ${EMB}\w${EMK}${UC}\n ${EMK}└╼${NONE} "
   PS4='+$BASH_SOURCE:$LINENO:$FUNCNAME: '
 }
 
