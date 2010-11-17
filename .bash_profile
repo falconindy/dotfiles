@@ -13,7 +13,7 @@ export GOARCH=386
 export GOROOT=$HOME/go
 
 # path
-export PATH=$HOME/go/bin:$HOME/bin:$PATH
+export PATH=$HOME/go/bin:$HOME/bin:/usr/local/bin:$PATH
 export CDPATH=.:~:/mnt/Gluttony:/mnt/Destruction
 
 # local daemons
