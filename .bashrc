@@ -62,7 +62,7 @@ bash_prompt() {
   [[ $UID -eq "0" ]] && UC=$R   # root's color
 
   RET_VALUE='$((( RET )) && printf ":\[\e[1;31m\]$RET\[\e[0m\]")'
-  PS1="$TITLEBAR ${EMK}┌┤${UC}\u${EMK}@${UC}\h${RET_VALUE}"'$(__git_ps1 " \[\e[0;32m\]%s\[\e[0m\]")'" ${EMB}\w${EMK}${UC}\n ${EMK}└╼${NONE} "
+  PS1="$TITLEBAR ${EMK}┌┤${UC}\u${EMK}@${UC}\h${RET_VALUE} \$(__git_ps1 '\[\e[0;32m\]%s\[\e[0m\]') ${EMB}\w${EMK}${UC}\n ${EMK}└╼${NONE} "
   PS4='+$BASH_SOURCE:$LINENO:$FUNCNAME: '
 }
 
