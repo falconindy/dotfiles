@@ -3,6 +3,7 @@ alias !='sudo'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+alias callgrind='valgrind --tool=callgrind'
 alias cdg='cd_up .git'
 alias cdp='cd_up PKGBUILD'
 alias cower='cower -c'
@@ -58,6 +59,12 @@ cd_up() {
     curpath=${curpath%/*}
   done
   [[ $curpath ]] && cd $curpath
+}
+
+cg2dot() {
+  { type -P gprof2dot || type -P dot; } &>/dev/null || return 1
+  (( $# == 2 )) || { echo "Usage: $FUNCNAME: <input> <output>"; return 1; }
+  gprof2dot --format=callgrind $1 | dot -T${2##*.} -o "$2"
 }
 
 deps() {
