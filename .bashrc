@@ -8,7 +8,6 @@
 # shell opts: see bash(1)
 shopt -s cdspell dirspell extglob globstar histverify no_empty_cmd_completion
 
-umask 0022              # default file permissions
 set -o notify           # notify of completed background jobs immediately
 ulimit -S -c 0          # disable core dumps
 stty -ctlecho           # turn off control character echoing
@@ -62,7 +61,9 @@ bash_prompt() {
   [[ $UID -eq "0" ]] && UC=$R   # root's color
 
   RET_VALUE='$((( RET )) && printf ":\[\e[1;31m\]$RET\[\e[0m\]")'
-  PS1="$TITLEBAR ${EMK}┌┤${UC}\u${EMK}@${UC}\h${RET_VALUE} \$(__git_ps1 '\[\e[0;32m\]%s\[\e[0m\]') ${EMB}\w${EMK}${UC}\n ${EMK}└╼${NONE} "
+
+  # space goes inside the printf so its not there when there's no git branch
+  PS1="$TITLEBAR ${EMK}┌┤${UC}\u${EMK}@${UC}\h${RET_VALUE}\$(__git_ps1 ' \[\e[0;32m\]%s\[\e[0m\]') ${EMB}\w${EMK}${UC}\n ${EMK}└╼${NONE} "
   PS4='+$BASH_SOURCE:$LINENO:$FUNCNAME: '
 }
 
