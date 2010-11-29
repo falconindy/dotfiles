@@ -8,8 +8,7 @@ fs=yes
 heartbeat-cmd="xscreensaver-command -deactivate >/dev/null &"
 ontop=yes
 sub-fuzziness=1
-#vo=vdpau
-vo=xv
+vo=vdpau,xv,
 
 [vo.vdpau]
 profile-desc="profile for VDPAU video output"
