@@ -1,5 +1,4 @@
 #!/bin/bash
-alias !='sudo'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -25,6 +24,7 @@ alias rename='/usr/lib/perl5/vendor_perl/bin/rename'
 alias so='source'
 alias udevinfo='udevadm info -q all -n'
 alias v='vim'
+alias vgfull='valgrind --leak-check=full --show-reachable=yes'
 alias wakeht='wakeonlan 6C:F0:49:17:BF:A3'
 alias webshare='python /usr/lib/python2.6/SimpleHTTPServer.py 8001'
 alias wgetxc='wget $(xclip -o)'
@@ -116,6 +116,11 @@ hex2dec() {
   printf "%d\n" 0x$1
 }
 
+kopt() {
+  [[ $1 ]] || return 1
+  zgrep "${1^^}" /proc/config.gz
+}
+
 ljoin() {
   local OLDIFS=$IFS
   IFS=${1:?"Missing separator"}; shift
@@ -195,6 +200,12 @@ unwork() {
   else
     echo "ERROR: $1 is not a directory"
   fi
+}
+
+xkbreset() {
+  [[ $DISPLAY ]] || return 1
+  eval $(grep 'xset r rate' ~/.xinitrc)
+  eval $(grep 'terminate' ~/.xinitrc)
 }
 
 # vim: syn=sh ft=sh et
