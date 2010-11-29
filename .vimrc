@@ -38,9 +38,6 @@ set virtualedit=all
 set wildmenu
 set wildmode=list:longest,full
 
-" filthy hack to fix coloring through ssh.
-if ( $TERM != "linux" ) | set t_Co=256 | endif
-
 call pathogen#runtime_append_all_bundles()
 
 filetype plugin indent on
