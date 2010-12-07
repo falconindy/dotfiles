@@ -26,7 +26,7 @@ alias udevinfo='udevadm info -q all -n'
 alias v='vim'
 alias vgfull='valgrind --leak-check=full --show-reachable=yes'
 alias wakeht='wakeonlan 6C:F0:49:17:BF:A3'
-alias webshare='python /usr/lib/python2.6/SimpleHTTPServer.py 8001'
+alias webshare='python /usr/lib/python2.7/SimpleHTTPServer.py 8001'
 alias wgetxc='wget $(xclip -o)'
 alias wtc="curl --silent 'http://whatthecommit.com' | sed -n '/^<p>/s/<p>\(.*\)/\1/p'"
 
