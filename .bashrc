@@ -58,8 +58,8 @@ bash_prompt() {
   local EMK="\[\e[1;30m\]" EMR="\[\e[1;31m\]" EMG="\[\e[1;32m\]" EMY="\[\e[1;33m\]" \
         EMB="\[\e[1;34m\]" EMM="\[\e[1;35m\]" EMC="\[\e[1;36m\]" EMW="\[\e[1;37m\]"
 
-  local UC=$W                   # user's color
-  [[ $UID -eq "0" ]] && UC=$R   # root's color
+  # username/host color for root/other
+  (( UID != 0 )) && local UC=$W || local UC=$R
 
   RET_VALUE='$((( RET )) && printf ":\[\e[1;31m\]$RET\[\e[0m\]")'
 
