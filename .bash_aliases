@@ -44,15 +44,6 @@ calc() {
     echo "scale=3; $*" | bc
 }
 
-cc() {
-  eval $(sed -n 's/^\(\(LD\|C\)FLAGS.*\)/local \1/p' /etc/makepkg.conf)
-  case ${1##*.} in
-    c) CC="c99 -Wall -pedantic" ;;
-    @(C|cpp)) CC="g++ -Wall -pedantic" ;;
-  esac
-  make CC="$CC" CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" $1 ${1%.*} | grep -v "make: Nothing"
-}
-
 cd_up() {
   curpath=$PWD
   while [[ $curpath && ! -e $curpath/$1 ]]; do
