@@ -7,7 +7,6 @@ shopt -s cdspell dirspell extglob globstar histverify no_empty_cmd_completion
 # External config
 [[ -r ~/.dircolors && -x /bin/dircolors ]] && eval $(dircolors -b ~/.dircolors)
 [[ -r ~/.bash_aliases ]] && . ~/.bash_aliases
-[[ -r /etc/bash_completion ]] && . /etc/bash_completion
 
 set -o notify           # notify of completed background jobs immediately
 ulimit -S -c 0          # disable core dumps
