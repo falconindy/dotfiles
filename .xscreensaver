@@ -1,5 +1,5 @@
 # XScreenSaver Preferences File
-# Written by xscreensaver-demo 5.10 for noclaf on Fri Jan  8 12:48:20 2010.
+# Written by xscreensaver-demo 5.12 for noclaf on Sat Dec 11 23:23:56 2010.
 # http://www.jwz.org/xscreensaver/
 
 timeout:	0:05:00
@@ -33,8 +33,8 @@ grabVideoFrames:    False
 chooseRandomImages: False
 imageDirectory:	
 
-mode:		one
-selected:	168
+mode:		random
+selected:	131
 
 textMode:	file
 textLiteral:	XScreenSaver
@@ -159,7 +159,7 @@ programs:								      \
 				euler2d -root				    \n\
 				fluidballs -root			    \n\
   GL: 				flurry -root				    \n\
-- GL: 				glblur -root				    \n\
+  GL: 				glblur -root				    \n\
   GL: 				glsnake -root				    \n\
 				halftone -root				    \n\
   GL: 				juggler3d -root				    \n\
@@ -251,5 +251,6 @@ sgiSaverExtension:  True
 xidleExtension:	True
 GetViewPortIsFullOfLies:False
 procInterrupts:	True
+xinputExtensionDev: True
 overlayStderr:	True
 
