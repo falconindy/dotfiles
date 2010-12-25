@@ -25,8 +25,8 @@ URxvt.print-pipe: cat >/tmp/xxx
 URxvt.visualBell: false
 
 ! --[ URxvt - URL Handling ]--------------------------------
-URxvt.keysym.M-u: perl:mark-yank-urls:activate_mark_mode
-URxvt.perl-ext: selection,mark-yank-urls
+URxvt.perl-ext-common:  default,url-select
+URxvt.keysym.M-u:       perl:url-select:select_next
 URxvt.urlLauncher: chromium
 URxvt.underlineURLs: true
 
@@ -43,6 +43,7 @@ URxvt.foreground:#eeeeee
 !#include ".config/xcolors/phrak1"
 !#include ".config/xcolors/rezza"
 !#include ".config/xcolors/rydgel"
+!#include ".config/xcolors/shiva"
 #include ".config/xcolors/tango"
 !#include ".config/xcolors/zenburn"
 
