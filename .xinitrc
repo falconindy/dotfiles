@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # graphical/display tweaking
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 xset +dpms +fp /usr/share/fonts/local,/usr/share/fonts/artwiz-fonts
