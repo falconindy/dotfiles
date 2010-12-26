@@ -1,22 +1,17 @@
 #!/bin/bash
 
 # git-commit override
-_git_commit () {
-  local cur prev ng_set
+_git_commit() {
+  local cur ng_set
 
   # do nothing if we're not in a repo
   git rev-parse 2>/dev/null || return 0
 
-  COMPREPLY=()
-  cur=${COMP_WORDS[COMP_CWORD]}
-  prev=${COMP_WORDS[COMP_CWORD-1]}
+  _get_comp_words_by_ref cur
 
   # complete uncommitted files
   if [[ ${COMP_WORDS[1]} = "commit" ]]; then
-    COMPREPLY=( $(compgen -W "\
-                $( while read file; do
-                     echo ${file:2}
-                   done < <(git status -s) )" -- $cur ) )
+    COMPREPLY=( $(compgen -W "$( git status -s | cut -d' ' -f3-)" -- $cur ) )
   fi
 }
 
