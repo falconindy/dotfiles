@@ -43,6 +43,10 @@ calc() {
     echo "scale=3; $*" | bc
 }
 
+cget() {
+  curl -OL "$@"
+}
+
 cd_up() {
   curpath=$PWD
   while [[ $curpath && ! -e $curpath/$1 ]]; do
