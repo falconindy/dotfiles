@@ -2,7 +2,12 @@
 
 [[ -z $1 ]] && exit 0
 
-df -x nfs -x tmpfs -x devtmpfs | while read _ _ _ _ used mount; do
-  used=${used%\%}
-  (( used > $1 )) && echo " [ ${mount}: $used% ]"
-done
+df -P | awk '
+  /^\/dev/ {
+    sub("%", "", $5);
+    if ($5 > '$1') {
+      printf " [ %s: %s%% ]",$6,$5;
+    }
+  }
+'
+
