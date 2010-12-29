@@ -24,11 +24,13 @@ URxvt.cutchars: "()*,<>[]{}|'"
 URxvt.print-pipe: cat >/tmp/xxx
 URxvt.visualBell: false
 
-! --[ URxvt - URL Handling ]--------------------------------
-URxvt.perl-ext-common:  default,url-select
-URxvt.keysym.M-u:       perl:url-select:select_next
-URxvt.urlLauncher: chromium
-URxvt.underlineURLs: true
+! --[ URxvt - URL/Clipboard Handling ]----------------------
+URxvt.perl-ext-common: default,url-select,keyboard-select
+URxvt.keysym.M-u:      perl:url-select:select_next
+URxvt.urlLauncher:     chromium
+URxvt.underlineURLs:   true
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-s:      perl:keyboard-select:search
 
 ! --[ URxvt - colors ]--------------------------------------
 URxvt.background: rgba:0000/0000/0000/bbbb
