@@ -15,6 +15,15 @@ _git_commit() {
   fi
 }
 
+# aurcomm
+_aurcomm() {
+  local cur
+  _get_comp_words_by_ref cur
+
+  COMPREPLY=( $(compgen -W "$(cower -sq -- $cur)" -- $cur) )
+}
+complete -F _aurcomm aurcomm
+
 # pacman wrappers
 complete -o filenames -F _pacman pp pm
 
@@ -23,3 +32,4 @@ complete -f -X '!*.8' 8l
 complete -f -X '!*.6' 6l
 complete -f -X '!*.5' 5l
 complete -f -X '!*.go' 8g 6g 5g gofmt gccgo
+
