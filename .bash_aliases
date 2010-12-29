@@ -21,6 +21,7 @@ alias pm='pacman-color'
 alias pqu='paste -d "" <(printf "%-20.20s %12s => \n" $(pacman -Qu)) <(pacman --config <(grep -v "^Ignore" /etc/pacman.conf) -Sdp --print-format "%v" $(pacman -Qqu))'
 alias randbg='feh --bg-scale $(randomWallpaper)'
 alias rename='/usr/lib/perl5/vendor_perl/bin/rename'
+alias space='LD_PRELOAD=$HOME/lib/libspace.so'
 alias udevinfo='udevadm info -q all -n'
 alias v='vim'
 alias vgfull='valgrind --leak-check=full --show-reachable=yes'
@@ -31,7 +32,7 @@ alias wtc="curl --silent 'http://whatthecommit.com' | sed -n '/^<p>/s/<p>\(.*\)/
 
 aget() {
   for pkg; do
-    if curl -s "https://aur.archlinux.org/packages/$pkg/$pkg.tar.gz" | tar xz 2>/dev/null; then
+    if curl -s --compressed "https://aur.archlinux.org/packages/$pkg/$pkg.tar.gz" | tar xz 2>/dev/null; then
       echo ":: downloaded $pkg"
     else
       echo ":: $pkg not found"
@@ -44,7 +45,7 @@ calc() {
 }
 
 cget() {
-  curl -OL "$@"
+  curl -OL --compressed "$@"
 }
 
 cd_up() {
