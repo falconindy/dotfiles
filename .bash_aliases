@@ -151,6 +151,10 @@ mkcd() {
   [[ -d $1 ]] && builtin cd "$1"
 }
 
+pushd() {
+  [[ $1 ]] && builtin pushd "$@" || builtin pushd ~
+}
+
 qp() {
   local pacman=$(type -p pacman-color || type -p pacman)
   local res=($($pacman -Qsq $1))
