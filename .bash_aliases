@@ -123,13 +123,6 @@ ljoin() {
   IFS=$OLDIFS
 }
 
-miso() {
-  [[ ! -f "$1" ]] && { echo "Provide a valid iso file"; return 1; }
-  local mountpoint="/media/${1%.iso}"
-  sudo mkdir -p "$mountpoint"
-  sudo mount -o loop "$1" "$mountpoint"
-}
-
 man2pdf() {
   if [[ -z $1 ]]; then
     echo "USAGE: man2pdf <manpage>"
@@ -171,13 +164,6 @@ sprunge() {
   URI=$(curl -sF 'sprunge=<-' 'http://sprunge.us')
   [[ ! -t 1 ]] && flag='-n'
   echo $flag "$URI"
-}
-
-umiso() {
-  local mountpoint="/media/${1%.iso}"
-  [[ ! -d "$mountpoint" ]] && { echo "Not a valid mount point"; return 1; }
-  sudo umount "$mountpoint"
-  sudo rm -ir "$mountpoint"
 }
 
 unwork() {
