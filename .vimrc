@@ -86,6 +86,9 @@ vmap <LocalLeader>c :call CommentLines()<CR>
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
+nnoremap j gj
+nnoremap k gk
+
 map <LocalLeader>l :Tlist<CR>
 
 " Session Control
