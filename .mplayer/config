@@ -1,7 +1,7 @@
 # Write your default config options here!
 
 [default]
-ao=alsa:noblock
+ao=alsa #:noblock
 ass-force-style="FontName=DejaVuSans"
 ass=yes
 fs=yes
@@ -14,3 +14,5 @@ vo=vdpau,xv,
 profile-desc="profile for VDPAU video output"
 vc=ffmpeg12vdpau,ffwmv3vdpau,ffvc1vdpau,ffh264vdpau, #ffodivxvdpau,
 
+[ao.alsa]
+mixer-channel=Multi
