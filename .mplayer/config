@@ -1,7 +1,7 @@
 # Write your default config options here!
 
 [default]
-ao=alsa #:noblock
+ao=alsa
 ass-force-style="FontName=DejaVuSans"
 ass=yes
 fs=yes
