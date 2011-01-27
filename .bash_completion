@@ -20,6 +20,8 @@ _aurcomm() {
   local cur
   _get_comp_words_by_ref cur
 
+  (( ${#cur} < 2 )) && return
+
   COMPREPLY=( $(compgen -W "$(cower -sq -- $cur)" -- $cur) )
 }
 complete -F _aurcomm aurcomm
