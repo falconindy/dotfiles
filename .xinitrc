@@ -11,7 +11,7 @@ xset r rate 220 45
 xsetroot -cursor_name left_ptr
 
 # autostart
-chromium&
+{ sleep 1; chromium; } & # delay prevents start prior to xcompmgr
 urxvtd -q -o -f
 urxvtc -name tmux -geometry 122x77 -e tmux -L main attach
 urxvtc -name htop -e htop
@@ -20,6 +20,8 @@ urxvtc -name werk
 
 # i'm running a reparenting WM, honest!
 wmname LG3D
+
+nvidia-settings -l
 
 exec ~/bin/startdwm
 
