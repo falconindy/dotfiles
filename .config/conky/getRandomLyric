@@ -4,10 +4,10 @@
 sourcedir=~/.lyrics
 
 line=""
-while [[ $line = "" ]] || [[ -z `echo $line | cut -c1 | sed -e "s/[\ \/\'\<\{\(]//g"` ]]; do
-	file=${sourcedir}/$(ls $sourcedir | sort -R | head -1)
-	num=$(($RANDOM % $(cat "$file" | wc -l) + 1))
-	line=$(head -${num} "$file" | tail -1)
+while [[ -z $line ]] || [[ -z $(echo $line | sed -e "s/^[\ \/\'\<\{\(]//g") ]]; do
+  file=${sourcedir}/$(ls $sourcedir | shuf -n1)
+  num=$(( RANDOM % $(< "$file" | wc -l) + 1))
+  line=$(head -${num} "$file" | tail -1)
 done
 
-echo $line | sed -e 's/[\(\<\>\)\{\}]//g'	#final filter
+echo $line | sed -e 's/[\(\<\>\)\{\}]//g' #final filter
