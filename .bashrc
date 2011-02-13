@@ -2,6 +2,9 @@
 # .bashrc - interactive shell configuration
 #
 
+# check for interactive
+[[ $- = *i* ]] || return
+
 # shell opts: see bash(1)
 shopt -s cdspell dirspell extglob globstar histverify no_empty_cmd_completion
 
