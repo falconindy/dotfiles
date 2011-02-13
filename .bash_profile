@@ -14,7 +14,7 @@ export GOROOT=$HOME/go
 
 # path
 export PATH=$HOME/go/bin:$HOME/bin:$PATH
-export CDPATH=.:~:/mnt/Gluttony:/mnt/Haven
+export CDPATH=.:/mnt/Gluttony:/mnt/Haven
 
 # local daemons
 eval $(keychain --eval id_rsa)
