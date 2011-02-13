@@ -11,6 +11,7 @@ alias dvdburn='growisofs -Z /dev/dvd -R -J'
 alias gensums='[[ -f PKGBUILD ]] && makepkg -g >> PKGBUILD'
 alias getflags='eval $(sed -n "s/^\(\(C\|LD\|MAKE\)FLAGS\)/export \1/p" /etc/makepkg.conf)'
 alias grep='grep --color'
+alias info='info --vi-keys'
 alias j='jobs'
 alias ll='ls -l'
 alias lla='ls -la'
@@ -23,13 +24,16 @@ alias pqu='paste -d "" <(printf "%-20.20s %12s => \n" $(pacman -Qu)) <(pacman --
 alias randbg='feh --bg-scale $(randomWallpaper)'
 alias rename='/usr/lib/perl5/vendor_perl/bin/rename'
 alias space='LD_PRELOAD=$HOME/lib/libspace.so'
+alias sudo='sudo '
 alias udevinfo='udevadm info -q all -n'
 alias v='vim'
 alias vgfull='valgrind --leak-check=full --show-reachable=yes'
 alias wakeht='wakeonlan 6C:F0:49:17:BF:A3'
 alias webshare='python /usr/lib/python2.7/SimpleHTTPServer.py 8001'
 alias wgetxc='wget $(xclip -o)'
-alias wtc="curl --silent 'http://whatthecommit.com' | sed -n '/^<p>/s/<p>\(.*\)/\1/p'"
+alias wtc="curl --silent 'http://whatthecommit.com/index.txt'"
+
+alias curlpac="LD_PRELOAD=$HOME/src/c/curl/lib/.libs/libcurl.so PACMANDL=curl $HOME/src/c/pacman/src/pacman/pacman"
 
 aget() {
   for pkg; do
@@ -186,6 +190,10 @@ unwork() {
   else
     echo "ERROR: $1 is not a directory"
   fi
+}
+
+xclipc() {
+  xclip -selection clipboard "$@"
 }
 
 xkbreset() {
