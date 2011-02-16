@@ -188,5 +188,5 @@ let vala_minlines = 120
 
 " Mutt
 "--------------------------------
-au BufRead so ~/.mutt/mutt.vim
+au BufRead,BufNew ~/.mutt/tmp/mutt* so ~/.mutt/mutt.vim
 

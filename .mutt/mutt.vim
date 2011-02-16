@@ -1,1 +1,2 @@
-au BufRead /tmp/mutt-* set tw=72 nohlsearch
+set tw=72
+set nohlsearch
