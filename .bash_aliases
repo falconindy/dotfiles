@@ -33,7 +33,7 @@ alias webshare='python /usr/lib/python2.7/SimpleHTTPServer.py 8001'
 alias wgetxc='wget $(xclip -o)'
 alias wtc="curl --silent 'http://whatthecommit.com/index.txt'"
 
-alias curlpac="LD_PRELOAD=$HOME/src/c/curl/lib/.libs/libcurl.so PACMANDL=curl $HOME/src/c/pacman/src/pacman/pacman"
+alias curlpac="PACMANDL=curl $HOME/src/c/pacman/src/pacman/pacman"
 
 aget() {
   for pkg; do
@@ -118,7 +118,8 @@ hex2dec() {
 
 kopt() {
   [[ $1 ]] || return 1
-  zgrep "${1^^}" /proc/config.gz
+  declare -u opt=$1
+  zgrep "$opt" /proc/config.gz
 }
 
 ljoin() {
