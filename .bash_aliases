@@ -20,7 +20,7 @@ alias lsd='ls -l | grep ^[dl] --color=none'
 alias md5='md5sum'
 alias pacconf='./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-doc --enable-git-version --enable-debug'
 alias pm='pacman-color'
-alias pqu='paste -d "" <(printf "%-20.20s %12s => \n" $(pacman -Qu)) <(pacman --config <(grep -v "^Ignore" /etc/pacman.conf) -Sdp --print-format "%v" $(pacman -Qqu))'
+alias pqu='paste -d "" <(printf "%-20.20s %12s => \n" $(pacman -Qu)) <(pacman --config <(grep -v "^Ignore" /etc/pacman.conf) -Sddp --print-format "%v" $(pacman -Qqu))'
 alias randbg='feh --bg-scale $(randomWallpaper)'
 alias rename='/usr/lib/perl5/vendor_perl/bin/rename'
 alias space='LD_PRELOAD=$HOME/lib/libspace.so'
@@ -96,6 +96,7 @@ ex() {
       *.rar)               unrar x $1     ;;
       *.gz)                gunzip $1      ;;
       *.lzma)              unxz $1        ;;
+      *.rpm)               bsdtar xf $1   ;;
       *.zip)               unzip $1       ;;
       *.Z)                 uncompress $1  ;;
       *.7z)                7z x $1        ;;
