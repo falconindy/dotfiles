@@ -166,12 +166,12 @@ t() {
   tmux -L main ${1:-attach}
 }
 
-sprunge() {
-  local flag URI;
+sprunge() (
+  [[ -t 0 ]] && exec 0<"$1"
   URI=$(curl -sF 'sprunge=<-' 'http://sprunge.us')
   [[ ! -t 1 ]] && flag='-n'
   echo $flag "$URI"
-}
+)
 
 unwork() {
   if [[ -z $1 ]]; then
