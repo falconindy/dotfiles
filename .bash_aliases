@@ -136,7 +136,8 @@ man2pdf() {
     return
   fi
 
-  if [[ $(find /usr/share/man -name $1\* | wc -l) -gt 0 ]]; then
+  local manpage=(/usr/share/man/man[0-9]*/$1.*)
+  if [[ -f ${manpage[0]} ]]; then
     local out=/tmp/$1.pdf
     [[ ! -e $out ]] && man -t $1 | ps2pdf - > $out
     [[ -e $out ]] && xo $out
