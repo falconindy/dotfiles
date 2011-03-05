@@ -1,0 +1,26 @@
+# network
+port_range = 7881-7889
+scgi_port = localhost:5000
+encryption = allow_incoming,try_outgoing,enable_retry
+
+# limits
+max_peers = 50
+max_peers_seed = 50
+max_uploads = 20
+upload_rate = 60
+download_rate = 0
+
+# default dirs
+directory = /mnt/Gluttony
+session = /home/noclaf/.config/rtorrent/session/
+
+# watch dirs
+schedule = watch_directory_1,5,5,"load_start=/home/noclaf/tor/waf/*.torrent,d.set_directory=/mnt/Gluttony/waffles/"
+schedule = watch_directory_2,5,5,"load_start=/home/noclaf/tor/inc/*.torrent,d.set_directory=/mnt/Gluttony/.incomplete/"
+schedule = watch_directory_3,5,5,"load_start=/home/noclaf/tor/anime/*.torrent,d.set_directory=/mnt/Gluttony/video/anime"
+
+# on finish hook
+system.method.set_key = event.download.finished,notify_me,"execute=/home/noclaf/bin/torrentdone,$d.get_name="
+
+
+# vim: set ft=cfg :
