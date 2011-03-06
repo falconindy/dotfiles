@@ -5,7 +5,6 @@ alias ....='cd ../../..'
 alias callgrind='valgrind --tool=callgrind'
 alias cdg='cd_up .git'
 alias cdp='cd_up PKGBUILD'
-alias cower='cower -c'
 alias dsz='find $(pwd -P) -maxdepth 1 -type d -exec du -sh {} + 2>/dev/null | sort -h'
 alias dvdburn='growisofs -Z /dev/dvd -R -J'
 alias gensums='[[ -f PKGBUILD ]] && makepkg -g >> PKGBUILD'
@@ -50,7 +49,7 @@ calc() {
 }
 
 cget() {
-  curl -OL --compressed "$@"
+  curl -fOL --compressed "$@"
 }
 
 cd_up() {
