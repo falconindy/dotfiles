@@ -19,6 +19,7 @@
   diff = auto
   interactive = auto
   status = auto
+  grep = yes
 
 [merge]
   tool = vimdiff
