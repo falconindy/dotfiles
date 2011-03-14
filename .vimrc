@@ -72,7 +72,6 @@ map <LocalLeader>8  8gt
 map <LocalLeader>9  9gt
 
 cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
-cmap Q q
 
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
