@@ -141,7 +141,6 @@ programs:								      \
 - GL: 				dnalogo -root				    \n\
   GL: 				engine -root				    \n\
   GL: 				flipscreen3d -root			    \n\
-  GL: 				gltext -root				    \n\
   GL: 				menger -root				    \n\
   GL: 				molecule -root				    \n\
 				rotzoomer -root				    \n\
