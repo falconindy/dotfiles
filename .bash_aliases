@@ -194,6 +194,21 @@ unwork() {
   fi
 }
 
+up() {
+  declare -i x=$1
+  local traverse
+
+  [[ $1 ]] || { cd ..; return; } # default to 1 level
+  (( x == 0 )) && return # noop
+
+  # build a path to avoid munging OLDPWD
+  while (( x-- )); do
+    traverse+='../'
+  done
+
+  cd $traverse
+}
+
 xclipc() {
   xclip -selection clipboard "$@"
 }
