@@ -66,6 +66,13 @@ cg2dot() {
   gprof2dot --format=callgrind $1 | dot -T${2##*.} -o "$2"
 }
 
+debugflags() {
+  CFLAGS="-Wextra -Wempty-body -Wfloat-equal -Wignored-qualifiers -Wmissing-declarations -Wmissing-parameter-type -Wmissing-prototypes -Wold-style-declaration -Woverride-init -Wsign-compare -Wstrict-prototypes -Wtype-limits -Wuninitialized -fstack-protector-all"
+  CPPFLAGS='-D_FORTIFY_SOURCE=2'
+  LDFLAGS='-lssp'
+  export {LD,C{,PP}}FLAGS
+}
+
 deps() {
   local prog
   if [[ -f "$1" ]]; then
