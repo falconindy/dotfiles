@@ -67,7 +67,7 @@ cg2dot() {
 }
 
 debugflags() {
-  CFLAGS="-Wextra -Wempty-body -Wfloat-equal -Wignored-qualifiers -Wmissing-declarations -Wmissing-parameter-type -Wmissing-prototypes -Wold-style-declaration -Woverride-init -Wsign-compare -Wstrict-prototypes -Wtype-limits -Wuninitialized -fstack-protector-all"
+  CFLAGS="-Wclobbered -Wempty-body -Wfloat-equal -Wignored-qualifiers -Wmissing-declarations -Wmissing-parameter-type -Wmissing-prototypes -Wold-style-declaration -Woverride-init -Wsign-compare -Wstrict-prototypes -Wtype-limits -Wuninitialized -fstack-protector-all"
   CPPFLAGS='-D_FORTIFY_SOURCE=2'
   LDFLAGS='-lssp'
   export {LD,C{,PP}}FLAGS
