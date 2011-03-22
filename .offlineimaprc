@@ -5,7 +5,7 @@
 [general]
 metadata = ~/.config/offlineimap/metadata
 accounts = gmail
-ui = TTY.TTYUI
+ui = ttyui
 ignore-readonly = no
 
 #[mbnames]
