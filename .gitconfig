@@ -12,6 +12,7 @@
   last = show --stat HEAD
   logdel = log --diff-filter=D --summary
   out = cherry -v
+  outt = cherry -v origin/master
   st = status
 
 [color]
