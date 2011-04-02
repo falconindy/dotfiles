@@ -17,7 +17,6 @@ export PATH=$HOME/go/bin:$HOME/bin:$PATH
 export CDPATH=.:/mnt/Gluttony:/mnt/Haven
 
 # local daemons
-eval $(keychain --eval id_rsa)
 #pidof gocode &>/dev/null || gocode
 
 # if interactive, source .bashrc

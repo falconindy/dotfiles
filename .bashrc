@@ -78,3 +78,6 @@ GIT_PS1_SHOWDIRTYSTATE=yes
 bash_prompt
 unset bash_prompt
 
+# this might be interactive, so it belongs here
+eval $(keychain --eval id_rsa)
+
