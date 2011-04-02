@@ -23,6 +23,11 @@ URxvt.underlinecolor: #999999
 URxvt.cutchars: "()*,<>[]{}|'"
 URxvt.print-pipe: cat >/tmp/xxx
 URxvt.visualBell: false
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+URxvt.scrollWithBuffer: true
+URxvt.scrollTtyOutput: false
+URxvt.scrollTtyKeypress: true
 
 ! --[ URxvt - URL/Clipboard Handling ]----------------------
 URxvt.perl-ext-common: default,url-select,keyboard-select
