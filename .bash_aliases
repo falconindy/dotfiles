@@ -49,7 +49,7 @@ calc() {
 }
 
 cget() {
-  curl -fOL --compressed "$@"
+  curl -fJOL --compressed "$@"
 }
 
 cd_up() {
@@ -170,7 +170,7 @@ qp() {
 }
 
 t() {
-  tmux -L main ${1:-attach}
+  tmux -L main "${@:-attach}"
 }
 
 sprunge() (
