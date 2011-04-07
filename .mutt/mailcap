@@ -1,4 +1,4 @@
-text/html;              w3m -dump %s; nametemplate=%s.html; copiousoutput
+text/html;              w3m -I %{charset} -T text/html %s; nametemplate=%s.html; copiousoutput;
 image/*;                feh %s
 application/x-gzip;     less %s
 application/x-xz;       less %s
