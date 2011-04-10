@@ -5,6 +5,8 @@
 
 set nocompatible                "Needs to be first according to Bram
 
+source ~/.vim/functions.vim
+
 " General Options
 "---------------------------------
 set autoread
@@ -19,6 +21,7 @@ set history=50
 set hlsearch
 set ignorecase
 set incsearch
+set laststatus=2
 set number
 set printoptions=left:5pc,right:5pc,top:5pc,bottom:10pc,syntax:n
 set ruler
@@ -146,25 +149,11 @@ if has ('folding')
 endif
 
 
-
-" Statusline
-"---------------------------------
-set laststatus=2
-
-function! CurDir()
-    let curdir = substitute(getcwd(), '/home/noclaf', "~", "g")
-    return curdir
-endfunction
-
-set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
-
-
 " Substitutions
 "---------------------------------
 if &term !=# "linux"
     set list listchars=tab:\»\ ,trail:·,extends:›,precedes:‹
 endif
-
 
 
 " Go
