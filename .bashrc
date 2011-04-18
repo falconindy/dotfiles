@@ -69,7 +69,7 @@ bash_prompt() {
 
   # space goes inside the printf so its not there when there's no git branch
   PS1="$TITLEBAR ${EMK}┌┤${UC}\u${EMK}@${UC}\h${RET_VALUE}\$(__git_ps1 ' \[\e[0;32m\]%s\[\e[0m\]') ${EMB}\w${EMK}${UC}\n ${EMK}└╼${NONE} "
-  PS4='+$BASH_SOURCE:$LINENO:$FUNCNAME: '
+  export PS4='+$BASH_SOURCE[$LINENO]: '
 }
 
 # show return val of last command
