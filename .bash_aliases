@@ -3,23 +3,22 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias callgrind='valgrind --tool=callgrind'
+alias clearflags='unset CFLAGS CPPFLAGS LDFLAGS'
 alias cdg='cd_up .git'
 alias cdp='cd_up PKGBUILD'
 alias dsz='find $(pwd -P) -maxdepth 1 -type d -exec du -sh {} + 2>/dev/null | sort -h'
 alias dvdburn='growisofs -Z /dev/dvd -R -J'
 alias gensums='[[ -f PKGBUILD ]] && makepkg -g >> PKGBUILD'
-alias getflags='eval $(sed -n "s/^\(\(C\|LD\|MAKE\)FLAGS\)/export \1/p" /etc/makepkg.conf)'
+alias getflags='unset CPPFLAGS; eval $(sed -n "s/^\(\(C\|LD\|MAKE\)FLAGS\)/export \1/p" /etc/makepkg.conf)'
 alias grep='grep --color'
 alias info='info --vi-keys'
 alias j='jobs'
 alias ll='ls -l'
 alias lla='ls -la'
 alias ls='ls --group-directories-first --color'
-alias lsd='ls -l | grep ^[dl] --color=none'
 alias md5='md5sum'
 alias pacconf='./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-git-version --enable-debug'
-alias pm='pacman-color'
-alias pqu='paste -d "" <(printf "%-20.20s %12s => \n" $(pacman -Qu)) <(pacman --config <(grep -v "^Ignore" /etc/pacman.conf) -Sddp --print-format "%v" $(pacman -Qqu))'
+alias pqu='paste -d "" <(printf "%-20.20s %12s => \n" $(pacman -Qu)) <(pacman -Sddp --print-format "%v" $(pacman -Qqu))'
 alias randbg='feh --bg-scale $(randomWallpaper)'
 alias rename='/usr/lib/perl5/vendor_perl/bin/rename'
 alias space='LD_PRELOAD=$HOME/lib/libspace.so'
@@ -28,24 +27,12 @@ alias udevinfo='udevadm info -q all -n'
 alias v='vim'
 alias vgfull='valgrind --leak-check=full --show-reachable=yes'
 alias wakeht='wakeonlan 6C:F0:49:17:BF:A3'
-alias webshare='python /usr/lib/python2.7/SimpleHTTPServer.py 8001'
+alias webshare='python2 /usr/lib/python2.7/SimpleHTTPServer.py 80'
 alias wgetxc='wget $(xclip -o)'
 alias wtc="curl --silent 'http://whatthecommit.com/index.txt'"
 
-alias curlpac="PACMANDL=curl $HOME/src/c/pacman/src/pacman/pacman"
-
-aget() {
-  for pkg; do
-    if curl -s --compressed "https://aur.archlinux.org/packages/$pkg/$pkg.tar.gz" | tar xz 2>/dev/null; then
-      echo ":: downloaded $pkg"
-    else
-      echo ":: $pkg not found"
-    fi
-  done
-}
-
 calc() {
-    echo "scale=3; $*" | bc
+  echo "scale=3; $*" | bc
 }
 
 cget() {
@@ -169,16 +156,27 @@ qp() {
   (( ${#res[@]} == 1 )) && $pacman -Qi ${res[0]} || $pacman -Qs $1
 }
 
-t() {
-  tmux -L main "${@:-attach}"
-}
-
 sprunge() (
   [[ -t 0 ]] && exec 0<"$1"
   URI=$(curl -sF 'sprunge=<-' 'http://sprunge.us')
   [[ ! -t 1 ]] && flag='-n'
   echo $flag "$URI"
 )
+
+sdstatus() {
+  local -a services
+
+  for serv; do
+    [[ $serv = *.@(service|socket|path|target) ]] || serv+='.service'
+    services+=("$serv")
+  done
+
+  systemctl status "${services[@]}"
+}
+
+t() {
+  tmux -L main "${@:-attach}"
+}
 
 unwork() {
   if [[ -z $1 ]]; then
