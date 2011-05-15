@@ -8,7 +8,7 @@
   set spoolfile           = "+gmail/INBOX"
 
 subscribe arch-dev-public arch-general suckless-dev systemd-devel
-mailboxes = +--gmail---- +gmail/INBOX +gmail/reisner +gmail/facebook +gmail/brookdale +gmail/arch +gmail/suckless +gmail/curl +gmail/util-linux +gmail/freedesktop +gmail/drafts +gmail/sent +gmail/spam +gmail/trash
+mailboxes = +--gmail---- +gmail/INBOX +gmail/reisner +gmail/facebook +gmail/brookdale +gmail/drafts +gmail/sent +gmail/spam +gmail/trash +--ML------- +gmail/arch +gmail/suckless +gmail/curl +gmail/linux-hotplug +gmail/util-linux +gmail/freedesktop
 
 # [external]
   set editor              = "vim +:silent+?^$"            # use vim and skip to last blank line
