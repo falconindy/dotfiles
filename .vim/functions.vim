@@ -9,7 +9,7 @@
 
 
 func! CurDir()
-  let curdir = substitute(getcwd(), '/home/scp1/', "~/", "g")
+  let curdir = substitute(getcwd(), '/home/noclaf/', "~/", "g")
   return curdir
 endfunc
 
