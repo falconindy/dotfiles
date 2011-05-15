@@ -3,7 +3,7 @@
   email = d@falconindy.com
 
 [sendemail]
-  smtpserver = /usr/bin/msmtp
+  smtpserver = /usr/sbin/dma
 
 [alias]
   all = !git-all

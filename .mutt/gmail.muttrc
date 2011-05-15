@@ -5,7 +5,7 @@
 color status green default
 
 set from      = "d@falconindy.com"
-set sendmail  = "/usr/bin/msmtp -a gmail"
+set sendmail  = "/usr/sbin/dma"
 set mbox      = "+gmail/archive"
 unset record
 set postponed = "+gmail/drafts"
