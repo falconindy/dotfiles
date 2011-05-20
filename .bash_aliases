@@ -7,7 +7,7 @@ alias clearflags='unset CFLAGS CPPFLAGS LDFLAGS'
 alias cdg='cd_up .git'
 alias cdp='cd_up PKGBUILD'
 alias dsz='find $(pwd -P) -maxdepth 1 -type d -exec du -sh {} + 2>/dev/null | sort -h'
-alias dvdburn='growisofs -Z /dev/dvd -R -J'
+alias dvdburn='growisofs -Z /dev/sr0 -R -J'
 alias gensums='[[ -f PKGBUILD ]] && makepkg -g >> PKGBUILD'
 alias getflags='unset CPPFLAGS; eval $(sed -n "s/^\(\(C\|LD\|MAKE\)FLAGS\)/export \1/p" /etc/makepkg.conf)'
 alias grep='grep --color'
@@ -18,7 +18,6 @@ alias lla='ls -la'
 alias ls='ls --group-directories-first --color'
 alias md5='md5sum'
 alias pacconf='./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-git-version --enable-debug'
-alias pqu='paste -d "" <(printf "%-20.20s %12s => \n" $(pacman -Qu)) <(pacman -Sddp --print-format "%v" $(pacman -Qqu))'
 alias randbg='feh --bg-scale $(randomWallpaper)'
 alias rename='/usr/lib/perl5/vendor_perl/bin/rename'
 alias space='LD_PRELOAD=$HOME/lib/libspace.so'
@@ -146,7 +145,7 @@ mkcd() {
 }
 
 pushd() {
-  [[ $1 ]] && builtin pushd "$@" || builtin pushd ~
+  builtin pushd "${@:-$HOME}"
 }
 
 qp() {
