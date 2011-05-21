@@ -26,6 +26,18 @@ _aurcomm() {
 }
 complete -F _aurcomm aurcomm
 
+_ghclone() {
+  local cur
+  _get_comp_words_by_ref cur
+
+  COMPREPLY=( $(compgen -W "$(
+    curl --compressed -sf "http://github.com/api/v2/json/repos/show/${COMP_WORDS[1]}" |
+    json_reformat 2>/dev/null |
+    sed -n '/"name":/s|.*: "\([^"]\+\)",|\1|p')" -- $cur)
+  )
+}
+complete -F _ghclone ghclone
+
 # pacman wrappers
 complete -o filenames -F _pacman pp pm
 
