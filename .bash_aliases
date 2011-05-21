@@ -122,6 +122,14 @@ ljoin() {
   IFS=$OLDIFS
 }
 
+lsmod() {
+  # OH GOD IM USING CAT!!
+  {
+    echo "Module Size Ref UsedBy Stat Address"
+    cat /proc/modules
+  } | column -t
+}
+
 man2pdf() {
   if [[ -z $1 ]]; then
     echo "USAGE: man2pdf <manpage>"
