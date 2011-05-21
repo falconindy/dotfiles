@@ -102,7 +102,7 @@ ex() {
 
 ghclone() {
   (( $# == 2 )) || return 1
-  git clone git://github.com/$1/${2%.git}.git
+  git clone "git://github.com/$1/$2"
 }
 
 hex2dec() {
@@ -116,10 +116,8 @@ kopt() {
 }
 
 ljoin() {
-  local OLDIFS=$IFS
-  IFS=${1:?"Missing separator"}; shift
-  echo "$*"
-  IFS=$OLDIFS
+  [[ $1 ]] || { echo "usage: ljoin IFS args..."; return 1; } >&2
+  ( IFS=$1; echo "${*:2}" )
 }
 
 lsmod() {
@@ -131,15 +129,13 @@ lsmod() {
 }
 
 man2pdf() {
-  if [[ -z $1 ]]; then
-    echo "USAGE: man2pdf <manpage>"
-    return
-  fi
+  local manpage out
 
-  local manpage=(/usr/share/man/man[0-9]*/$1.*)
-  if [[ -f ${manpage[0]} ]]; then
-    local out=/tmp/$1.pdf
-    [[ ! -e $out ]] && man -t $1 | ps2pdf - > $out
+  [[ $1 ]] || { echo "usage: man2pdf <manpage>"; return 1; }>&2
+
+  if manpage=$(man -w "$1"); then
+    out=/tmp/$1.pdf
+    [[ -e $out ]] || man -t $1 | ps2pdf - > $out
     [[ -e $out ]] && xo $out
   else
     echo "ERROR: manpage \"$1\" not found."
@@ -148,19 +144,12 @@ man2pdf() {
 
 mkcd() {
   [[ $1 ]] || return 0
-  [[ ! -d $1 ]] && mkdir -vp "$1"
+  [[ -d $1 ]] || mkdir -vp "$1"
   [[ -d $1 ]] && builtin cd "$1"
 }
 
 pushd() {
   builtin pushd "${@:-$HOME}"
-}
-
-qp() {
-  local pacman=$(type -p pacman-color || type -p pacman)
-  local res=($($pacman -Qsq $1))
-  (( ${#res[@]} == 0 )) && { echo "No local results for '$1'. Searching syncs..."; $pacman -Ss $1; return; }
-  (( ${#res[@]} == 1 )) && $pacman -Qi ${res[0]} || $pacman -Qs $1
 }
 
 sprunge() (
@@ -187,7 +176,7 @@ t() {
 
 unwork() {
   if [[ -z $1 ]]; then
-    echo "USAGE: unwork <dirname>"
+    echo "usage: unwork <dirname>"
     return 1
   fi
 
