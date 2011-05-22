@@ -4,8 +4,8 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias callgrind='valgrind --tool=callgrind'
 alias clearflags='unset CFLAGS CPPFLAGS LDFLAGS'
-alias cdg='cd_up .git'
-alias cdp='cd_up PKGBUILD'
+alias cdg='cdup .git'
+alias cdp='cdup PKGBUILD'
 alias dsz='find $(pwd -P) -maxdepth 1 -type d -exec du -sh {} + 2>/dev/null | sort -h'
 alias dvdburn='growisofs -Z /dev/sr0 -R -J'
 alias gensums='[[ -f PKGBUILD ]] && makepkg -g >> PKGBUILD'
@@ -38,12 +38,19 @@ cget() {
   curl -fJOL --compressed "$@"
 }
 
-cd_up() {
+cdup() {
   curpath=$PWD
+
   while [[ $curpath && ! -e $curpath/$1 ]]; do
     curpath=${curpath%/*}
   done
-  [[ $curpath ]] && cd $curpath
+
+  if [[ $curpath ]]; then
+    cd $curpath
+  else
+    printf "error: failed to locate \`%s' in a parent directory\n" "$1"
+    return 1
+  fi
 }
 
 cg2dot() {
