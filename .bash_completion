@@ -7,13 +7,61 @@ _git_commit() {
   # do nothing if we're not in a repo
   git rev-parse 2>/dev/null || return 0
 
-  _get_comp_words_by_ref cur
+  _get_comp_words_by_ref cur prev
 
   # complete uncommitted files
-  if [[ ${COMP_WORDS[1]} = "commit" ]]; then
+  if [[ $prev = "commit" ]]; then
     COMPREPLY=( $(compgen -W "$( git status -s | cut -d' ' -f3-)" -- $cur ) )
   fi
 }
+
+_git_archprojects()
+{
+  local cur prev
+  _get_comp_words_by_ref -n =: cur prev
+
+  local projects="initscripts mkinitcpio netcfg pyalpm"
+
+  if [[ $prev = git-archprojects ]]; then
+    COMPREPLY=( $(compgen -W "$projects" -- $cur ) )
+    return
+  fi
+
+  case "$cur" in
+  --confirm=*)
+    __gitcomp "
+      $__git_send_email_confirm_options
+      " "" "${cur##--confirm=}"
+    return
+    ;;
+  --suppress-cc=*)
+    __gitcomp "
+      $__git_send_email_suppresscc_options
+      " "" "${cur##--suppress-cc=}"
+
+    return
+    ;;
+  --smtp-encryption=*)
+    __gitcomp "ssl tls" "" "${cur##--smtp-encryption=}"
+    return
+    ;;
+  --*)
+    __gitcomp "--annotate --bcc --cc --cc-cmd --chain-reply-to
+      --compose --confirm= --dry-run --envelope-sender
+      --from --identity
+      --in-reply-to --no-chain-reply-to --no-signed-off-by-cc
+      --no-suppress-from --no-thread --quiet
+      --signed-off-by-cc --smtp-pass --smtp-server
+      --smtp-server-port --smtp-encryption= --smtp-user
+      --subject --suppress-cc= --suppress-from --thread --to
+      --validate --no-validate"
+    return
+    ;;
+  esac
+  COMPREPLY=()
+}
+complete -F _git_archprojects git-archprojects
+
 
 # aurcomm
 _aurcomm() {
