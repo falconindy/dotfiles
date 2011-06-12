@@ -11,9 +11,9 @@
   co = checkout
   last = show --stat HEAD
   logdel = log --diff-filter=D --summary
-  out = cherry -v
-  outt = cherry -v origin/master
+  out = !git-out
   st = status
+  countcommits = shortlog -sn
 
 [color]
   branch = auto
