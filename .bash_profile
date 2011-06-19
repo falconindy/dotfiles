@@ -1,6 +1,3 @@
-# set a sane sorting locale
-export LC_COLLATE=C
-
 # progs
 export EDITOR=vim
 export VISUAL=$EDITOR
