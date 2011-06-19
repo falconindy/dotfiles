@@ -13,7 +13,7 @@
   logdel = log --diff-filter=D --summary
   out = !git-out
   st = status
-  countcommits = shortlog -sn
+  countcommits = !git --no-pager shortlog -sn | tac
 
 [color]
   branch = auto
