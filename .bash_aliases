@@ -9,7 +9,7 @@ alias cdp='cdup PKGBUILD'
 alias dsz='find $(pwd -P) -maxdepth 1 -type d -exec du -sh {} + 2>/dev/null | sort -h'
 alias dvdburn='growisofs -Z /dev/sr0 -R -J'
 alias gensums='[[ -f PKGBUILD ]] && makepkg -g >> PKGBUILD'
-alias getflags='unset CPPFLAGS; eval $(sed -n "s/^\(\(C\|LD\|MAKE\)FLAGS\)/export \1/p" /etc/makepkg.conf)'
+alias getflags='unset CPPFLAGS; eval $(sed -rn "s/^((C|LD|MAKE)FLAGS)/export \1/p" /etc/makepkg.conf)'
 alias grep='grep --color'
 alias info='info --vi-keys'
 alias j='jobs'
@@ -59,9 +59,20 @@ cg2dot() {
 }
 
 debugflags() {
-  CFLAGS="-Wclobbered -Wempty-body -Wfloat-equal -Wignored-qualifiers -Wmissing-declarations -Wmissing-parameter-type -Wmissing-prototypes -Wold-style-declaration -Woverride-init -Wsign-compare -Wstrict-prototypes -Wtype-limits -Wuninitialized -fstack-protector-all"
-  CPPFLAGS='-D_FORTIFY_SOURCE=2'
-  LDFLAGS='-lssp'
+  local -a flags cppflags ldflags
+
+  cflags=(-Wclobbered -Wempty-body -Wfloat-equal -Wignored-qualifiers
+          -Wmissing-declarations -Wmissing-parameter-type -Wsign-compare
+          -Wmissing-prototypes -Wold-style-declaration -fstack-protector-all
+          -Wtype-limits -Woverride-init -Wstrict-prototypes -Wuninitialized)
+  cppflags=(-D_FORTIFY_SOURCE=2)
+  ldflags=(-lssp)
+
+  # lulz
+  for flagarr in {c,cpp,ld}flags; do
+    eval "${flagarr^^}=\${${flagarr}[*]}"
+  done
+
   export {LD,C{,PP}}FLAGS
 }
 
