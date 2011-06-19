@@ -33,7 +33,6 @@ set showmatch
 set showmode
 set shell=/bin/bash
 set smartcase
-set smartindent
 set smarttab
 set tabstop=2
 set title
@@ -49,9 +48,15 @@ filetype plugin indent on
 " extra colors
 "---------------------------------
 syntax on
-colorscheme dante
+"colorscheme dante
 hi Pmenu ctermfg=Cyan ctermbg=Blue
 hi PmenuSel ctermfg=White ctermbg=DarkYellow
+
+if &term !=# "screen-256color"
+  colorscheme neverland2
+else
+  colorscheme dante
+endif
 
 
 " variables
