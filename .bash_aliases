@@ -138,11 +138,17 @@ ljoin() {
 }
 
 lsmod() {
-  # OH GOD IM USING CAT!!
-  {
-    echo "Module Size Ref UsedBy Stat Address"
-    cat /proc/modules
-  } | column -t
+  local width=$(tput cols)
+
+  if (( width > 120 )); then
+    # OH GOD IM USING CAT!!
+    {
+      echo "Module Size Ref UsedBy Stat Address"
+      cat /proc/modules
+    } | column -t
+  else
+    command lsmod
+  fi
 }
 
 man2pdf() {
