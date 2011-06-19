@@ -17,7 +17,6 @@ alias ll='ls -l'
 alias lla='ls -la'
 alias ls='ls --group-directories-first --color'
 alias md5='md5sum'
-alias pacconf='./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-git-version --enable-debug'
 alias randbg='feh --bg-scale $(randomWallpaper)'
 alias rename='/usr/lib/perl5/vendor_perl/bin/rename'
 alias space='LD_PRELOAD=$HOME/lib/libspace.so'
@@ -153,6 +152,12 @@ mkcd() {
   [[ $1 ]] || return 0
   [[ -d $1 ]] || mkdir -vp "$1"
   [[ -d $1 ]] && builtin cd "$1"
+}
+
+pacconf() {
+  [[ -f autogen.sh ]] || return 1
+  ./autogen.sh
+  ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-git-version --enable-debug
 }
 
 pushd() {
