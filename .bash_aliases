@@ -4,8 +4,8 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias callgrind='valgrind --tool=callgrind'
 alias clearflags='unset CFLAGS CPPFLAGS LDFLAGS'
-alias cdg='cdup .git'
-alias cdp='cdup PKGBUILD'
+alias cdg='up .git'
+alias cdp='up PKGBUILD'
 alias dsz='find $(pwd -P) -maxdepth 1 -type d -exec du -sh {} + 2>/dev/null | sort -h'
 alias dvdburn='growisofs -Z /dev/sr0 -R -J'
 alias gensums='[[ -f PKGBUILD ]] && makepkg -g >> PKGBUILD'
@@ -35,21 +35,6 @@ calc() {
 
 cget() {
   curl -fJOL --compressed "$@"
-}
-
-cdup() {
-  curpath=$PWD
-
-  while [[ $curpath && ! -e $curpath/$1 ]]; do
-    curpath=${curpath%/*}
-  done
-
-  if [[ $curpath ]]; then
-    cd $curpath
-  else
-    printf "error: failed to locate \`%s' in a parent directory\n" "$1"
-    return 1
-  fi
 }
 
 cg2dot() {
@@ -225,18 +210,35 @@ unwork() {
 }
 
 up() {
-  declare -i x=$1
-  local traverse
+  local x= traverse= curpath=
 
   [[ $1 ]] || { cd ..; return; } # default to 1 level
-  (( x == 0 )) && return # noop
 
-  # build a path to avoid munging OLDPWD
-  while (( x-- )); do
-    traverse+='../'
+  for x; do
+    if [[ $x == +([[:digit:]]) ]]; then
+      (( x == 0 )) && return # noop
+
+      # build a path to avoid munging OLDPWD
+      while (( x-- )); do
+        traverse+=../
+      done
+
+      cd "$traverse"
+    else
+      curpath=$PWD
+
+      while [[ $curpath && ! -e $curpath/$x ]]; do
+        curpath=${curpath%/*}
+      done
+
+      if [[ $curpath ]]; then
+        cd "$curpath"
+      else
+        printf "error: failed to locate \`%s' in a parent directory\n" "$x"
+        return 1
+      fi
+    fi
   done
-
-  cd $traverse
 }
 
 xclipc() {

@@ -1,37 +1,45 @@
 [user]
-  name = Dave Reisner
-  email = d@falconindy.com
+	name = Dave Reisner
+	email = dreisner@archlinux.org
 
 [sendemail]
-  smtpserver = /usr/sbin/dma
+	smtpserver = /usr/bin/msmtp
 
 [alias]
-  all = !git-all
-  br = branch
-  co = checkout
-  last = show --stat HEAD
-  logdel = log --diff-filter=D --summary
-  out = !git-out
-  st = status
-  countcommits = !git --no-pager shortlog -sn | tac
+	all = !git-all
+	br = branch
+	co = checkout
+	last = show --stat HEAD
+	logdel = log --diff-filter=D --summary
+	out = !git-out
+	st = status
+	countcommits = shortlog -sn --no-merges
 
 [color]
-  branch = auto
-  diff = auto
-  interactive = auto
-  status = auto
-  grep = yes
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+	grep = yes
 
 [merge]
-  tool = vimdiff
-  log = true
+	tool = vimdiff
+	log = true
 
 [push]
-  default = current
+	default = current
 
 [help]
-  autocorrect = 1
+	autocorrect = 1
 
 [branch "master"]
-  remote = origin
-  merge = master
+	remote = origin
+	merge = master
+
+[log]
+	decorate = full
+
+[diff]
+	rename = copies
+
+# set ft=gitconfig noet:
