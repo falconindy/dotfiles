@@ -159,7 +159,7 @@ mkcd() {
 pacconf() {
   [[ -f autogen.sh ]] || return 1
   ./autogen.sh
-  ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-git-version --enable-debug
+  ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-git-version --enable-debug "$@"
 }
 
 pushd() {
