@@ -43,6 +43,14 @@ cg2dot() {
   gprof2dot --format=callgrind $1 | dot -T${2##*.} -o "$2"
 }
 
+dconfigure() {
+  if [[ -x /bin/dash ]]; then
+    CONFIG_SHELL=/bin/dash /bin/dash ./configure CONFIG_SHELL=/bin/dash "$@"
+  else
+    ./configure "$@"
+  fi
+}
+
 debugflags() {
   local -a flags cppflags ldflags
 
@@ -159,7 +167,7 @@ mkcd() {
 pacconf() {
   [[ -f autogen.sh ]] || return 1
   ./autogen.sh
-  ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-git-version --enable-debug "$@"
+  dconfigure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-git-version --enable-debug "$@"
 }
 
 pushd() {
