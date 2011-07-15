@@ -2,3 +2,6 @@ set editing-mode vi
 set echo-control-characters Off
 set expand-tilde Off
 set match-hidden-files On
+
+"\e[5~": history-search-backward
+"\e[6~": history-search-forward
