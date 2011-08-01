@@ -1,33 +1,4 @@
 #!/bin/bash
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias callgrind='valgrind --tool=callgrind'
-alias clearflags='unset CFLAGS CPPFLAGS LDFLAGS'
-alias cdg='up .git'
-alias cdp='up PKGBUILD'
-alias dsz='find $(pwd -P) -maxdepth 1 -type d -exec du -sh {} + 2>/dev/null | sort -h'
-alias dvdburn='growisofs -Z /dev/sr0 -R -J'
-alias gensums='[[ -f PKGBUILD ]] && makepkg -g >> PKGBUILD'
-alias getflags='unset CPPFLAGS; eval $(sed -rn "s/^((C|LD|MAKE)FLAGS)/export \1/p" /etc/makepkg.conf)'
-alias grep='grep --color'
-alias info='info --vi-keys'
-alias j='jobs'
-alias ll='ls -l'
-alias lla='ls -la'
-alias ls='ls --group-directories-first --color'
-alias md5='md5sum'
-alias randbg='feh --bg-scale $(randomWallpaper)'
-alias rename='/usr/lib/perl5/vendor_perl/bin/rename'
-alias space='LD_PRELOAD=$HOME/lib/libspace.so'
-alias sudo='sudo '
-alias udevinfo='udevadm info -q all -n'
-alias v='vim'
-alias vgfull='valgrind --leak-check=full --show-reachable=yes'
-alias wakeht='wakeonlan 6C:F0:49:17:BF:A3'
-alias webshare='python2 /usr/lib/python2.7/SimpleHTTPServer.py 80'
-alias wgetxc='wget $(xclip -o)'
-alias wtc="curl --silent 'http://whatthecommit.com/index.txt'"
 
 calc() {
   echo "scale=3; $*" | bc
@@ -185,7 +156,7 @@ sdstatus() {
   local -a services
 
   for serv; do
-    [[ $serv = *.@(service|socket|path|target) ]] || serv+='.service'
+    [[ $serv = *.@(service|socket|path|target|mount) ]] || serv+='.service'
     services+=("$serv")
   done
 
@@ -249,6 +220,20 @@ up() {
   done
 }
 
+urlencode() {
+  local i= char= url=$*
+  declare -i len=${#url}
+
+  for (( i = 0; i < len; i++ )); do
+    char=${url:i:1}
+    case "$char" in
+      [a-zA-Z0-9.~_-]) printf "$char" ;;
+      ' ') printf + ;;
+      *) printf '%%%X' "'$char" ;;
+    esac
+  done
+}
+
 xclipc() {
   xclip -selection clipboard "$@"
 }
@@ -257,6 +242,10 @@ xkbreset() {
   [[ $DISPLAY ]] || return 1
   eval $(grep 'xset r rate' ~/.xinitrc)
   eval $(grep 'terminate' ~/.xinitrc)
+}
+
+xs() {
+  xclip -o | sprunge
 }
 
 # vim: syn=sh ft=sh et
