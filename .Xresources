@@ -4,6 +4,7 @@ Xft.antialias: true
 Xft.rgba: rgb
 Xft.hinting: true
 Xft.hintstyle: hintfull
+Xft.autohint: false
 Xft.lcdfilter: lcddefault
 
 ! --[ Rodent ]----------------------------------------------
@@ -11,13 +12,12 @@ Xcursor.theme: Vanilla-DMZ
 Xcursor.size:  24
 
 ! --[ URxvt - General ]-------------------------------------
-URxvt.depth: 32
 URxvt.scrollBar:false
 URxvt.saveLines:5000
 URxvt.cursorColor:#83C048
 URxvt.highlightColor:#444444
-URxvt.font: xft:mensch:pixelsize=13
-URxvt.boldFont: xft:mensch:pixelsize=13:bold
+URxvt.font: xft:DejaVuSansMono:pixelsize=14
+URxvt.boldFont: xft:DejaVuSansMono:pixelsize=14:bold
 URxvt.internalborder: 0
 URxvt.underlinecolor: #999999
 URxvt.cutchars: "()*,<>[]{}|'"
@@ -38,6 +38,7 @@ URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.M-s:      perl:keyboard-select:search
 
 ! --[ URxvt - colors ]--------------------------------------
+URxvt.depth: 32
 URxvt.background: rgba:0000/0000/0000/bbbb
 URxvt.foreground:#eeeeee
 
