@@ -70,6 +70,58 @@ depscan() {
   done < <(file $(pacman -Qlq $1) | sed -n '/ELF/s/^\(.*\):.*/\1/p') | nl
 }
 
+down() {
+  local i=0 match type
+  local -a matches
+
+  if (( ! $# )); then
+    printf 'usage: down [-f|-d] <file|dir> [matchnum]\n'
+    printf '  -f    search for files (default)\n'
+    printf '  -d    search for directories\n'
+    return 1
+  fi
+
+  if [[ $1 == -@(d|f) ]]; then
+    type=${1#-}
+    shift
+  else
+    type=f
+  fi
+
+  while read -r -d '' match; do
+    matches[++i]=$match
+  done< <(find -type $type -name "$1" -print0)
+
+  if (( ! ${#matches[*]} )); then
+    return 1
+  fi
+
+  if (( i == 1 )); then
+    if [[ $type = d ]]; then
+      cd "${matches[i]}"
+    else
+      cd "${matches[i]%/*}"
+    fi
+  else
+    if (( $# == 1 )); then
+      i=0
+      for match in "${matches[@]}"; do
+        (( ++i ))
+        printf '%d) %s\n' "$i" "${matches[i]}"
+      done
+    else
+      if (( $2 > i )); then
+        return 1
+      fi
+      if [[ $type = d ]]; then
+        cd "${matches[$2]}"
+      else
+        cd "${matches[$2]%/*}"
+      fi
+    fi
+  fi
+}
+
 ex() {
   if [[ -f $1 ]]; then
     case $1 in
