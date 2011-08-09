@@ -4,8 +4,13 @@
 
 color status green default
 
-set from      = "d@falconindy.com"
-set sendmail  = "/usr/sbin/dma"
+set from          = "d@falconindy.com"
+set envelope_from = yes
+
+macro generic "<esc>1" ":set from=d@falconindy.com"
+macro generic "<esc>2" ":set from=dreisner@archlinux.org"
+set sendmail  = "/usr/bin/msmtp"
+
 set mbox      = "+gmail/archive"
 unset record
 set postponed = "+gmail/drafts"
