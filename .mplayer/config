@@ -1,8 +1,8 @@
 # Write your default config options here!
 
 [default]
-ao=oss
-ass-force-style="FontName=DejaVuSans"
+ao=pulse
+#ass-force-style="FontName=DejaVuSans"
 ass=yes
 fs=yes
 heartbeat-cmd="xscreensaver-command -deactivate >/dev/null &"
