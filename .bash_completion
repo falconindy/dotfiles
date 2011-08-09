@@ -203,9 +203,11 @@ _known_hosts_real()
 
     # add completion from dnsmasq's lease file
     local leasefile='/var/lib/misc/dnsmasq.leases'
-    COMPREPLY+=( $(compgen -P "$prefix$user" \
-                           -S "$suffix" \
-                           -W "$(cut -d' ' -f3,4 "$leasefile")" -- $cur) )
+    if [[ -f $leasefile ]]; then
+      COMPREPLY+=( $(compgen -P "$prefix$user" \
+                             -S "$suffix" \
+                             -W "$(cut -d' ' -f3,4 "$leasefile")" -- $cur) )
+    fi
 
     # append any available aliases from config files
     if [[ ${#config[@]} -gt 0 && -n "$aliases" ]]; then
