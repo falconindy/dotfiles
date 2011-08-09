@@ -5,22 +5,21 @@ shopt -s extglob
 MAXLEN=50
 
 mpd() {
-  socat - tcp-connect:localhost:6600
+  socat - tcp-connect:localhost:6600 <<< "$*"
 }
 
 while IFS=':' read attr val; do
   case "$attr" in
-    Artist) artist="${val:1}";;
-    Title) title="${val:1}" ;;
+    Artist|Title) declare "${attr,,}=${val:1}" ;;
   esac
-done < <(mpd <<< "currentsong")
+done < <(mpd "currentsong")
 
-track="$artist - $title"
+[[ $artist && $title ]] && printf -v track '%s - %s' "$artist" "$title"
 
 if (( ${#track} > MAXLEN )); then
-  truncated=${track:0:MAXLEN}
-  track=${truncated% *}...
+  track=${track:0:MAXLEN}
+  track=${track% *}...
 fi
 
-[[ -n $track ]] && echo "[ $track ] "
+printf "[ %s ] " "${track:-off the air}"
 
