@@ -144,8 +144,21 @@ ex() {
 }
 
 ghclone() {
-  (( $# == 2 )) || return 1
-  git clone "git://github.com/$1/$2"
+  local usage="Usage: ghclone [-p] user repo"
+  if (( $# == 3 )); then
+    if [[ $1 == -p ]]; then
+      local prefix="git@github.com:" user=$2 repo=$3
+    else
+      echo "$usage"
+      return 1
+    fi
+  elif (( $# == 2 )); then
+    local prefix="git://github.com/" user=$1 repo=$2
+  else
+    echo "$usage"
+    return 1
+  fi
+  git clone "$prefix$user/$repo"
 }
 
 hex2dec() {
@@ -250,9 +263,9 @@ unwork() {
 }
 
 up() {
-  local x= traverse= curpath=
-
   [[ $1 ]] || { cd ..; return; } # default to 1 level
+
+  local x= traverse= curpath=
 
   for x; do
     if [[ $x == +([[:digit:]]) ]]; then
