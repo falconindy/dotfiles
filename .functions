@@ -90,7 +90,7 @@ down() {
 
   while read -r -d '' match; do
     matches[++i]=$match
-  done< <(find -type $type -name "$1" -print0)
+  done< <(find . -type $type -name "$1" -print0)
 
   if (( ! ${#matches[*]} )); then
     return 1
