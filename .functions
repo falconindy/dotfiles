@@ -250,9 +250,9 @@ unwork() {
 }
 
 up() {
-  local x= traverse= curpath=
-
   [[ $1 ]] || { cd ..; return; } # default to 1 level
+
+  local x= traverse= curpath=
 
   for x; do
     if [[ $x == +([[:digit:]]) ]]; then
