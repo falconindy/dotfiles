@@ -142,8 +142,22 @@ ex() {
 }
 
 ghclone() {
-  (( $# == 2 )) || return 1
-  git clone "git://github.com/$1/$2"
+  local user= repo=
+
+  if (( ! $# )); then
+    printf "Usage: ghclone [-p] user repo\n"
+    return 1
+  fi
+
+  if [[ $1 = -p ]]; then
+    prefix=git@github.com:
+    shift
+  else
+    prefix=git://github.com/
+  fi
+
+  user=$2 repo=$3
+  git clone "$prefix$user/$repo"
 }
 
 hex2dec() {

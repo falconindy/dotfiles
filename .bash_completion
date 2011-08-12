@@ -78,6 +78,15 @@ _ghclone() {
   local cur
   _get_comp_words_by_ref cur
 
+  if [[ ${COMP_WORDS[1]} = -p ]]; then
+    # we can't complete private repos, so don't even try
+    return 0
+  fi
+
+  if ! type -P json_reformat >/dev/null; then
+    return 0
+  fi
+
   COMPREPLY=( $(compgen -W "$(
     curl --compressed -sf "http://github.com/api/v2/json/repos/show/${COMP_WORDS[1]}" |
     json_reformat 2>/dev/null |
