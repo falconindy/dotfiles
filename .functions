@@ -225,11 +225,11 @@ sprunge() (
   echo $flag "$URI"
 )
 
-sdstatus() {
+sdstat() {
   local -a services
 
   for serv; do
-    [[ $serv = *.@(service|socket|path|target|mount) ]] || serv+='.service'
+    [[ $serv = *.@(service|device|socket|path|target|?(auto)mount) ]] || serv+='.service'
     services+=("$serv")
   done
 
