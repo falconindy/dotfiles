@@ -158,7 +158,7 @@ ghclone() {
     prefix=git://github.com/
   fi
 
-  user=$2 repo=$3
+  user=$1 repo=$2
   git clone "$prefix$user/$repo"
 }
 
