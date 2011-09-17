@@ -14,6 +14,7 @@
 	out = !git-out
 	st = status
 	countcommits = shortlog -sn --no-merges
+	reup = remote update
 
 [color]
 	branch = auto
@@ -42,4 +43,4 @@
 [diff]
 	rename = copies
 
-# set ft=gitconfig noet:
+# vim: set ft=gitconfig noet:
