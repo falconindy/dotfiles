@@ -246,12 +246,9 @@ mkcd() {
   [[ -d $1 ]] && builtin cd "$1"
 }
 
-sprunge() (
-  [[ -t 0 ]] && exec 0<"$1"
-  URI=$(curl -sF 'sprunge=<-' 'http://sprunge.us')
-  [[ ! -t 1 ]] && flag='-n'
-  echo $flag "$URI"
-)
+sprunge() {
+  curl -sF 'sprunge=<-' 'http://sprunge.us' < "${1:-/dev/stdin}"
+}
 
 sdstat() {
   local -a services
