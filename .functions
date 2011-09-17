@@ -181,6 +181,28 @@ ljoin() {
   ( IFS=$1; echo "${*:2}" )
 }
 
+longest() {
+  awk '
+  BEGIN {
+    linecount = 0
+    maxlen = 0
+    line = ""
+  }
+  {
+    len = length($0)
+    if(len > maxlen) {
+      maxlen = len
+      line = $0
+    }
+  }
+  END {
+    if(linecount > 0) {
+      printf "%d\t%d\n", maxlen, line
+    }
+  }
+  ' < ${1:-/dev/stdin}
+}
+
 lsmod() {
   local width=$(tput cols)
 
