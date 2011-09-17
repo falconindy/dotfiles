@@ -18,6 +18,9 @@ confpac() {
   [[ -f autogen.sh ]] || return 1
   ./autogen.sh
   dconfigure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-git-version --enable-debug "$@"
+  for path in lib/libalpm src/{pacman,util}; do
+    ln -sf ../../config.h $path/config.h
+  done
 }
 
 pushd() {
