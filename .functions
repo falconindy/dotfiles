@@ -166,6 +166,10 @@ hex2dec() {
   printf "%d\n" 0x$1
 }
 
+kc() {
+  eval $(keychain --eval id_rsa)
+}
+
 kopt() {
   [[ $1 ]] || return 1
   declare -u opt=$1
