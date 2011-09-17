@@ -287,9 +287,10 @@ unwork() {
 }
 
 up() {
-  local x= traverse= curpath=
+  local cdinto=0 x= traverse= curpath=
 
   [[ $1 ]] || { cd ..; return; } # default to 1 level
+  [[ $1 = -d ]] && { cdinto=1; shift; }
 
   for x; do
     if [[ $x == +([[:digit:]]) ]]; then
@@ -309,7 +310,13 @@ up() {
       done
 
       if [[ $curpath ]]; then
-        [[ $curpath != "$PWD" ]] && cd "$curpath"
+        if [[ $curpath != "$PWD" ]]; then
+          if (( cdinto )); then
+            cd "$curpath/$x"
+          else
+            cd "$curpath"
+          fi
+        fi
       else
         printf "error: failed to locate \`%s' in a parent directory\n" "$x"
         return 1
