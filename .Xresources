@@ -12,6 +12,7 @@ Xcursor.theme: Vanilla-DMZ
 Xcursor.size:  24
 
 ! --[ URxvt - General ]-------------------------------------
+URxvt.loginShell:true
 URxvt.scrollBar:false
 URxvt.saveLines:5000
 URxvt.cursorColor:#83C048
