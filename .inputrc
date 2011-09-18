@@ -1,7 +1,12 @@
-set editing-mode vi
-set echo-control-characters Off
-set expand-tilde Off
-set match-hidden-files On
+$include /etc/inputrc
 
-"\e[5~": history-search-backward
-"\e[6~": history-search-forward
+set editing-mode vi
+$if mode=vi
+  set echo-control-characters Off
+  set expand-tilde Off
+  set match-hidden-files On
+  set bell-style Off
+
+  "\e[5~": history-search-backward
+  "\e[6~": history-search-forward
+$endif
