@@ -2,10 +2,10 @@
 
 [[ -z $1 ]] && exit 0
 
-df -P | nawk '
+df -P | awk -v "tolerance=$1" '
   /^\/dev/ {
     sub("%", "", $5);
-    if ($5 + 0 > '$1') {
+    if ($5 + 0 > tolerance) {
       printf " [ %s: %s%% ]",$6,$5;
     }
   }
