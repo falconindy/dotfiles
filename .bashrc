@@ -11,7 +11,10 @@ shopt -s cdspell dirspell extglob histverify no_empty_cmd_completion checkwinsiz
 set -o notify           # notify of completed background jobs immediately
 ulimit -S -c 0          # disable core dumps
 stty -ctlecho           # turn off control character echoing
-setterm -regtabs 2      # set tab width of 4 (only works on TTY)
+
+if [[ $TERM = linux ]]; then
+  setterm -regtabs 2    # set tab width of 4 (only works on TTY)
+fi
 
 # more for less
 LESS=-R # use -X to avoid sending terminal initialization
@@ -42,8 +45,8 @@ fi
 # External config
 [[ -r ~/.dircolors && -x /bin/dircolors ]] && eval $(dircolors -b ~/.dircolors)
 [[ -z $BASH_COMPLETION && -r /etc/bash_completion ]] && . /etc/bash_completion
-for config in .aliases .functions .prompt; do
-  [[ -r ~/$config ]] && . ~/$config
+for config in .aliases .functions .prompt .bashrc."$HOSTNAME"; do
+  [[ -r ~/$config ]] && . ~/"$config"
 done
 
-(( UID != 0 )) && eval $(keychain --eval id_rsa)
+type -p keychain >/dev/null && (( UID != 0 )) && eval $(keychain --eval id_rsa)
