@@ -38,7 +38,7 @@ dconfigure() {
 debugflags() {
   local -a flags cppflags ldflags
 
-  cflags=(-Wclobbered -Wempty-body -Wfloat-equal -Wignored-qualifiers
+  cflags=(-Wextra -Wclobbered -Wempty-body -Wfloat-equal -Wignored-qualifiers
           -Wmissing-declarations -Wmissing-parameter-type -Wsign-compare
           -Wmissing-prototypes -Wold-style-declaration -fstack-protector-all
           -Wtype-limits -Woverride-init -Wstrict-prototypes -Wuninitialized)
@@ -201,20 +201,6 @@ longest() {
     }
   }
   ' < ${1:-/dev/stdin}
-}
-
-lsmod() {
-  local width=$(tput cols)
-
-  if (( width > 120 )); then
-    # OH GOD IM USING CAT!!
-    {
-      echo "Module Size Ref UsedBy Stat Address"
-      cat /proc/modules
-    } | column -t
-  else
-    command lsmod
-  fi
 }
 
 mak() {
