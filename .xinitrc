@@ -12,5 +12,6 @@ setxkbmap -option terminate:ctrl_alt_bksp
 xset r rate 220 45
 xsetroot -cursor_name left_ptr
 
-exec ck-launch-session dbus-launch --sh-syntax --exit-with-session ~/bin/startdwm
+start-pulseaudio-x11
+PATH=$HOME/bin:$PATH exec ~/bin/startdwm
 
