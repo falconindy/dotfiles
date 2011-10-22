@@ -41,6 +41,6 @@ nametrans = lambda folder: re.sub('.*Spam$', 'spam',
                            re.sub('.*Trash$', 'trash',
                            re.sub('.*All Mail$', 'archive', folder))))))))))
 
-folderfilter = lambda foldername: foldername not in ['[Gmail]/All Mail']
+folderfilter = lambda foldername: foldername not in ['[Gmail]/All Mail', '[Gmail]/Important']
 
 # vim: ft=cfg tw=0
