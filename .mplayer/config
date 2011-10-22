@@ -2,7 +2,7 @@
 
 [default]
 ao=pulse
-#ass-force-style="FontName=DejaVuSans"
+ass-force-style="FontName=DejaVuSans"
 ass=yes
 fs=yes
 heartbeat-cmd="xscreensaver-command -deactivate >/dev/null &"
