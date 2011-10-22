@@ -251,6 +251,46 @@ _known_hosts_real()
     return 0
 }
 
+# override this to fix a shitty bug
+_chgrp()
+{
+    local cur prev split=false
+
+    COMPREPLY=()
+    _get_comp_words_by_ref cur prev
+    cur=${cur//\\\\/}
+
+    _split_longopt && split=true
+
+    if [[ "$prev" == --reference ]]; then
+        _filedir
+        return 0
+    fi
+
+    $split && return 0
+
+    # options completion
+    if [[ "$cur" == -* ]]; then
+        local w opts
+        for w in "${COMP_WORDS[@]}" ; do
+            [[ "$w" == -@(R|-recursive) ]] && opts="-H -L -P" && break
+        done
+        COMPREPLY=( $( compgen -W '-c -h -f -R -v --changes --dereference \
+            --no-dereference --silent --quiet --reference --recursive \
+            --verbose --help --version $opts' -- "$cur" ) )
+        return 0
+    fi
+
+    # first parameter on line or first since an option?
+    if [[ $COMP_CWORD -eq 1 && "$cur" != -* || "$prev" == -* ]]; then
+        _allowed_groups "$cur"
+    else
+        _filedir || return 0
+    fi
+
+    return 0
+}
+
 # pacman wrappers
 complete -o filenames -F _pacman pp pm
 
