@@ -26,6 +26,6 @@ alias udevinfo='udevadm info -q all -n'
 alias v='vim'
 alias vgfull='valgrind --leak-check=full --show-reachable=yes'
 alias wakeht='wakeonlan 6C:F0:49:17:BF:A3'
-alias webshare='python2 /usr/lib/python2.7/SimpleHTTPServer.py 80'
+alias webshare='python -m http.server 8080'
 alias wgetxc='wget $(xclip -o)'
 alias wtc="curl --silent 'http://whatthecommit.com/index.txt'"
