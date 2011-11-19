@@ -8,6 +8,7 @@
 [alias]
 	all = !git-all
 	br = branch
+	reb = rebase
 	co = checkout
 	last = show --stat HEAD
 	logdel = log --diff-filter=D --summary
