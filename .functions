@@ -38,10 +38,11 @@ dconfigure() {
 debugflags() {
   local -a flags cppflags ldflags
 
-  cflags=(-Wextra -Wclobbered -Wempty-body -Wfloat-equal -Wignored-qualifiers
-          -Wmissing-declarations -Wmissing-parameter-type -Wsign-compare
-          -Wmissing-prototypes -Wold-style-declaration -fstack-protector-all
-          -Wtype-limits -Woverride-init -Wstrict-prototypes -Wuninitialized)
+  cflags=(-pedantic -Wall -Wextra -Wclobbered -Wempty-body -Wfloat-equal
+          -Wignored-qualifiers -Wmissing-declarations -Wmissing-parameter-type
+          -Wsign-compare -Wmissing-prototypes -Wold-style-declaration
+          -fstack-protector-all -Wtype-limits -Woverride-init
+          -Wstrict-prototypes -Wuninitialized)
   cppflags=(-D_FORTIFY_SOURCE=2)
 
   # lulz
