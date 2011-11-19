@@ -7,8 +7,8 @@
   set folder              = ~/var/mail
   set spoolfile           = "+gmail/INBOX"
 
-subscribe arch-dev-public arch-general suckless-dev systemd-devel
-mailboxes = +--gmail---- +gmail/INBOX +gmail/reisner +gmail/facebook +gmail/brookdale +gmail/drafts +gmail/sent +gmail/spam +gmail/trash +--ML------- +gmail/arch +gmail/suckless +gmail/curl +gmail/linux-modules +gmail/linux-hotplug +gmail/util-linux +gmail/freedesktop
+subscribe arch-dev arch-dev-public aur-general aur-dev systemd-devel linux-modules linux-hotplug util-linux curl-library
+mailboxes = +--gmail---- +gmail/INBOX +gmail/reisner +gmail/facebook +gmail/brookdale +gmail/drafts +gmail/sent +gmail/spam +gmail/trash +--ML------- +gmail/arch +gmail/curl +gmail/linux-modules +gmail/linux-hotplug +gmail/util-linux +gmail/freedesktop
 
 # [external]
   set editor              = "vim +:silent+?^$"            # use vim and skip to last blank line
@@ -108,3 +108,5 @@ macro index,pager         A   "<pipe-message>abook --add-email<return>" "add sen
 
 # [reading]
 auto_view     text/html
+
+source $HOME/.mutt/muttrc.gpg
