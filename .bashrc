@@ -49,4 +49,6 @@ for config in .aliases .functions .prompt .bashrc."$HOSTNAME"; do
   [[ -r ~/$config ]] && . ~/"$config"
 done
 
-type -p keychain >/dev/null && (( UID != 0 )) && eval $(keychain --eval id_rsa)
+if type -p keychain >/dev/null && (( UID != 0 )); then
+  eval $(keychain --eval id_rsa)
+fi
