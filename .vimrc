@@ -62,7 +62,7 @@ endif
 " variables
 "---------------------------------
 let maplocalleader = ","
-
+let mapleader = ","
 
 
 " keymapping
@@ -161,6 +161,10 @@ endif
 if &term !=# "linux"
     set list listchars=tab:\»\ ,trail:·,extends:›,precedes:‹
 endif
+
+" C
+"--------------------------------
+au FileType c,cpp set noet
 
 
 " Go
