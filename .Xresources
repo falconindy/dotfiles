@@ -4,7 +4,7 @@ Xft.antialias: true
 Xft.rgba: rgb
 Xft.hinting: true
 Xft.hintstyle: hintfull
-Xft.autohint: false
+Xft.autohint: true
 Xft.lcdfilter: lcddefault
 
 ! --[ Rodent ]----------------------------------------------
@@ -40,7 +40,7 @@ URxvt.keysym.M-s:      perl:keyboard-select:search
 
 ! --[ URxvt - colors ]--------------------------------------
 URxvt.depth: 32
-URxvt.background: rgba:0000/0000/0000/bbbb
+URxvt.background: rgba:2222/2222/2222/bbbb
 URxvt.foreground:#eeeeee
 
 ! --[ Color Scheme ]----------------------------------------
