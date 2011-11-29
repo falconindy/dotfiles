@@ -233,6 +233,15 @@ mkcd() {
   [[ -d $1 ]] && builtin cd "$1"
 }
 
+rlatest() {
+  local file
+  find "${1:-.}" -type f -printf '%T@ %p\0' | sort -znr | {
+    read -rd ' ' _
+    IFS= read -rd '' file
+    printf '%s\n' "$file"
+  }
+}
+
 sprunge() {
   curl -sF 'sprunge=<-' 'http://sprunge.us' < "${1:-/dev/stdin}"
 }
