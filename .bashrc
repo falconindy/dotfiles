@@ -50,5 +50,8 @@ for config in .aliases .functions .prompt .bashrc."$HOSTNAME"; do
 done
 
 if type -p keychain >/dev/null && (( UID != 0 )); then
-  eval $(keychain --eval id_rsa)
+  keys=("$HOME"/.ssh/id_rsa!(*.pub))
+  keys=("${keys[@]#$HOME/.ssh/}")
+  eval $(keychain --eval "${keys[@]}")
+  unset keys
 fi
