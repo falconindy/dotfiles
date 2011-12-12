@@ -21,8 +21,11 @@ bash_prompt() {
 
   RET_VALUE='$((( RET )) && printf ":\[\e[1;31m\]$RET\[\e[0m\]")'
 
+  # different color for remote hosts
+  [[ $SSH_TTY ]] && local HC=$B
+
   # space goes inside the printf so its not there when there's no git branch
-  PS1="$TITLEBAR ${EMK}┌┤${UC}\h${EMK}->${UC}\u${RET_VALUE}\$(__git_ps1 ' \[\e[0;32m\]%s\[\e[0m\]') ${EMB}\w${EMK}${UC}\n ${EMK}└╼${NONE} "
+  PS1="$TITLEBAR $EMK┌┤$UC$HC\h$EMK->$UC\u$RET_VALUE\$(__git_ps1 ' \[\e[0;32m\]%s\[\e[0m\]') $EMB\w$EMK$UC\n $EMK└╼$NONE "
   export PS4='+$BASH_SOURCE[$LINENO]: '
 }
 
