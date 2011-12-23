@@ -17,22 +17,20 @@ if [[ $TERM = linux ]]; then
 fi
 
 # more for less
-LESS=-R # use -X to avoid sending terminal initialization
-LESS_TERMCAP_mb=$'\e[01;31m'
-LESS_TERMCAP_md=$'\e[01;31m'
-LESS_TERMCAP_me=$'\e[0m'
-LESS_TERMCAP_se=$'\e[0m'
-LESS_TERMCAP_so=$'\e[01;44;33m'
-LESS_TERMCAP_ue=$'\e[0m'
-LESS_TERMCAP_us=$'\e[01;32m'
-export "${!LESS@}"
+export LESS=-R # use -X to avoid sending terminal initialization
+export LESS_TERMCAP_mb=$'\e[01;31m'
+export LESS_TERMCAP_md=$'\e[01;31m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[01;44;33m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[01;32m'
 
 # history
-HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd*"
-HISTCONTROL="ignoreboth:erasedups"
-HISTSIZE=1000
-HISTFILESIZE=2000
-export "${!HIST@}"
+export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd*"
+export HISTCONTROL="ignoreboth:erasedups"
+export HISTSIZE=1000
+export HISTFILESIZE=2000
 
 # chroot prompt
 if [[ -f /.chroot ]]; then
