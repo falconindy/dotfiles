@@ -32,20 +32,13 @@ export HISTCONTROL="ignoreboth:erasedups"
 export HISTSIZE=1000
 export HISTFILESIZE=2000
 
-# chroot prompt
-if [[ -f /.chroot ]]; then
-  root_name=$(< /.chroot)
-  root_name=${root_name:-NONAME}
-  PS1='[\u@\h${root_name} \w]\$ '
-  return
-fi
-
 # External config
 [[ -r ~/.dircolors && -x /bin/dircolors ]] && eval $(dircolors -b ~/.dircolors)
 [[ -z $BASH_COMPLETION && -r /etc/bash_completion ]] && . /etc/bash_completion
 for config in .aliases .functions .prompt .bashrc."$HOSTNAME"; do
   [[ -r ~/$config ]] && . ~/"$config"
 done
+unset config
 
 if type -p keychain >/dev/null && (( UID != 0 )); then
   keys=("$HOME"/.ssh/id_rsa!(*.pub))
