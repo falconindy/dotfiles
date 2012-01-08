@@ -35,6 +35,21 @@ dconfigure() {
   fi
 }
 
+ddprogress() {
+  local pid= t=0
+
+  dd "$@" &
+  pid=$!
+
+  while kill -0 "$pid"; do
+    sleep 5s
+    (( t += 5 ))
+    if (( ! t % 60 )); then
+      kill -USR1 "$pid" || break
+    fi
+  done
+}
+
 debugflags() {
   local -a flags cppflags ldflags
 
@@ -126,17 +141,16 @@ down() {
 ex() {
   if [[ -f $1 ]]; then
     case $1 in
-      *.tar.@(bz2|gz|xz))  tar xvf $1     ;;
-      *.@(tar|tbz2|tgz))   tar xvf $1     ;;
-      *.bz2)               bunzip2 $1     ;;
-      *.rar)               unrar x $1     ;;
-      *.gz)                gunzip $1      ;;
-      *.lzma)              unxz $1        ;;
-      *.rpm)               bsdtar xf $1   ;;
-      *.zip)               unzip $1       ;;
-      *.Z)                 uncompress $1  ;;
-      *.7z)                7z x $1        ;;
-      *.exe)               cabextract $1  ;;
+      *.@(tar|tbz2|tgz|txz|rpm)?(.bz2|.gz|.xz))
+                           bsdtar xvf "$1"  ;;
+      *.bz2)               bzip2 -d "$1"    ;;
+      *.rar)               unrar x "$1"     ;;
+      *.gz)                gzip -d "$1"     ;;
+      *.lzma)              xz -d "$1"       ;;
+      *.zip)               unzip "$1"       ;;
+      *.Z)                 uncompress "$1"  ;;
+      *.7z)                7z x "$1"        ;;
+      *.exe)               cabextract "$1"  ;;
       *)                   echo "'$1': unrecognized file compression" ;;
     esac
   else
@@ -234,11 +248,14 @@ mkcd() {
 }
 
 rlatest() {
-  local file
+  local count=${2:-1}
+
   find "${1:-.}" -type f -printf '%T@ %p\0' | sort -znr | {
-    read -rd ' ' _
-    IFS= read -rd '' file
-    printf '%s\n' "$file"
+    while (( count-- )); do
+      read -rd ' ' _
+      IFS= read -rd '' file
+      printf '%s\n' "$file"
+    done
   }
 }
 
@@ -341,8 +358,8 @@ xclipc() {
 
 xkbreset() {
   [[ $DISPLAY ]] || return 1
-  eval $(grep 'xset r rate' ~/.xinitrc)
-  eval $(grep 'terminate' ~/.xinitrc)
+  eval $(grep 'xset r rate' ~/.xsession)
+  eval $(grep 'terminate' ~/.xsession)
 }
 
 xs() {
