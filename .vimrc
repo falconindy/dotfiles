@@ -91,7 +91,7 @@ vmap <LocalLeader>y "+y
 vmap <LocalLeader>p "+p
 vmap <LocalLeader>c :call CommentLines()<CR>
 
-map <LocalLeader>b :let b:is_bash=1<CR>:set syn=sh<CR>
+map <LocalLeader>b :let b:is_bash=1<CR>:let g:sh_no_error=1<CR>:set syn=sh<CR>
 
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
@@ -158,7 +158,7 @@ endif
 
 " Substitutions
 "---------------------------------
-if &term !=# "linux"
+if &term !=# "linux" && $LANG !=# "C"
     set list listchars=tab:\»\ ,trail:·,extends:›,precedes:‹
 endif
 
