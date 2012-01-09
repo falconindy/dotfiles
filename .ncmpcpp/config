@@ -7,7 +7,8 @@
 #
 ## set it in order to make tag editor and renaming files work properly
 #
-mpd_host = "/var/lib/mpd/socket"
+#mpd_host = "/var/lib/mpd/socket"
+mpd_host = "/home/noclaf/.mpd/socket"
 #
 #mpd_port = "6600"
 #
