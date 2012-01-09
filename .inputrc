@@ -10,3 +10,7 @@ $if mode=vi
   "\e[5~": history-search-backward
   "\e[6~": history-search-forward
 $endif
+
+
+"\C-x\C-r": re-read-init-file
+
