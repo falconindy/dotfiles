@@ -5,6 +5,8 @@
 # check for interactive
 [[ $- = *i* ]] || return
 
+export TTY=$(tty)
+
 # shell opts: see bash(1)
 shopt -s cdspell dirspell extglob histverify no_empty_cmd_completion checkwinsize
 
@@ -32,9 +34,25 @@ export HISTCONTROL="ignoreboth:erasedups"
 export HISTSIZE=1000
 export HISTFILESIZE=2000
 
+source_bash_completion() {
+  local f
+  [[ $BASH_COMPLETION ]] && return 0
+  for f in /{etc,usr/share/bash-completion}/bash_completion; do
+    if [[ -r $f ]]; then
+      . "$f"
+      return 0;
+    fi
+  done
+}
+
 # External config
-[[ -r ~/.dircolors && -x /bin/dircolors ]] && eval $(dircolors -b ~/.dircolors)
-[[ -z $BASH_COMPLETION && -r /etc/bash_completion ]] && . /etc/bash_completion
+if [[ -r ~/.dircolors ]] && type -p dircolors >/dev/null; then
+  eval $(dircolors -b "$HOME/.dircolors")
+fi
+
+source_bash_completion
+unset -f source_bash_completion
+
 for config in .aliases .functions .prompt .bashrc."$HOSTNAME"; do
   [[ -r ~/$config ]] && . ~/"$config"
 done
