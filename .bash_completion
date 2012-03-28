@@ -1,5 +1,8 @@
 #!/bin/bash
 
+[[ -r /usr/share/bash-completion/completions/git ]] &&
+    . /usr/share/bash-completion/completions/git
+
 # git-commit override
 _git_commit() {
   local cur ng_set
@@ -11,7 +14,7 @@ _git_commit() {
 
   # complete uncommitted files
   if [[ $prev = "commit" ]]; then
-    COMPREPLY=( $(compgen -W "$( git status -s | cut -d' ' -f3-)" -- $cur ) )
+    COMPREPLY=( $(compgen -W "$( git status --porcelain | cut -d' ' -f3-)" -- $cur ) )
   fi
 }
 
