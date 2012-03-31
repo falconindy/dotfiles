@@ -17,7 +17,7 @@ cg2dot() {
 confpac() {
   [[ -f autogen.sh ]] || return 1
   ./autogen.sh
-  dconfigure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-git-version --enable-debug "$@"
+  ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-git-version --enable-debug "$@"
   for path in lib/libalpm src/{pacman,util}; do
     ln -sf ../../config.h $path/config.h
   done
@@ -27,11 +27,11 @@ pushd() {
   builtin pushd "${@:-$HOME}"
 }
 
-dconfigure() {
+./configure() {
   if [[ -x /bin/dash ]]; then
     CONFIG_SHELL=/bin/dash /bin/dash ./configure CONFIG_SHELL=/bin/dash "$@"
   else
-    ./configure "$@"
+    command ./configure "$@"
   fi
 }
 
@@ -73,18 +73,17 @@ deps() {
   if [[ -f "$1" ]]; then
     prog=$1
   else
-    prog=$(type -P $1)
-    echo -e "$1 => $prog\n"
+    prog=$(type -P $1) && echo -e "$1 => $prog\n"
   fi
 
-  [[ -z $prog ]] && { echo "File not found"; return 1; }
-  readelf -d $prog | sed -n '/NEEDED/s/.* library: \[\(.*\)\]/\1/p'
+  [[ -z $prog ]] && { echo "error: binary not found: $1"; return 1; }
+  objdump -p "$prog" | awk '/NEEDED/ { print $2 }'
 }
 
 depscan() {
   [[ -z $1 ]] && { echo "usage: depscan <package>"; return; }
   while read elfobj; do
-    readelf -d $elfobj | sed -n 's|.*NEEDED.*\[\(.*\)\].*|'$elfobj' -- \1|p'
+    objdump -p "$elfobj" | awk '/NEEDED/ { print $2 }'
   done < <(file $(pacman -Qlq $1) | sed -n '/ELF/s/^\(.*\):.*/\1/p') | nl
 }
 
@@ -181,6 +180,14 @@ hex2dec() {
   printf "%d\n" 0x$1
 }
 
+hex2ip() {
+  printf '%d.%d.%d.%d\n' \
+    $(( 0x${1:6:2} )) \
+    $(( 0x${1:4:2} )) \
+    $(( 0x${1:2:2} )) \
+    $(( 0x${1:0:2} ))
+}
+
 kc() {
   eval $(keychain --eval id_rsa)
 }
@@ -260,7 +267,7 @@ rlatest() {
 }
 
 sprunge() {
-  curl -sF 'sprunge=<-' 'http://sprunge.us' < "${1:-/dev/stdin}"
+  curl -sF "sprunge=<${1:--}" 'http://sprunge.us'
 }
 
 sdstat() {
@@ -272,6 +279,10 @@ sdstat() {
   done
 
   systemctl status "${services[@]}"
+}
+
+svnrm() {
+  svn up --set-depth exclude "$@" && rm -rf "$@"
 }
 
 t() {
