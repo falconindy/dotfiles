@@ -10,11 +10,12 @@ export GOROOT=$HOME/go
 export GOBIN=$GOROOT/bin
 
 # locale
+export LANG=en_US.UTF-8
 export LC_COLLATE=C
 export LC_NUMERIC=C
 
 # path
-export PATH=$GOBIN:$HOME/bin:$PATH
+PATH=$GOBIN:$HOME/bin:$PATH
 export CDPATH=.:/mnt/Gluttony:/mnt/Haven
 
 [ -n $BASH -a -r ~/.bashrc ] && . ~/.bashrc
