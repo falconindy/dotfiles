@@ -25,7 +25,7 @@ feh --bg-scale $(randomWallpaper)
 xscreensaver -no-splash &
 
 # input
-setxkbmap -option terminate:ctrl_alt_bksp -option compose:r_alt
+setxkbmap -option terminate:ctrl_alt_bksp -option compose:ralt
 xset r rate 220 45
 xsetroot -cursor_name left_ptr
 
