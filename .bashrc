@@ -30,7 +30,7 @@ export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[01;32m'
 
 # history
-export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd*"
+export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd *"
 export HISTCONTROL="ignoreboth:erasedups"
 export HISTSIZE=1000
 export HISTFILESIZE=2000
