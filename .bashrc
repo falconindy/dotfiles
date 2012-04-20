@@ -6,6 +6,7 @@
 [[ $- = *i* ]] || return
 
 export TTY=$(tty)
+export GPG_TTY=$TTY
 
 # shell opts: see bash(1)
 shopt -s cdspell dirspell extglob histverify no_empty_cmd_completion checkwinsize
