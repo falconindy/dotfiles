@@ -69,15 +69,27 @@ debugflags() {
 }
 
 deps() {
-  local prog
+  local bin dir
   if [[ -f "$1" ]]; then
-    prog=$1
+    bin=$1
+  elif bin=$(type -P $1); then
+    :
   else
-    prog=$(type -P $1) && echo -e "$1 => $prog\n"
+    # maybe its a lib?
+    for dir in /lib /usr/lib; do
+      if [[ -f $dir/$1 ]]; then
+        bin=$dir/$1
+        break
+      fi
+    done
   fi
 
-  [[ -z $prog ]] && { echo "error: binary not found: $1"; return 1; }
-  objdump -p "$prog" | awk '/NEEDED/ { print $2 }'
+  if [[ $bin && $1 != $bin ]]; then
+    printf '%s => %s\n\n' "$1" "$bin"
+  fi
+
+  [[ -z $bin ]] && { echo "error: binary not found: $1"; return 1; }
+  objdump -p "$bin" | awk '/NEEDED/ { print $2 }'
 }
 
 depscan() {
