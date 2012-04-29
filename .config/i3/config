@@ -118,6 +118,7 @@ bindsym $mod+F1               exec mpc prev
 bindsym $mod+F2               exec mpc toggle
 bindsym $mod+F3               exec mpc next
 
+bindsym $mod+Shift+I          exec xcalib -invert -alter
 
 #
 # Windowing Rules
@@ -130,6 +131,9 @@ assign [instance="tmux"]    → 2
 
 assign [instance="ncmpcpp"] → 3
 assign [instance="htop"]    → 3
+
+for_window [class="Gxmessage"] floating enable
+for_window [class="Pinentry"] floating enable
 
 #assign [class="mplayer2"] → 4
 
