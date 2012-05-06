@@ -11,6 +11,6 @@ $if mode=vi
   "\e[6~": history-search-forward
 $endif
 
-
+"\C-e\C-w": unix-filename-rubout
 "\C-x\C-r": re-read-init-file
 
