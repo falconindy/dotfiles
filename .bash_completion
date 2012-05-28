@@ -254,6 +254,13 @@ _known_hosts_real()
     return 0
 }
 
+_modules () {
+  local modpath
+  modpath=({/usr,}/lib/modules/$1)
+  COMPREPLY=($( compgen -W "$(command find "${modpath[@]}" -name '*.ko*' -printf '%f\n' 2>/dev/null |
+      sed -r 's/\.ko(\..z)?$//')" -- "$cur" ))
+}
+
 # pacman wrappers
 complete -o filenames -F _pacman pp pm
 
