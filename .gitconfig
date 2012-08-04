@@ -3,7 +3,7 @@
 	email = dreisner@archlinux.org
 
 [sendemail]
-	smtpserver = /usr/bin/msmtp
+	smtpserver = /home/noclaf/bin/msmtp-arch
 
 [alias]
 	all = !git-all
