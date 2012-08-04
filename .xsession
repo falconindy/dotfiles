@@ -5,7 +5,7 @@
 
 # launch a dbus session bus and write the location to file
 read machine_id < /etc/machine-id
-dbus-launch --autolaunch="$machine_id" --binary-syntax --close-stderr
+dbus-launch --autolaunch="$machine_id" --binary-syntax --close-stderr --exit-with-session
 if [ -f "$HOME/.dbus/session-bus/$machine_id-${DISPLAY#:}" ]; then
   . "$HOME/.dbus/session-bus/$machine_id-${DISPLAY#:}"
   unset machine_id
@@ -19,7 +19,7 @@ nvidia-settings -l
 xset +dpms +fp /usr/share/fonts/local,/usr/share/fonts/artwiz-fonts
 
 # background
-feh --bg-scale $(randomWallpaper)
+feh --bg-scale "$HOME/var/pic/wallpaper/current.png"
 
 # screensaver
 xscreensaver -no-splash &
