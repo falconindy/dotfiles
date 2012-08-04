@@ -134,6 +134,7 @@ assign [instance="htop"]    → 3
 
 for_window [class="Gxmessage"] floating enable
 for_window [class="Pinentry"] floating enable
+for_window [class="feh"] floating enable
 
 #assign [class="mplayer2"] → 4
 
