@@ -58,7 +58,6 @@ else
   colorscheme dante
 endif
 
-
 " variables
 "---------------------------------
 let maplocalleader = ","
@@ -128,7 +127,7 @@ let g:StartComment="#"
 let g:EndComment=""
 
 " example of changing it for a filetype
-au FileType c,cpp,go  let g:StartComment = "//"
+au FileType c,cpp     let g:StartComment = "//"
 au FileType vim       let g:StartComment = "\""
 
 " call the function on ,c
@@ -165,12 +164,11 @@ endif
 " C
 "--------------------------------
 au FileType c,cpp set noet
-
-
-" Go
-"--------------------------------
-au BufRead,BufNewFile *.go set filetype=go
-
+let g:clang_use_library = 0
+let g:clang_complete_auto = 1
+let g:clang_periodic_quickfix = 0
+let g:clang_library_path = "/usr/lib"
+au FileType c let g:clang_user_options = "-std=c11 || exit 0"
 
 " Vala
 "--------------------------------
@@ -189,3 +187,4 @@ let vala_minlines = 120
 "--------------------------------
 au BufRead,BufNew ~/.mutt/tmp/mutt* so ~/.mutt/mutt.vim
 
+au BufRead,BufNew *.am set ft=automake
