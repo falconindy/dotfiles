@@ -17,7 +17,14 @@ cg2dot() {
 confpac() {
   [[ -f autogen.sh ]] || return 1
   ./autogen.sh
-  ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-git-version --enable-debug "$@"
+  ./configure \
+    --prefix=/usr \
+    --sysconfdir=/etc \
+    --localstatedir=/var \
+    --enable-git-version \
+    --enable-warningflags \
+    --enable-debug \
+    "$@"
   for path in lib/libalpm src/{pacman,util}; do
     ln -sf ../../config.h $path/config.h
   done
@@ -57,8 +64,9 @@ debugflags() {
           -Wignored-qualifiers -Wmissing-declarations -Wmissing-parameter-type
           -Wsign-compare -Wmissing-prototypes -Wold-style-declaration
           -fstack-protector-all -Wtype-limits -Woverride-init
-          -Wstrict-prototypes -Wuninitialized)
-  cppflags=(-D_FORTIFY_SOURCE=2)
+          -Wstrict-prototypes -Wuninitialized -gdwarf-4 -fdebug-types-section
+          -fvar-tracking-assignments -fdebug-types-section)
+  #cppflags=(-D_FORTIFY_SOURCE=2)
 
   # lulz
   for flagarr in {c,cpp,ld}flags; do
@@ -200,6 +208,13 @@ hex2ip() {
     $(( 0x${1:0:2} ))
 }
 
+ip2hex() {
+  local octets
+  IFS=. read -a octets <<<"$1"
+  printf '%02x' "${octets[@]}"
+  echo
+}
+
 kc() {
   eval $(keychain --eval id_rsa)
 }
@@ -212,7 +227,26 @@ kopt() {
 
 ljoin() {
   [[ $1 ]] || { echo "usage: ljoin IFS args..."; return 1; } >&2
-  ( IFS=$1; echo "${*:2}" )
+  local IFS=$1; echo "${*:2}"
+}
+
+ll() {
+  case $1 in
+    *.tar.gz|*.tgz)
+      bsdtar tvf "$1" | less
+      ;;
+    *.tar.bz2|*.tbz)
+      bsdtar tvf "$1" | less
+      ;;
+    *.tar.xz|*.txz)
+      bsdtar tvf "$1" | less
+      ;;
+    *.tar)
+      bsdtar tvf "$1" | less
+      ;;
+    *)
+      ls -l "$@"
+  esac
 }
 
 longest() {
@@ -278,10 +312,6 @@ rlatest() {
   }
 }
 
-sprunge() {
-  curl -sF "sprunge=<${1:--}" 'http://sprunge.us'
-}
-
 sdstat() {
   local -a services
 
@@ -309,10 +339,10 @@ unwork() {
 
   if [[ -d $1 ]]; then
     local count
-    read count < <(find "$1" -type d -name '.svn' -printf 'foo\n' -exec rm -rf {} + | wc -l)
-    if [[ $? != 0 ]]; then
+    count=$(find "$1" -depth -type d -name '.svn' -printf '.' -exec rm -rf {} + | wc -c)
+    if (( $? != 0 )); then
       echo "Error occurred. Nothing done." >&2
-    elif [[ $count = 0 ]]; then
+    elif (( count = 0 )); then
       echo "Nothing done."
     else
       echo "SUCCESS. Directory is no longer a working copy ($count .svns removed)."
@@ -386,7 +416,7 @@ xkbreset() {
 }
 
 xs() {
-  xclip -o | sprunge
+  xclip -o | sprunge | tr -d '[:blank:]' | xclip
 }
 
 # vim: syn=sh ft=sh et
