@@ -54,6 +54,9 @@ fi
 source_bash_completion
 unset -f source_bash_completion
 
+# git prompt
+[[ -f /usr/share/git/git-prompt.sh ]] && . /usr/share/git/git-prompt.sh
+
 for config in .aliases .functions .prompt .bashrc."$HOSTNAME"; do
   [[ -r ~/$config ]] && . ~/"$config"
 done
