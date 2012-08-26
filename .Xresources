@@ -31,12 +31,11 @@ URxvt.scrollTtyOutput: false
 URxvt.scrollTtyKeypress: true
 
 ! --[ URxvt - URL/Clipboard Handling ]----------------------
-URxvt.perl-ext-common: default,url-select,keyboard-select
-URxvt.keysym.M-u:      perl:url-select:select_next
-URxvt.urlLauncher:     chromium
-URxvt.underlineURLs:   true
-URxvt.keysym.M-Escape: perl:keyboard-select:activate
-URxvt.keysym.M-s:      perl:keyboard-select:search
+URxvt.perl-ext-common:      default,url-select,keyboard-select
+URxvt.url-select.launcher:  chromium
+URxvt.url-select.underline: true
+URxvt.keysym.M-Escape:      perl:keyboard-select:activate
+URxvt.keysym.M-s:           perl:keyboard-select:search
 
 ! --[ URxvt - colors ]--------------------------------------
 URxvt.depth: 32
