@@ -1,0 +1,15 @@
+#!/bin/bash
+
+shopt -s extglob
+
+TTY=${TTY:-$(tty)}
+TTY=${TTY#/dev/}
+
+if [[ $TTY != tty+([0-9]) ]]; then
+  printf '==> ERROR: invalid TTY for this script\n'
+  exit 1
+fi
+
+printf -v vt 'vt%02d' "${TTY#tty}"
+
+exec /usr/bin/X -nolisten tcp "$vt" "$@"

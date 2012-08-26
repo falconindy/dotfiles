@@ -4,7 +4,7 @@
 #
 
 # launch a dbus session bus and write the location to file
-read machine_id < /etc/machine-id
+read machine_id </etc/machine-id
 dbus-launch --autolaunch="$machine_id" --binary-syntax --close-stderr --exit-with-session
 if [ -f "$HOME/.dbus/session-bus/$machine_id-${DISPLAY#:}" ]; then
   . "$HOME/.dbus/session-bus/$machine_id-${DISPLAY#:}"
