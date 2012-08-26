@@ -32,6 +32,7 @@ URxvt.scrollTtyKeypress: true
 
 ! --[ URxvt - URL/Clipboard Handling ]----------------------
 URxvt.perl-ext-common:      default,url-select,keyboard-select
+URxvt.keysym.M-u:           perl:url-select:select_next
 URxvt.url-select.launcher:  chromium
 URxvt.url-select.underline: true
 URxvt.keysym.M-Escape:      perl:keyboard-select:activate
