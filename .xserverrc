@@ -6,7 +6,7 @@ TTY=${TTY:-$(tty)}
 TTY=${TTY#/dev/}
 
 if [[ $TTY != tty+([0-9]) ]]; then
-  printf '==> ERROR: invalid TTY for this script\n'
+  printf '==> ERROR: invalid TTY\n' >&2
   exit 1
 fi
 
