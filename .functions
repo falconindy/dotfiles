@@ -320,14 +320,7 @@ rlatest() {
 }
 
 sdstat() {
-  local -a services
-
-  for serv; do
-    [[ $serv = *.@(service|device|socket|path|target|?(auto)mount) ]] || serv+='.service'
-    services+=("$serv")
-  done
-
-  systemctl status "${services[@]}"
+  systemctl status "$@"
 }
 
 svnrm() {
