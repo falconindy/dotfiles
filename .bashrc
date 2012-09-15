@@ -62,9 +62,8 @@ for config in .aliases .functions .prompt .bashrc."$HOSTNAME"; do
 done
 unset config
 
-if type -p keychain >/dev/null && (( UID != 0 )); then
+if type -p poptart >/dev/null && (( UID != 0 )); then
   keys=("$HOME"/.ssh/id_rsa!(*.pub))
-  keys=("${keys[@]#$HOME/.ssh/}")
-  eval $(keychain --eval "${keys[@]}")
+  eval $(poptart -p)
   unset keys
 fi
