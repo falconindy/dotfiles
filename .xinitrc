@@ -12,9 +12,6 @@ if [ -f "$HOME/.dbus/session-bus/$machine_id-${DISPLAY#:}" ]; then
   printf '%s\n' "$DBUS_SESSION_BUS_ADDRESS" > "$HOME/.dbus_address"
 fi
 
-# restore nvidia settings
-nvidia-settings -l
-
 # fonts
 xset +dpms +fp /usr/share/fonts/local,/usr/share/fonts/artwiz-fonts
 
@@ -25,7 +22,7 @@ feh --bg-scale "$HOME/var/pic/wallpaper/current.png"
 xscreensaver -no-splash &
 
 # input
-setxkbmap -option terminate:ctrl_alt_bksp -option compose:ralt
+setxkbmap -option terminate:ctrl_alt_bksp,compose:ralt
 xset r rate 220 45
 xsetroot -cursor_name left_ptr
 
