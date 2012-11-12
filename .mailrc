@@ -10,6 +10,7 @@ set indentprefix="> "
 set PAGER=less
 set EDITOR=vim
 set VISUAL=vim
+set sendmail="/usr/bin/msmtp"
 retain bcc cc date from subject to
 
 # include your private mail aliases
