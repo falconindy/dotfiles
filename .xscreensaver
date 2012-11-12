@@ -1,10 +1,10 @@
 # XScreenSaver Preferences File
-# Written by xscreensaver-demo 5.12 for noclaf on Sat Dec 11 23:23:56 2010.
+# Written by xscreensaver-demo 5.20 for noclaf on Fri Nov  2 10:17:49 2012.
 # http://www.jwz.org/xscreensaver/
 
 timeout:	0:05:00
 cycle:		0:10:00
-lock:		True
+lock:		False
 lockTimeout:	0:10:00
 passwdTimeout:	0:00:30
 visualID:	default
@@ -25,6 +25,7 @@ captureStderr:	True
 ignoreUninstalledPrograms:False
 font:		*-medium-r-*-140-*-m-*
 dpmsEnabled:	True
+dpmsQuickOff:	False
 dpmsStandby:	1:00:00
 dpmsSuspend:	2:00:00
 dpmsOff:	4:00:00
@@ -240,14 +241,16 @@ programs:								      \
   GL: 				skytentacles -root			    \n\
   GL: 				rubikblocks -root			    \n\
 				electricsheep --root 1			    \n\
+  GL: 				gltext -root				    \n\
+  GL: 				companioncube -root			    \n\
+  GL: 				hilbert -root				    \n\
+  GL: 				tronbit -root				    \n\
 
 
 pointerPollTime:    0:00:05
 pointerHysteresis:  10
 windowCreationTimeout:0:00:30
 initialDelay:	0:00:00
-sgiSaverExtension:  True
-xidleExtension:	True
 GetViewPortIsFullOfLies:False
 procInterrupts:	True
 xinputExtensionDev: True
