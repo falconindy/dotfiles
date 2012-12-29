@@ -62,10 +62,9 @@ debugflags() {
 
   cflags=(-pedantic -Wall -Wextra -Wclobbered -Wempty-body -Wfloat-equal
           -Wignored-qualifiers -Wmissing-declarations -Wmissing-parameter-type
-          -Wsign-compare -Wmissing-prototypes -Wold-style-declaration
-          -fstack-protector-all -Wtype-limits -Woverride-init
-          -Wstrict-prototypes -Wuninitialized -gdwarf-4 -fdebug-types-section
-          -fvar-tracking-assignments -fdebug-types-section -Wunused)
+          -Wsign-compare -Wmissing-prototypes -Wold-style-declaration -gdwarf-4
+          -fstack-protector-all -Wtype-limits -Woverride-init -Wunused
+          -Wstrict-prototypes -Wuninitialized -fvar-tracking-assignments)
   #cppflags=(-D_FORTIFY_SOURCE=2)
 
   # lulz
@@ -80,23 +79,22 @@ deps() {
   local bin dir
   if [[ -f "$1" ]]; then
     bin=$1
-  elif bin=$(type -P $1); then
+  elif bin=$(type -P "$1"); then
     :
   else
     # maybe its a lib?
-    for dir in /lib /usr/lib; do
-      if [[ -f $dir/$1 ]]; then
-        bin=$dir/$1
-        break
-      fi
-    done
+    [[ -f /usr/lib/$1 ]] && bin=$dir/$1
   fi
 
-  if [[ $bin && $1 != $bin ]]; then
+  if [[ $bin && $1 != "$bin" ]]; then
     printf '%s => %s\n\n' "$1" "$bin"
   fi
 
-  [[ -z $bin ]] && { echo "error: binary not found: $1"; return 1; }
+  if [[ -z $bin ]]; then
+    echo "error: binary not found: $1"
+    return 1
+  fi
+
   objdump -p "$bin" | awk '/NEEDED/ { print $2 }'
 }
 
@@ -175,6 +173,19 @@ ex() {
   else
     echo "'$1' is not a valid file"
   fi
+}
+
+g4d() {
+  local path name
+  while read repo; do
+    path=${repo%/.git}
+    name=${path##*/}
+    if [[ $1 = "$name" ]]; then
+      cd "$path"
+      return 0
+    fi
+  done < <(find "$HOME" -type d -name .git)
+  return 1
 }
 
 ghclone() {
@@ -411,8 +422,8 @@ xclipc() {
 
 xkbreset() {
   [[ $DISPLAY ]] || return 1
-  eval $(grep 'xset r rate' ~/.xsession)
-  eval $(grep 'terminate' ~/.xsession)
+  eval $(grep 'xset r rate' ~/.xinitrc)
+  eval $(grep 'terminate' ~/.xinitrc)
 }
 
 xs() {
