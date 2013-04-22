@@ -158,7 +158,7 @@ down() {
 ex() {
   if [[ -f $1 ]]; then
     case $1 in
-      *.@(tar|tbz2|tgz|txz|rpm)?(.bz2|.gz|.xz))
+      *.@(deb|tar|tbz2|tgz|txz|rpm)?(.bz2|.gz|.xz))
                            bsdtar xvf "$1"  ;;
       *.bz2)               bzip2 -d "$1"    ;;
       *.rar)               unrar x "$1"     ;;
@@ -226,18 +226,9 @@ ip2hex() {
   echo
 }
 
-kc() {
-  eval $(keychain --eval id_rsa)
-}
-
 kopt() {
   [[ $1 ]] || return 1
   zgrep "${1^^}" /proc/config.gz
-}
-
-ljoin() {
-  [[ $1 ]] || { echo "usage: ljoin IFS args..."; return 1; } >&2
-  local IFS=$1; echo "${*:2}"
 }
 
 ll() {
@@ -259,63 +250,10 @@ ll() {
   esac
 }
 
-longest() {
-  awk '
-  BEGIN {
-    linecount = 0
-    maxlen = 0
-    line = ""
-  }
-  {
-    len = length($0)
-    if(len > maxlen) {
-      maxlen = len
-      line = $0
-    }
-  }
-  END {
-    if(linecount > 0) {
-      printf "%d\t%d\n", maxlen, line
-    }
-  }
-  ' < ${1:-/dev/stdin}
-}
-
-mak() {
-  if [[ ! -f Makefile ]]; then
-    local -a src=(*.c)
-    make "${src[@]%.c}" "$@"
-  else
-    make "$@"
-  fi
-}
-
-man2pdf() {
-  local manpage out
-
-  [[ $1 ]] || { echo "usage: man2pdf <manpage>"; return 1; }>&2
-
-  if manpage=$(man -w "$1"); then
-    out=/tmp/$1.pdf
-    [[ -e $out ]] || man -t $1 | ps2pdf - > $out
-    [[ -e $out ]] && xo $out
-  else
-    echo "ERROR: manpage \"$1\" not found."
-  fi
-}
-
 mkcd() {
   [[ $1 ]] || return 0
   [[ -d $1 ]] || mkdir -vp "$1"
   [[ -d $1 ]] && builtin cd "$1"
-}
-
-q() {
-  "$@" >/dev/null
-}
-
-qq() {
-  "$@" &>/dev/null
 }
 
 rlatest() {
@@ -340,27 +278,6 @@ svnrm() {
 
 t() {
   tmux -L main "${@:-attach}"
-}
-
-unwork() {
-  if [[ -z $1 ]]; then
-    echo "usage: unwork <dirname>"
-    return 1
-  fi
-
-  if [[ -d $1 ]]; then
-    local count
-    count=$(find "$1" -depth -type d -name '.svn' -printf '.' -exec rm -rf {} + | wc -c)
-    if (( $? != 0 )); then
-      echo "Error occurred. Nothing done." >&2
-    elif (( count = 0 )); then
-      echo "Nothing done."
-    else
-      echo "SUCCESS. Directory is no longer a working copy ($count .svns removed)."
-    fi
-  else
-    echo "ERROR: $1 is not a directory"
-  fi
 }
 
 up() {
