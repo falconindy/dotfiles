@@ -3,6 +3,7 @@
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+alias abuild='sudo sh -c "extra-x86_64-build && extra-i686-build"'
 alias callgrind='valgrind --tool=callgrind'
 alias clearflags='unset CFLAGS CPPFLAGS LDFLAGS'
 alias cdg='up .git'
