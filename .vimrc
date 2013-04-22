@@ -1,14 +1,10 @@
 "
-" .vimrc
-" Dave Reisner
+" ~/.vimrc
 "
-
-set nocompatible                "Needs to be first according to Bram
-
-source ~/.vim/functions.vim
 
 " General Options
 "---------------------------------
+set nocompatible
 set autoread
 set backspace=indent,eol,start
 set backupcopy=yes                     " keep attributes of original file
@@ -40,7 +36,11 @@ set virtualedit=all
 set wildmenu
 set wildmode=list:longest,full
 
-call pathogen#runtime_append_all_bundles()
+source ~/.vim/functions.vim
+
+if filereadable(expand("$HOME") . "/.vim/vundle.vim")
+  source ~/.vim/vundle.vim
+endif
 
 filetype plugin indent on
 
@@ -103,21 +103,13 @@ nnoremap <C-k> <C-w>k
 
 map <LocalLeader>l :Tlist<CR>
 
-" Session Control
-"--------------------------------
-autocmd VimLeave * nested if (!isdirectory($HOME . "/.vim")) |
-    \ call mkdir($HOME . "/.vim") |
-    \ endif |
-    \ execute "mksession! " . $HOME . "/.vim/Session.vim"
-
-autocmd VimEnter * nested if argc() == 0 && filereadable($HOME . "/.vim/Session.vim") |
-    \ execute "source " . $HOME . "/.vim/Session.vim"
-
 
 " Tab/Indent Exceptions
 "---------------------------------
 autocmd FileType make set noexpandtab
 autocmd FileType python set shiftwidth=4 tabstop=4
+
+" autocmd BufRead,BufWritePre,FileWritePre * silent! %s/[\r \t]\+$//
 
 
 " Commenting
@@ -129,20 +121,6 @@ let g:EndComment=""
 " example of changing it for a filetype
 au FileType c,cpp     let g:StartComment = "//"
 au FileType vim       let g:StartComment = "\""
-
-" call the function on ,c
-vmap <LocalLeader>c :call CommentLines()<CR>
-
-" and the function itself
-function! CommentLines()
-  try
-    execute ":s@^".g:StartComment."@\@g"
-    execute ":s@".g:EndComment."$@@g"
-  catch
-    execute ":s@^@".g:StartComment."@g"
-    execute ":s@$@".g:EndComment."@g"
-  endtry
-endfunction
 
 
 " Code Folding
@@ -164,24 +142,6 @@ endif
 " C
 "--------------------------------
 au FileType c,cpp set noet
-let g:clang_use_library = 0
-let g:clang_complete_auto = 1
-let g:clang_periodic_quickfix = 0
-let g:clang_library_path = "/usr/lib"
-au FileType c let g:clang_user_options = "-std=c11 || exit 0"
-
-" Vala
-"--------------------------------
-autocmd BufRead *.vala set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
-autocmd BufRead *.vapi set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
-au BufRead,BufNewFile *.vala            setfiletype vala
-au BufRead,BufNewFile *.vapi            setfiletype vala
-let vala_ignore_valadoc = 1
-let vala_comment_strings = 1
-let vala_space_errors = 1
-let vala_no_trail_space_error = 1
-let vala_no_tab_space_error = 1
-let vala_minlines = 120
 
 " Mutt
 "--------------------------------
