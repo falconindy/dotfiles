@@ -1,6 +1,6 @@
 [default]
 ao=pulse
-vo=vdpau,
+vo=vdpau,xv,
 ass=yes
 ass-force-style="FontName=DejaVuSans"
 fs=yes
