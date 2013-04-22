@@ -3,6 +3,10 @@
 # .xsession
 #
 
+for _ in /etc/X11/xinit/xinitrc.d/*; do
+  [[ -f $_ ]] && . "$_"
+done
+
 # launch a dbus session bus and write the location to file
 read machine_id </etc/machine-id
 dbus-launch --autolaunch="$machine_id" --binary-syntax --close-stderr --exit-with-session
