@@ -109,9 +109,9 @@ bindsym $mod+Shift+R restart
 bindsym $mod+Shift+E exit
 
 # volume control
-bindsym XF86_AudioRaiseVolume exec /home/noclaf/bin/ponymix -N increase 5
-bindsym XF86_AudioLowerVolume exec /home/noclaf/bin/ponymix -N decrease 5
-bindsym XF86_AudioMute        exec /home/noclaf/bin/ponymix -N toggle
+bindsym XF86_AudioRaiseVolume exec /usr/bin/ponymix -N increase 5
+bindsym XF86_AudioLowerVolume exec /usr/bin/ponymix -N decrease 5
+bindsym XF86_AudioMute        exec /usr/bin/ponymix -N toggle
 
 # MPD control                             j
 bindsym $mod+F1               exec mpc prev
@@ -135,7 +135,8 @@ assign [instance="htop"]    → 3
 for_window [class="Gxmessage"] floating enable
 for_window [class="Pinentry"] floating enable
 for_window [class="feh"] floating enable
-for_window [class="Steam"] floating enable
+for_window [title="Steam"] floating enable
+for_window [title="QEMU"] floating enable
 
 #assign [class="mplayer2"] → 4
 
