@@ -8,5 +8,5 @@ export PAGER=less
 PATH=$HOME/bin:$PATH
 export CDPATH=.:/mnt/Gluttony:/mnt/Haven
 
-[ -n ~/.profile."$HOSTNAME" ] && . ~/.profile."$HOSTNAME"
+[ -f ~/.profile."$HOSTNAME" ] && . ~/.profile."$HOSTNAME"
 [ -n $BASH -a -r ~/.bashrc ] && . ~/.bashrc
