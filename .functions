@@ -175,19 +175,6 @@ ex() {
   fi
 }
 
-g4d() {
-  local path name
-  while read repo; do
-    path=${repo%/.git}
-    name=${path##*/}
-    if [[ $1 = "$name" ]]; then
-      cd "$path"
-      return 0
-    fi
-  done < <(find "$HOME" -type d -name .git)
-  return 1
-}
-
 ghclone() {
   local user= repo=
 
