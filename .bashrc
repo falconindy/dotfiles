@@ -12,7 +12,7 @@ export GPG_TTY=$TTY
 shopt -s cdspell dirspell extglob histverify no_empty_cmd_completion checkwinsize
 
 set -o notify           # notify of completed background jobs immediately
-ulimit -S -c 0 -n 4096  # disable core dumps
+ulimit -S -c 0          # disable core dumps
 stty -ctlecho           # turn off control character echoing
 
 if [[ $TERM = linux ]]; then
@@ -58,7 +58,7 @@ unset -f source_bash_completion
 [[ -f /usr/share/git/git-prompt.sh ]] && . /usr/share/git/git-prompt.sh
 
 for config in .aliases .functions .prompt .bashrc."$HOSTNAME"; do
-  [[ -r ~/$config ]] && . ~/"$config"
+  [[ -r $HOME/$config ]] && . "$HOME/$config"
 done
 unset config
 
