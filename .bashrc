@@ -35,6 +35,8 @@ export HISTCONTROL="ignoreboth:erasedups"
 export HISTSIZE=1000
 export HISTFILESIZE=2000
 
+GIT_EXEC_PATH=/usr/lib/git:/usr/share/git/remote-helpers
+
 source_bash_completion() {
   local f
   [[ $BASH_COMPLETION ]] && return 0
@@ -67,3 +69,4 @@ if type -p keychain >/dev/null && (( UID != 0 )); then
   eval $(keychain --eval "${keys[@]#$HOME/.ssh/}")
   unset keys
 fi
+

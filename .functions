@@ -1,5 +1,10 @@
 #!/bin/bash
 
+abuild() {
+  local repo=${1:-extra}
+  sudo sh -c "'$repo-x86_64-build' && '$repo-i686-build'"
+}
+
 calc() {
   echo "scale=3; $*" | bc
 }
@@ -25,9 +30,6 @@ confpac() {
     --enable-warningflags \
     --enable-debug \
     "$@"
-  for path in lib/libalpm src/{pacman,util}; do
-    ln -sf ../../config.h $path/config.h
-  done
 }
 
 pushd() {
@@ -83,7 +85,7 @@ deps() {
     :
   else
     # maybe its a lib?
-    [[ -f /usr/lib/$1 ]] && bin=$dir/$1
+    [[ -f /usr/lib/$1 ]] && bin=/usr/lib/$1
   fi
 
   if [[ $bin && $1 != "$bin" ]]; then
@@ -255,6 +257,10 @@ rlatest() {
   }
 }
 
+signall() {
+  for _; do gpg --detach-sign "$_"; done
+}
+
 sdstat() {
   systemctl status "$@"
 }
@@ -265,6 +271,18 @@ svnrm() {
 
 t() {
   tmux -L main "${@:-attach}"
+}
+
+traffic() {
+  ss -t '( not dst localhost )' | awk '
+      NR > 1 {
+        sub(/:[^:]+$/, "", $NF)
+        a[$NF]++
+      }
+      END {
+        for (h in a)
+          printf "%s\t%d\n", h, a[h]
+      }'
 }
 
 up() {
