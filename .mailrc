@@ -5,7 +5,7 @@
 # see also mail(1)
 #
 
-set append ask autoprint 
+set append ask autoprint
 set indentprefix="> "
 set PAGER=less
 set EDITOR=vim
