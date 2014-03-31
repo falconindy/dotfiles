@@ -1,6 +1,6 @@
 # network
 port_range = 7881-7889
-scgi_port = localhost:5000
+scgi_local = /home/noclaf/.config/rtorrent/scgi.sock
 encryption = allow_incoming,try_outgoing,enable_retry
 
 # limits
