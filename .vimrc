@@ -13,6 +13,7 @@ set backupskip=/tmp/*
 set completeopt=longest,menuone
 set directory=~/.vim/swap,~/tmp,.      " keep swp files under ~/.vim/swap
 set expandtab
+set formatoptions+=j
 set history=50
 set hlsearch
 set ignorecase
@@ -139,12 +140,9 @@ if &term !=# "linux" && $LANG !=# "C"
     set list listchars=tab:\»\ ,trail:·,extends:›,precedes:‹
 endif
 
-" C
-"--------------------------------
-au FileType c,cpp set noet
-
 " Mutt
 "--------------------------------
 au BufRead,BufNew ~/.mutt/tmp/mutt* so ~/.mutt/mutt.vim
 
 au BufRead,BufNew *.am set ft=automake
+au BufNewFile,BufRead *.yaml,*.yml    setf yaml
