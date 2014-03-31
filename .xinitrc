@@ -7,14 +7,8 @@ for _ in /etc/X11/xinit/xinitrc.d/*; do
   [[ -f $_ ]] && . "$_"
 done
 
-# launch a dbus session bus and write the location to file
-read machine_id </etc/machine-id
-dbus-launch --autolaunch="$machine_id" --binary-syntax --close-stderr --exit-with-session
-if [ -f "$HOME/.dbus/session-bus/$machine_id-${DISPLAY#:}" ]; then
-  . "$HOME/.dbus/session-bus/$machine_id-${DISPLAY#:}"
-  unset machine_id
-  printf '%s\n' "$DBUS_SESSION_BUS_ADDRESS" > "$HOME/.dbus_address"
-fi
+systemctl --user import-environment 'DISPLAY'
+# systemctl --user start xorg.target
 
 # fonts
 xset +dpms +fp /usr/share/fonts/local,/usr/share/fonts/artwiz-fonts
