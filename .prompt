@@ -26,7 +26,7 @@ bash_prompt() {
 
   # space goes inside the printf so its not there when there's no git branch
   PS1="$TITLEBAR $EMK┌┤$HC\h$EMK->$UC\u$RET_VALUE\$(__git_ps1 ' \[\e[0;32m\]%s\[\e[0m\]') $EMB\w$EMK$UC\n $EMK└➤$NONE "
-  export PS4='+$BASH_SOURCE[$LINENO]: '
+  export PS4='+($?) $BASH_SOURCE:$FUNCNAME:$LINENO:'
 }
 
 # chroot prompt
