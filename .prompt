@@ -29,6 +29,13 @@ bash_prompt() {
   export PS4='+($?) $BASH_SOURCE:$FUNCNAME:$LINENO:'
 }
 
+# git prompt
+if [[ -f /usr/share/git/git-prompt.sh ]]; then
+  . /usr/share/git/git-prompt.sh
+else
+  __git_ps1() { :; }
+fi
+
 # chroot prompt
 if [[ -f /.chroot ]]; then
   root_name=$(< /.chroot)
