@@ -5,18 +5,8 @@ abuild() {
   sudo sh -c "'$repo-x86_64-build' && '$repo-i686-build'"
 }
 
-calc() {
-  echo "scale=3; $*" | bc
-}
-
 cget() {
   curl -fJOL --compressed "$@"
-}
-
-cg2dot() {
-  { type -P gprof2dot || type -P dot; } &>/dev/null || return 1
-  (( $# == 2 )) || { echo "Usage: $FUNCNAME: <input> <output>"; return 1; }
-  gprof2dot --format=callgrind $1 | dot -T${2##*.} -o "$2"
 }
 
 confpac() {
@@ -42,21 +32,6 @@ pushd() {
   else
     command ./configure "$@"
   fi
-}
-
-ddprogress() {
-  local pid= t=0
-
-  dd "$@" &
-  pid=$!
-
-  while kill -0 "$pid"; do
-    sleep 5s
-    (( t += 5 ))
-    if (( ! t % 60 )); then
-      kill -USR1 "$pid" || break
-    fi
-  done
 }
 
 debugflags() {
@@ -98,13 +73,6 @@ deps() {
   fi
 
   objdump -p "$bin" | awk '/NEEDED/ { print $2 }'
-}
-
-depscan() {
-  [[ -z $1 ]] && { echo "usage: depscan <package>"; return; }
-  while read elfobj; do
-    objdump -p "$elfobj" | awk '/NEEDED/ { print $2 }'
-  done < <(file $(pacman -Qlq $1) | sed -n '/ELF/s/^\(.*\):.*/\1/p') | nl
 }
 
 down() {
@@ -157,45 +125,6 @@ down() {
   fi
 }
 
-ex() {
-  if [[ -f $1 ]]; then
-    case $1 in
-      *.@(deb|tar|tbz2|tgz|txz|rpm)?(.bz2|.gz|.xz))
-                           bsdtar xvf "$1"  ;;
-      *.bz2)               bzip2 -d "$1"    ;;
-      *.rar)               unrar x "$1"     ;;
-      *.gz)                gzip -d "$1"     ;;
-      *.lzma)              xz -d "$1"       ;;
-      *.zip)               unzip "$1"       ;;
-      *.Z)                 uncompress "$1"  ;;
-      *.7z)                7z x "$1"        ;;
-      *.exe)               cabextract "$1"  ;;
-      *)                   echo "'$1': unrecognized file compression" ;;
-    esac
-  else
-    echo "'$1' is not a valid file"
-  fi
-}
-
-ghclone() {
-  local user= repo=
-
-  if (( ! $# )); then
-    printf "Usage: ghclone [-p] user repo\n"
-    return 1
-  fi
-
-  if [[ $1 = -p ]]; then
-    prefix=git@github.com:
-    shift
-  else
-    prefix=git://github.com/
-  fi
-
-  user=$1 repo=$2
-  git clone "$prefix$user/$repo"
-}
-
 hex2dec() {
   printf "%d\n" 0x$1
 }
@@ -245,24 +174,8 @@ mkcd() {
   [[ -d $1 ]] && builtin cd "$1"
 }
 
-rlatest() {
-  local count=${2:-1}
-
-  find "${1:-.}" -type f -printf '%T@ %p\0' | sort -znr | {
-    while (( count-- )); do
-      read -rd ' ' _
-      IFS= read -rd '' file
-      printf '%s\n' "$file"
-    done
-  }
-}
-
 signall() {
   for _; do gpg --detach-sign "$_"; done
-}
-
-sdstat() {
-  systemctl status "$@"
 }
 
 svnrm() {
@@ -336,20 +249,6 @@ urlencode() {
       *) printf '%%%X' "'$char" ;;
     esac
   done
-}
-
-xclipc() {
-  xclip -selection clipboard "$@"
-}
-
-xkbreset() {
-  [[ $DISPLAY ]] || return 1
-  eval $(grep 'xset r rate' ~/.xinitrc)
-  eval $(grep 'terminate' ~/.xinitrc)
-}
-
-xs() {
-  xclip -o | sprunge | tr -d '[:blank:]' | xclip
 }
 
 # vim: syn=sh ft=sh et
