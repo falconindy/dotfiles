@@ -119,6 +119,8 @@ autocmd FileType python set shiftwidth=4 tabstop=4
 let g:StartComment="#"
 let g:EndComment=""
 
+let g:tar_cmd= "bsdtar"
+
 " example of changing it for a filetype
 au FileType c,cpp     let g:StartComment = "//"
 au FileType vim       let g:StartComment = "\""
