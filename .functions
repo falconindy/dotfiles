@@ -186,6 +186,10 @@ t() {
   tmux -L main "${@:-attach}"
 }
 
+tmp() {
+  mkcd ~/tmp
+}
+
 traffic() {
   ss -t '( not dst localhost )' | awk '
       NR > 1 {
