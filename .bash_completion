@@ -261,13 +261,6 @@ _modules () {
       sed -r 's/\.ko(\..z)?$//')" -- "$cur" ))
 }
 
-# pacman wrappers
-complete -o filenames -F _pacman pp pm
-
-# go
-complete -f -X '!*.8' 8l
-complete -f -X '!*.6' 6l
-complete -f -X '!*.5' 5l
-complete -f -X '!*.go' 8g 6g 5g gofmt gccgo
-
-complete -F _known_hosts kssh
+# aliasing
+. /usr/share/bash-completion/completions/systemctl 2>/dev/null
+complete -F _systemctl sd
