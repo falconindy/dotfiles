@@ -14,3 +14,4 @@ $endif
 "\C-e\C-w": unix-filename-rubout
 "\C-x\C-r": re-read-init-file
 
+set colored-stats
