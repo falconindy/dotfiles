@@ -53,11 +53,7 @@ syntax on
 hi Pmenu ctermfg=Cyan ctermbg=Blue
 hi PmenuSel ctermfg=White ctermbg=DarkYellow
 
-if &term !=# "screen-256color"
-  colorscheme neverland2
-else
-  colorscheme dante
-endif
+colorscheme molokai
 
 " variables
 "---------------------------------
