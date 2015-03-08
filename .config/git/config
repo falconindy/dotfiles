@@ -4,6 +4,7 @@
 
 [sendemail]
 	smtpserver = /home/noclaf/bin/msmtp-arch
+	supresscc = self
 
 [alias]
 	all = !git-all
@@ -44,4 +45,11 @@
 [diff]
 	rename = copies
 
+[url "git://github.com/"]
+	insteadOf = gh:
+
 # vim: set ft=gitconfig noet:
+[tar "tar.gz"]
+	command = pigz -c
+[core]
+	compression = 9
