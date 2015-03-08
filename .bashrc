@@ -34,6 +34,7 @@ HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd *"
 HISTCONTROL="ignoreboth:erasedups"
 HISTSIZE=1000
 HISTFILESIZE=2000
+HISTTIMEFORMAT='%s'
 
 GIT_EXEC_PATH=/usr/lib/git:/usr/share/git/remote-helpers
 
