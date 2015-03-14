@@ -12,7 +12,7 @@ extra_PATH=$HOME/.local/bin
 
 # golang
 export GOPATH=$HOME/.local/lib/go
-extra_PATH=$extra_path:$GOPATH/bin
+extra_PATH=$extra_PATH:$GOPATH/bin
 
 CDPATH=.:/mnt/Gluttony:/mnt/Haven
 PATH=$extra_PATH:$PATH
