@@ -53,3 +53,5 @@
 	command = pigz -c
 [core]
 	compression = 9
+[rebase]
+	autoSquash = true

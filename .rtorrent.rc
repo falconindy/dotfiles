@@ -18,6 +18,7 @@ session = /home/noclaf/.config/rtorrent/session/
 schedule = watch_directory_1,5,5,"load_start=/home/noclaf/tor/waf/*.torrent,d.set_directory=/mnt/Gluttony/waffles/"
 schedule = watch_directory_2,5,5,"load_start=/home/noclaf/tor/inc/*.torrent,d.set_directory=/mnt/Gluttony/.incomplete/"
 schedule = watch_directory_3,5,5,"load_start=/home/noclaf/tor/anime/*.torrent,d.set_directory=/mnt/Gluttony/video/anime"
+schedule = watch_directory_4,5,5,"load_start=/home/noclaf/tor/movies/*.torrent,d.set_directory=/mnt/Gluttony/video/movies"
 
 # on finish hook
 system.method.set_key = event.download.finished,notify_me,"execute=/home/noclaf/bin/torrentdone,$d.get_name="

@@ -39,11 +39,16 @@ set wildmode=list:longest,full
 
 source ~/.vim/functions.vim
 
-if filereadable(expand("$HOME") . "/.vim/vundle.vim")
-  source ~/.vim/vundle.vim
+" herp derp ycmd
+let $PYTHONDONTWRITEBYTECODE = "1"
+
+if filereadable(expand("$HOME") . "/.vim/plug.vim")
+  source ~/.vim/plug.vim
 endif
 
 filetype plugin indent on
+
+let g:syntastic_disabled_filetypes=['PKGBUILD']
 
 
 " extra colors

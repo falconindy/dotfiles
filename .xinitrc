@@ -7,17 +7,17 @@ for _ in /etc/X11/xinit/xinitrc.d/*; do
   [[ -f $_ ]] && . "$_"
 done
 
-systemctl --user import-environment 'DISPLAY'
+# systemctl --user import-environment 'DISPLAY'
 # systemctl --user start xorg.target
 
 # fonts
 xset +dpms +fp /usr/share/fonts/local,/usr/share/fonts/artwiz-fonts
 
 # background
-feh --bg-scale "$HOME/var/pic/wallpaper/current.png"
+# feh --bg-scale "$HOME/var/pic/wallpaper/current.png"
 
 # screensaver
-xscreensaver -no-splash &
+# xscreensaver -no-splash &
 
 # input
 setxkbmap -option terminate:ctrl_alt_bksp,compose:ralt
@@ -31,10 +31,14 @@ xrdb -merge ~/.Xresources
 urxvtd -q -o -f
 
 # apps
-chromium &
+# chromium &
 urxvtc -name werk
-urxvtc -name tmux -geometry 122x77 -e tmux -L main attach
-urxvtc -name ncmpcpp -e ncmpcpp
+# urxvtc -name tmux -geometry 122x77 -e tmux -L main attach
+# urxvtc -name ncmpcpp -e ncmpcpp
 urxvtc -name htop -e htop
+
+# correct overscan
+xrandr --output HDMI-1 --set underscan on
+xrandr --output HDMI-1 --set "underscan hborder" 40 --set "underscan vborder" 25
 
 exec /usr/bin/i3

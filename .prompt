@@ -19,13 +19,13 @@ bash_prompt() {
   # username/host color for root/other
   (( UID != 0 )) && local UC=$W || local UC=$R
 
-  RET_VALUE='$((( RET )) && printf ":\[\e[1;31m\]$RET\[\e[0m\]")'
+  local RET_VALUE='$((( RET )) && printf ":\[\e[1;31m\]$RET\[\e[0m\]")'
 
   # different color for remote hosts
   [[ $SSH_TTY ]] && local HC=$C || local HC=$W
 
   # space goes inside the printf so its not there when there's no git branch
-  PS1="$TITLEBAR $EMK┌┤$HC\h$EMK->$UC\u$RET_VALUE\$(__git_ps1 ' \[\e[0;32m\]%s\[\e[0m\]') $EMB\w$EMK$UC\n $EMK└➤$NONE "
+  PS1="$TITLEBAR $EMK┌┤$HC\h$EMK->$UC\u$RET_VALUE\$(__git_ps1 ' $G%s$NONE') $EMB\w$EMK$UC\n $EMK└➤$NONE "
   export PS4='+($?) $BASH_SOURCE:$FUNCNAME:$LINENO:'
 }
 

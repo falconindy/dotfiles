@@ -1,7 +1,9 @@
 $include /etc/inputrc
 
 set editing-mode vi
+
 $if mode=vi
+  set bind-tty-special-chars Off
   set echo-control-characters Off
   set expand-tilde Off
   set match-hidden-files On
@@ -15,3 +17,4 @@ $endif
 "\C-x\C-r": re-read-init-file
 
 set colored-stats
+

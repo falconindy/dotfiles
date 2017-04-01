@@ -20,6 +20,7 @@ URxvt.highlightColor:#444444
 URxvt.font: xft:DejaVuSansMono:pixelsize=14,xft:Symbola:pixelsize=10
 URxvt.boldFont: xft:DejaVuSansMono:pixelsize=14:bold,xft:Symbola:pixelsize=6:bold
 URxvt.internalborder: 0
+URxvt.letterSpace: -2
 URxvt.underlinecolor: #999999
 URxvt.cutchars: "()*,<>[]{}|'"
 URxvt.print-pipe: cat >/tmp/xxx
