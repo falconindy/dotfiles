@@ -3,7 +3,6 @@ $include /etc/inputrc
 set editing-mode vi
 
 $if mode=vi
-  set bind-tty-special-chars Off
   set echo-control-characters Off
   set expand-tilde Off
   set match-hidden-files On
@@ -11,6 +10,11 @@ $if mode=vi
 
   "\e[5~": history-search-backward
   "\e[6~": history-search-forward
+
+  # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=838437
+  set bind-tty-special-chars Off
+  set keymap vi-insert
+  "\C-w": unix-word-rubout
 $endif
 
 "\C-e\C-w": unix-filename-rubout
