@@ -20,6 +20,7 @@ set ignorecase
 set incsearch
 set laststatus=2
 set number
+set encoding=utf-8
 set printoptions=left:5pc,right:5pc,top:5pc,bottom:10pc,syntax:n
 set ruler
 set scrolloff=5
