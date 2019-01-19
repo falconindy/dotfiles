@@ -1,4 +1,0 @@
-#!/bin/bash
-
-printf "%s°F" \
-  $(curl -s 'http://weather.yahooapis.com/forecastrss?w=12760842' | xmllint --xpath 'string(//*/@temp)' -)
