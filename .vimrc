@@ -110,7 +110,6 @@ map <LocalLeader>l :Tlist<CR>
 " Tab/Indent Exceptions
 "---------------------------------
 autocmd FileType make set noexpandtab
-autocmd FileType python set shiftwidth=4 tabstop=4
 
 " autocmd BufRead,BufWritePre,FileWritePre * silent! %s/[\r \t]\+$//
 
