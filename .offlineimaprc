@@ -29,6 +29,7 @@ localfolders = ~/var/mail/gmail
 [Repository gmail_remote]
 type = Gmail
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+ssl_version = tls1_2
 remoteuser = d@falconindy.com
 realdelete = no
 createfolders = False
@@ -42,6 +43,6 @@ nametrans = lambda folder: re.sub('.*Spam$', 'spam',
                            re.sub('.*[Tt]rash$', 'trash',
                            re.sub('.*All Mail$', 'archive', folder)))))))))
 
-folderfilter = lambda foldername: foldername not in ('[Gmail]/All Mail', '[Gmail]/Important', '[Gmail]/Spam')
+folderfilter = lambda foldername: foldername not in ('[Gmail]/All Mail', '[Gmail]/Important', '[Gmail]/Spam', '[Gmail]/Trash')
 
 # vim: ft=cfg tw=0
